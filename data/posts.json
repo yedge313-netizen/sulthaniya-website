@@ -1,0 +1,44 @@
+{
+  "posts": [
+    {
+      "title": "മദീനയിലെ 100 ചരിത്ര ഇസ്ലാമിക കേന്ദ്രങ്ങൾ പുനഃസ്ഥാപിക്കാൻ സൗദി അറേബ്യ",
+      "category": "updates",
+      "categoryLabel": "Updates",
+      "image": "https://images.unsplash.com/photo-1564769662533-4f00a87b4056?auto=format&fit=crop&w=1200&q=80",
+      "summary": "റിയാദ്: സയ്യിദുനാ മുഹമ്മദ് നബി(സ)യുടെ ജീവിതവുമായി ബന്ധപ്പെട്ട ചരിത്ര കേന്ദ്രങ്ങളെക്കുറിച്ചുള്ള പുതിയ അപ്ഡേറ്റ്.",
+      "link": "https://www.sulthaniyaonline.com/"
+    },
+    {
+      "title": "മഗ്‌ഫിറത്തിന്റെ വഴി",
+      "category": "teaching",
+      "categoryLabel": "അധ്യാപനങ്ങൾ",
+      "image": "https://images.unsplash.com/photo-1519817650390-64a93db51149?auto=format&fit=crop&w=900&q=80",
+      "summary": "സയ്യിദുനാ നൂഹ് (അ) തന്റെ സമൂഹത്തോട് അല്ലാഹുവിലേക്ക് പശ്ചാത്തപിച്ചു മടങ്ങാൻ ഉപദേശിക്കുന്ന രംഗം.",
+      "link": ""
+    },
+    {
+      "title": "മഗ്ഫിറത്തിന്റെ വഴി",
+      "category": "ramadan",
+      "categoryLabel": "റമളാൻ",
+      "image": "https://images.unsplash.com/photo-1615734679687-8e0f2c0c824a?auto=format&fit=crop&w=900&q=80",
+      "summary": "കാരുണ്യ നാഥന്റെ അലിവ്, റമദാനിന്റെ ദിനങ്ങൾ, ആത്മീയ വളർച്ചയിലേക്കുള്ള ഓർമ്മപ്പെടുത്തൽ.",
+      "link": ""
+    },
+    {
+      "title": "ഭക്ഷണം കഴിച്ചും നോമ്പ് നോൽക്കുന്നവർ",
+      "category": "ramadan",
+      "categoryLabel": "റമളാൻ",
+      "image": "https://images.unsplash.com/photo-1530521954074-e64f6810b32d?auto=format&fit=crop&w=900&q=80",
+      "summary": "വേനൽ കടുത്ത ഒരു റമദാൻ മാസത്തെ ആത്മീയ കഥയും നോമ്പിന്റെ ഉള്ളടക്കത്തിലേക്കുള്ള ചിന്തയും.",
+      "link": ""
+    },
+    {
+      "title": "നോമ്പ് : ശരീഅത് - ഥരീഖത് - ഹഖീഖത്",
+      "category": "teaching",
+      "categoryLabel": "അധ്യാപനങ്ങൾ",
+      "image": "https://images.unsplash.com/photo-1490730141103-6cac27aaab94?auto=format&fit=crop&w=900&q=80",
+      "summary": "സിർറുൽ അസ്റാറിൽ നിന്നുള്ള ആത്മീയ പഠനം: ശരീഅത്ത്, ഥരീഖത്ത്, ഹഖീഖത്ത് എന്ന മൂന്ന് തലങ്ങൾ.",
+      "link": ""
+    }
+  ]
+}
