@@ -1,6 +1,8 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: yedge313-netizen/sulthaniya-website
   branch: main
+  base_url: https://sveltia-cms-auth.yedge313.workers.dev
 
 local_backend: true
 

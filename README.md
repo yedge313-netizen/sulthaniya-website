@@ -1,4 +1,4 @@
-# Sulthaniya Foundation Website 
+# Sulthaniya Foundation Website Prototype
 
 This is a free static website prototype inspired by modern spiritual/wellness websites, using Sulthaniya Foundation content from the current website.
 
