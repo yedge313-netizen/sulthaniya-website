@@ -25,12 +25,6 @@
       "newTab": false
     },
     {
-      "label": "Admin",
-      "url": "admin/index.html",
-      "style": "normal",
-      "newTab": false
-    },
-    {
       "label": "Contact",
       "url": "https://api.whatsapp.com/",
       "style": "button",
