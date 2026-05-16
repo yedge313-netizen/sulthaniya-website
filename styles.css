@@ -129,8 +129,8 @@ a {
 
 .hero {
   position: relative;
-  min-height: 52svh;
-  max-height: 52svh;
+  min-height: 66svh;
+  max-height: 66svh;
   display: grid;
   align-items: end;
   overflow: hidden;
@@ -232,8 +232,8 @@ a {
 }
 
 .quick-links a {
-  min-height: 80px;
-  padding: 14px 24px;
+  min-height: 86px;
+  padding: 16px 26px;
   border-right: 1px solid rgba(255, 255, 255, 0.14);
 }
 
@@ -245,7 +245,7 @@ a {
 
 .quick-links strong {
   display: block;
-  margin: 10px 0 2px;
+  margin: 8px 0 1px;
   font-size: 18px;
 }
 
@@ -679,7 +679,8 @@ h2 {
   }
 
   .quick-links a {
-    min-height: 120px;
+    min-height: 74px;
+    padding: 14px 22px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.14);
   }
 
