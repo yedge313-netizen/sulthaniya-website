@@ -1,0 +1,40 @@
+{
+  "tabs": [
+    {
+      "label": "Sulthaniya",
+      "url": "#sulthaniya",
+      "style": "normal",
+      "newTab": false
+    },
+    {
+      "label": "Articles",
+      "url": "#articles",
+      "style": "normal",
+      "newTab": false
+    },
+    {
+      "label": "Masters",
+      "url": "#masters",
+      "style": "normal",
+      "newTab": false
+    },
+    {
+      "label": "Learning",
+      "url": "#learning",
+      "style": "normal",
+      "newTab": false
+    },
+    {
+      "label": "Admin",
+      "url": "admin/index.html",
+      "style": "normal",
+      "newTab": false
+    },
+    {
+      "label": "Contact",
+      "url": "https://api.whatsapp.com/",
+      "style": "button",
+      "newTab": true
+    }
+  ]
+}
