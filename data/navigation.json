@@ -25,15 +25,15 @@
       "newTab": false
     },
     {
-      "label": "Contact",
-      "url": "https://api.whatsapp.com/",
-      "style": "button",
-      "newTab": true
-    },
-    {
       "label": "Official site",
       "url": "https://www.sulthaniyaonline.com/",
       "style": "normal",
+      "newTab": true
+    },
+    {
+      "label": "Contact",
+      "url": "https://api.whatsapp.com/",
+      "style": "button",
       "newTab": true
     }
   ]
