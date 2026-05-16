@@ -129,8 +129,8 @@ a {
 
 .hero {
   position: relative;
-  min-height: 64svh;
-  max-height: 64svh;
+  min-height: 60svh;
+  max-height: 60svh;
   display: grid;
   align-items: end;
   overflow: hidden;
