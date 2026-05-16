@@ -232,8 +232,8 @@ a {
 }
 
 .quick-links a {
-  min-height: 95px;
-  padding: 18px 26px;
+  min-height: 80px;
+  padding: 14px 24px;
   border-right: 1px solid rgba(255, 255, 255, 0.14);
 }
 
