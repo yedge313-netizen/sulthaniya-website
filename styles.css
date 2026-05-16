@@ -144,9 +144,9 @@ a {
 
 .hero-media {
   background-image: url("uploads/sulthaniya-hero-clean.jpg");
-  background-position: center center;
+  background-position: center 64%;
   background-size: cover;
-  transform: scale(1.02);
+  transform: scale(1);
 }
 
 .hero-overlay {
