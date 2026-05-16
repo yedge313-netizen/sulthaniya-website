@@ -1,0 +1,65 @@
+backend:
+  name: git-gateway
+  branch: main
+
+local_backend: true
+
+media_folder: "uploads"
+public_folder: "/uploads"
+
+collections:
+  - name: "website"
+    label: "Website"
+    files:
+      - name: "navigation"
+        label: "Navigation Tabs"
+        file: "data/navigation.json"
+        format: "json"
+        fields:
+          - label: "Tabs"
+            name: "tabs"
+            widget: "list"
+            summary: "{{fields.label}}"
+            fields:
+              - { label: "Tab Name", name: "label", widget: "string" }
+              - { label: "Link", name: "url", widget: "string", hint: "Use section links like #articles or full links like https://example.com" }
+              - label: "Style"
+                name: "style"
+                widget: "select"
+                default: "normal"
+                options:
+                  - { label: "Normal Tab", value: "normal" }
+                  - { label: "Button Tab", value: "button" }
+              - { label: "Open in New Tab", name: "newTab", widget: "boolean", default: false, required: false }
+
+  - name: "content"
+    label: "Content"
+    files:
+      - name: "posts"
+        label: "Posts"
+        file: "data/posts.json"
+        format: "json"
+        fields:
+          - label: "Posts"
+            name: "posts"
+            widget: "list"
+            summary: "{{fields.title}}"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - label: "Category"
+                name: "category"
+                widget: "select"
+                options:
+                  - { label: "Updates", value: "updates" }
+                  - { label: "അധ്യാപനങ്ങൾ", value: "teaching" }
+                  - { label: "റമളാൻ", value: "ramadan" }
+              - label: "Category Label"
+                name: "categoryLabel"
+                widget: "select"
+                options:
+                  - "Updates"
+                  - "അധ്യാപനങ്ങൾ"
+                  - "റമളാൻ"
+              - { label: "Featured Image", name: "image", widget: "image", required: false }
+              - { label: "Short Summary", name: "summary", widget: "text" }
+              - { label: "Original Link", name: "link", widget: "string", required: false }
