@@ -232,8 +232,8 @@ a {
 }
 
 .quick-links a {
-  min-height: 150px;
-  padding: 28px;
+  min-height: 95px;
+  padding: 18px 26px;
   border-right: 1px solid rgba(255, 255, 255, 0.14);
 }
 
@@ -245,8 +245,8 @@ a {
 
 .quick-links strong {
   display: block;
-  margin: 18px 0 4px;
-  font-size: 21px;
+  margin: 10px 0 2px;
+  font-size: 18px;
 }
 
 .intro-section,
