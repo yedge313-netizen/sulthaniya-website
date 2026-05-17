@@ -1,0 +1,98 @@
+backend:
+  name: github
+  repo: yedge313-netizen/sulthaniya-website
+  branch: main
+  base_url: https://sveltia-cms-auth.yedge313.workers.dev
+
+local_backend: true
+
+media_folder: "uploads"
+public_folder: "uploads"
+
+collections:
+  - name: "website"
+    label: "Website"
+    files:
+      - name: "site"
+        label: "Site Logo & Text"
+        file: "data/site.json"
+        format: "json"
+        fields:
+          - { label: "Website Name", name: "siteTitle", widget: "string" }
+          - { label: "Tagline", name: "siteTagline", widget: "string", required: false }
+          - { label: "Logo Initials", name: "logoInitials", widget: "string", default: "SF", required: false }
+          - { label: "Logo Image", name: "logoImage", widget: "image", required: false, hint: "Upload an image here to replace the round SF mark." }
+          - { label: "Logo Alt Text", name: "logoAlt", widget: "string", required: false }
+          - { label: "Desktop Hero Image", name: "heroDesktopImage", widget: "image", required: false, hint: "Wide image for laptop and desktop screens." }
+          - { label: "Mobile Hero Image", name: "heroMobileImage", widget: "image", required: false, hint: "Portrait or tightly cropped image for phones." }
+          - { label: "Hero Headline", name: "heroTitle", widget: "text" }
+          - { label: "Hero Description", name: "heroText", widget: "text" }
+      - name: "navigation"
+        label: "Navigation Tabs"
+        file: "data/navigation.json"
+        format: "json"
+        fields:
+          - label: "Tabs"
+            name: "tabs"
+            widget: "list"
+            summary: "{{fields.label}}"
+            fields:
+              - { label: "Tab Name", name: "label", widget: "string" }
+              - { label: "Link", name: "url", widget: "string", required: false, hint: "Use section links like #articles, full links like https://example.com, or leave empty for a dropdown parent." }
+              - label: "Style"
+                name: "style"
+                widget: "select"
+                default: "normal"
+                options:
+                  - { label: "Normal Tab", value: "normal" }
+                  - { label: "Button Tab", value: "button" }
+              - { label: "Open in New Tab", name: "newTab", widget: "boolean", default: false, required: false }
+              - label: "Dropdown Links"
+                name: "items"
+                widget: "list"
+                required: false
+                summary: "{{fields.label}}"
+                hint: "Add links here when this tab should open as a dropdown."
+                fields:
+                  - { label: "Link Name", name: "label", widget: "string" }
+                  - { label: "Link", name: "url", widget: "string" }
+                  - label: "Style"
+                    name: "style"
+                    widget: "select"
+                    default: "normal"
+                    options:
+                      - { label: "Normal Link", value: "normal" }
+                      - { label: "Button Link", value: "button" }
+                  - { label: "Open in New Tab", name: "newTab", widget: "boolean", default: false, required: false }
+
+  - name: "content"
+    label: "Content"
+    files:
+      - name: "posts"
+        label: "Posts"
+        file: "data/posts.json"
+        format: "json"
+        fields:
+          - label: "Posts"
+            name: "posts"
+            widget: "list"
+            summary: "{{fields.title}}"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - label: "Category"
+                name: "category"
+                widget: "select"
+                options:
+                  - { label: "Updates", value: "updates" }
+                  - { label: "അധ്യാപനങ്ങൾ", value: "teaching" }
+                  - { label: "റമളാൻ", value: "ramadan" }
+              - label: "Category Label"
+                name: "categoryLabel"
+                widget: "select"
+                options:
+                  - "Updates"
+                  - "അധ്യാപനങ്ങൾ"
+                  - "റമളാൻ"
+              - { label: "Featured Image", name: "image", widget: "image", required: false }
+              - { label: "Short Summary", name: "summary", widget: "text" }
+              - { label: "Original Link", name: "link", widget: "string", required: false }
