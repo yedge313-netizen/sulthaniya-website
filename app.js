@@ -26,7 +26,7 @@ async function applySettings() {
     localSettings = {};
   }
 
-  const settings = { ...fileSettings, ...localSettings };
+  const settings = { ...localSettings, ...fileSettings };
 
   Object.entries(settings).forEach(([key, value]) => {
     document.querySelectorAll(`[data-edit="${key}"]`).forEach((item) => {
