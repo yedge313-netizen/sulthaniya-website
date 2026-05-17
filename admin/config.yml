@@ -111,6 +111,14 @@ collections:
           - { label: "Button 3 Text", name: "buttonThreeLabel", widget: "string" }
           - { label: "Button 3 Link", name: "buttonThreeUrl", widget: "string" }
           - { label: "Button 3 Open in New Tab", name: "buttonThreeNewTab", widget: "boolean", default: false, required: false }
+      - name: "social_links"
+        label: "Social Links"
+        file: "data/social-links.json"
+        format: "json"
+        fields:
+          - { label: "Instagram Link", name: "instagramUrl", widget: "string", required: false }
+          - { label: "Facebook Link", name: "facebookUrl", widget: "string", required: false }
+          - { label: "YouTube Link", name: "youtubeUrl", widget: "string", required: false }
 
   - name: "content"
     label: "Content"
@@ -118,6 +126,42 @@ collections:
       - name: "usthad_posts"
         label: "Usthad Page Posts"
         file: "data/usthad-posts.json"
+        format: "json"
+        fields:
+          - { label: "Small Heading", name: "pageKicker", widget: "string", required: false }
+          - { label: "Page Title", name: "pageTitle", widget: "string" }
+          - { label: "Intro Text", name: "pageIntro", widget: "text", required: false }
+          - label: "Posts"
+            name: "posts"
+            widget: "list"
+            summary: "{{fields.title}}"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Category Label", name: "categoryLabel", widget: "string", required: false }
+              - { label: "Image", name: "image", widget: "image", required: false }
+              - { label: "Short Summary", name: "summary", widget: "text" }
+              - { label: "Original Link", name: "link", widget: "string", required: false }
+      - name: "mahal_posts"
+        label: "Mahal Page Posts"
+        file: "data/mahal-posts.json"
+        format: "json"
+        fields:
+          - { label: "Small Heading", name: "pageKicker", widget: "string", required: false }
+          - { label: "Page Title", name: "pageTitle", widget: "string" }
+          - { label: "Intro Text", name: "pageIntro", widget: "text", required: false }
+          - label: "Posts"
+            name: "posts"
+            widget: "list"
+            summary: "{{fields.title}}"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Category Label", name: "categoryLabel", widget: "string", required: false }
+              - { label: "Image", name: "image", widget: "image", required: false }
+              - { label: "Short Summary", name: "summary", widget: "text" }
+              - { label: "Original Link", name: "link", widget: "string", required: false }
+      - name: "silsila_posts"
+        label: "Silsila Page Posts"
+        file: "data/silsila-posts.json"
         format: "json"
         fields:
           - { label: "Small Heading", name: "pageKicker", widget: "string", required: false }
