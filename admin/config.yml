@@ -23,6 +23,8 @@ collections:
           - { label: "Logo Initials", name: "logoInitials", widget: "string", default: "SF", required: false }
           - { label: "Logo Image", name: "logoImage", widget: "image", required: false, hint: "Upload an image here to replace the round SF mark." }
           - { label: "Logo Alt Text", name: "logoAlt", widget: "string", required: false }
+          - { label: "Desktop Hero Image", name: "heroDesktopImage", widget: "image", required: false, hint: "Wide image for laptop and desktop screens." }
+          - { label: "Mobile Hero Image", name: "heroMobileImage", widget: "image", required: false, hint: "Portrait or tightly cropped image for phones." }
           - { label: "Hero Headline", name: "heroTitle", widget: "text" }
           - { label: "Hero Description", name: "heroText", widget: "text" }
       - name: "navigation"
