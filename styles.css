@@ -9,6 +9,8 @@
   --gold: #c89435;
   --rose: #9f4a45;
   --shadow: 0 24px 70px rgba(24, 59, 53, 0.16);
+  --hero-desktop-image: url("uploads/sulthaniya-hero-clean.jpg");
+  --hero-mobile-image: url("uploads/sulthaniya-hero-cropped.jpg");
 }
 
 * {
@@ -200,7 +202,7 @@ a {
 }
 
 .hero-media {
-  background-image: url("uploads/sulthaniya-hero-clean.jpg");
+  background-image: var(--hero-desktop-image);
   background-position: center 64%;
   background-size: cover;
   transform: scale(1);
@@ -729,6 +731,11 @@ h2 {
     min-height: 70svh;
     max-height: 70svh;
     align-items: center;
+  }
+
+  .hero-media {
+    background-image: var(--hero-mobile-image);
+    background-position: center top;
   }
 
   .hero-content {
