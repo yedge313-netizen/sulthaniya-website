@@ -10,7 +10,7 @@
   --rose: #9f4a45;
   --shadow: 0 24px 70px rgba(24, 59, 53, 0.16);
   --hero-desktop-image: url("uploads/sulthaniya-hero-clean.jpg");
-  --hero-mobile-image: url("uploads/sulthaniya-hero-cropped.jpg");
+  --hero-mobile-image: url("uploads/sulthaniya-mobile-hero.jpeg");
 }
 
 * {
@@ -736,7 +736,7 @@ h2 {
 
   .hero-media {
     background-image: var(--hero-mobile-image);
-    background-position: center top;
+    background-position: center bottom;
   }
 
   .hero-content {
