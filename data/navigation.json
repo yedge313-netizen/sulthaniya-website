@@ -25,32 +25,6 @@
       "newTab": false
     },
     {
-      "label": "Official site",
-      "url": "",
-      "style": "normal",
-      "newTab": false,
-      "items": [
-        {
-          "label": "Main website",
-          "url": "https://www.sulthaniyaonline.com/",
-          "style": "normal",
-          "newTab": true
-        },
-        {
-          "label": "UAE Blog",
-          "url": "https://sulthaniyauae1.blogspot.com/",
-          "style": "normal",
-          "newTab": true
-        },
-        {
-          "label": "English",
-          "url": "https://www.english.sulthaniyaonline.com/",
-          "style": "normal",
-          "newTab": true
-        }
-      ]
-    },
-    {
       "label": "Contact",
       "url": "https://api.whatsapp.com/",
       "style": "button",
