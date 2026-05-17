@@ -1,22 +1,29 @@
 {
   "links": [
     {
-      "number": "01",
+      "number": "",
       "title": "Recent Posts",
       "subtitle": "Updates and teachings",
       "url": "#articles",
       "newTab": false
     },
     {
-      "number": "02",
+      "number": "",
       "title": "ഗുരുനാഥർ",
       "subtitle": "Masters and silsila",
       "url": "#masters",
       "newTab": false
     },
     {
-      "number": "03",
-      "title": "പഠനം",
+      "number": "",
+      "title": "കലിമ ത്വയ്യിബ",
+      "subtitle": "Sheikh Bava Usthad",
+      "url": "#learning",
+      "newTab": false
+    },
+    {
+      "number": "",
+      "title": "പഠനങ്ങൾ",
       "subtitle": "History, Quran, Sufism",
       "url": "#learning",
       "newTab": false
