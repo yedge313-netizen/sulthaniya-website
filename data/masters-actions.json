@@ -1,11 +1,11 @@
 {
   "buttonOneLabel": "Usthad",
-  "buttonOneUrl": "#learning",
+  "buttonOneUrl": "usthad.html",
   "buttonOneNewTab": false,
   "buttonTwoLabel": "Mahal",
-  "buttonTwoUrl": "#articles",
+  "buttonTwoUrl": "#masters",
   "buttonTwoNewTab": false,
   "buttonThreeLabel": "Silsila",
-  "buttonThreeUrl": "#sulthaniya",
+  "buttonThreeUrl": "#masters",
   "buttonThreeNewTab": false
 }
