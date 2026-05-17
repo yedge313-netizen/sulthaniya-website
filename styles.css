@@ -441,9 +441,84 @@ h2 {
 }
 
 .article-card a,
-.text-link {
+.text-link,
+.post-card a {
   color: var(--green);
   font-weight: 800;
+}
+
+.post-page {
+  padding: 70px clamp(20px, 5vw, 72px) 84px;
+}
+
+.post-page-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 28px;
+}
+
+.post-page h1 {
+  max-width: 960px;
+  margin: 0;
+  font-size: clamp(38px, 6vw, 82px);
+  line-height: 1.02;
+  letter-spacing: 0;
+}
+
+.post-page-heading p {
+  max-width: 680px;
+  margin: 14px 0 0;
+  color: var(--muted);
+  font-size: 18px;
+}
+
+.post-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.post-card {
+  overflow: hidden;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  box-shadow: 0 16px 44px rgba(24, 59, 53, 0.08);
+}
+
+.post-card img {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+}
+
+.post-card div {
+  padding: 26px;
+}
+
+.post-card h2 {
+  margin: 0;
+  font-family: "Anek Malayalam", "Inter", sans-serif;
+  font-size: 29px;
+  line-height: 1.18;
+}
+
+.post-card p {
+  color: var(--muted);
+  font-size: 17px;
+}
+
+.featured-post {
+  grid-column: span 2;
+  display: grid;
+  grid-template-columns: minmax(300px, 0.95fr) minmax(0, 1fr);
+}
+
+.featured-post img {
+  height: 100%;
+  min-height: 380px;
 }
 
 .path-grid {
@@ -792,6 +867,7 @@ h2 {
 
   .quick-links,
   .article-grid,
+  .post-grid,
   .intro-grid,
   .masters-section,
   .admin-section {
@@ -813,7 +889,13 @@ h2 {
     grid-template-columns: 1fr;
   }
 
+  .featured-post {
+    grid-column: auto;
+    grid-template-columns: 1fr;
+  }
+
   .article-card.featured img,
+  .featured-post img,
   .masters-image {
     min-height: 280px;
   }

@@ -4,6 +4,7 @@ const quickLinks = document.querySelector("#quickLinks");
 const articleGrid = document.querySelector("#articleGrid");
 const pathGrid = document.querySelector("#pathGrid");
 const mastersActions = document.querySelector("#mastersActions");
+const usthadGrid = document.querySelector("#usthadGrid");
 const filterButtons = document.querySelectorAll(".filter-button");
 
 const settingsKey = "sulthaniya-site-settings";
@@ -88,7 +89,7 @@ function applyHeroImages(settings) {
 
 function createNavLink(tab) {
   const link = document.createElement("a");
-  link.href = tab.url || "#home";
+  link.href = normalizeUrl(tab.url || "#home");
   link.textContent = tab.label || "Tab";
 
   if (tab.style === "button") {
@@ -101,6 +102,16 @@ function createNavLink(tab) {
   }
 
   return link;
+}
+
+function normalizeUrl(url) {
+  const isSubPage = !location.pathname.endsWith("/") && !location.pathname.endsWith("index.html");
+
+  if (isSubPage && url.startsWith("#")) {
+    return `index.html${url}`;
+  }
+
+  return url;
 }
 
 function applyLinkTarget(link, item) {
@@ -119,7 +130,7 @@ function createQuickLink(item) {
   const title = document.createElement("strong");
   const subtitle = document.createElement("small");
 
-  link.href = item.url || "#home";
+  link.href = normalizeUrl(item.url || "#home");
   applyLinkTarget(link, item);
 
   number.textContent = item.number || "";
@@ -214,7 +225,7 @@ function createArticleCard(post, isFeatured = false) {
 
 function createPathLink(item) {
   const link = document.createElement("a");
-  link.href = item.url || "#home";
+  link.href = normalizeUrl(item.url || "#home");
   link.textContent = item.title || "Path";
   applyLinkTarget(link, item);
   return link;
@@ -237,7 +248,7 @@ async function renderLearningPaths() {
 
   if (sectionLink) {
     sectionLink.textContent = data.sectionLinkLabel || "Visit current site";
-    sectionLink.href = data.sectionLinkUrl || "#home";
+    sectionLink.href = normalizeUrl(data.sectionLinkUrl || "#home");
     applyLinkTarget(sectionLink, { newTab: data.sectionLinkNewTab });
   }
 
@@ -251,7 +262,7 @@ async function renderLearningPaths() {
 
 function createMastersAction(label, url, newTab) {
   const link = document.createElement("a");
-  link.href = url || "#home";
+  link.href = normalizeUrl(url || "#home");
   link.textContent = label || "Button";
   applyLinkTarget(link, { newTab });
   return link;
@@ -274,7 +285,7 @@ async function renderPosts() {
   const data = await getJson("data/posts.json", { posts: [] });
   const posts = data.posts || [];
 
-  if (!posts.length) return;
+  if (!articleGrid || !posts.length) return;
 
   articleGrid.innerHTML = "";
   posts.forEach((post, index) => {
@@ -282,19 +293,81 @@ async function renderPosts() {
   });
 }
 
-navToggle.addEventListener("click", () => {
-  setMenu(!mainNav.classList.contains("open"));
-});
+function createUsthadCard(post, isFeatured = false) {
+  const article = document.createElement("article");
+  const image = document.createElement("img");
+  const body = document.createElement("div");
+  const pill = document.createElement("span");
+  const title = document.createElement("h2");
+  const summary = document.createElement("p");
 
-mainNav.addEventListener("click", (event) => {
-  if (event.target.matches("a")) {
+  article.className = isFeatured ? "post-card featured-post" : "post-card";
+  image.src = post.image || fallbackImage;
+  image.alt = "";
+  pill.className = "pill";
+  pill.textContent = post.categoryLabel || "Post";
+  title.textContent = post.title || "Untitled";
+  summary.textContent = post.summary || "";
+
+  body.append(pill, title, summary);
+
+  if (post.link) {
+    const link = document.createElement("a");
+    link.href = post.link;
+    link.textContent = "Open original";
+    link.target = "_blank";
+    link.rel = "noreferrer";
+    body.appendChild(link);
+  }
+
+  article.append(image, body);
+  return article;
+}
+
+async function renderUsthadPosts() {
+  const data = await getJson("data/usthad-posts.json", { posts: [] });
+  const posts = data.posts || [];
+  const kicker = document.querySelector("[data-usthad-kicker]");
+  const title = document.querySelector("[data-usthad-title]");
+  const intro = document.querySelector("[data-usthad-intro]");
+
+  if (kicker && data.pageKicker) {
+    kicker.textContent = data.pageKicker;
+  }
+
+  if (title && data.pageTitle) {
+    title.textContent = data.pageTitle;
+  }
+
+  if (intro && data.pageIntro) {
+    intro.textContent = data.pageIntro;
+  }
+
+  if (!usthadGrid || !posts.length) return;
+
+  usthadGrid.innerHTML = "";
+  posts.forEach((post, index) => {
+    usthadGrid.appendChild(createUsthadCard(post, index === 0));
+  });
+}
+
+if (navToggle && mainNav) {
+  navToggle.addEventListener("click", () => {
+    setMenu(!mainNav.classList.contains("open"));
+  });
+}
+
+if (mainNav) {
+  mainNav.addEventListener("click", (event) => {
+    if (!event.target.matches("a")) return;
+
     setMenu(false);
     document.querySelectorAll(".nav-dropdown.open").forEach((dropdown) => {
       dropdown.classList.remove("open");
       dropdown.querySelector(".nav-dropdown-toggle")?.setAttribute("aria-expanded", "false");
     });
-  }
-});
+  });
+}
 
 document.addEventListener("click", (event) => {
   if (event.target.closest(".nav-dropdown")) return;
@@ -324,3 +397,4 @@ renderQuickLinks();
 renderPosts();
 renderLearningPaths();
 renderMastersActions();
+renderUsthadPosts();
