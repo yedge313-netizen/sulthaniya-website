@@ -35,6 +35,7 @@ async function applySettings() {
   });
 
   applyBrand(settings);
+  applyHeroImages(settings);
 }
 
 function applyBrand(settings) {
@@ -58,6 +59,22 @@ function applyBrand(settings) {
   logoImage.removeAttribute("src");
   logoImage.hidden = true;
   logoInitials.hidden = false;
+}
+
+function cssImageUrl(path) {
+  return `url("${String(path).replace(/"/g, "%22")}")`;
+}
+
+function applyHeroImages(settings) {
+  const root = document.documentElement;
+
+  if (settings.heroDesktopImage) {
+    root.style.setProperty("--hero-desktop-image", cssImageUrl(settings.heroDesktopImage));
+  }
+
+  if (settings.heroMobileImage) {
+    root.style.setProperty("--hero-mobile-image", cssImageUrl(settings.heroMobileImage));
+  }
 }
 
 function createNavLink(tab) {
