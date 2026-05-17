@@ -48,9 +48,15 @@ function applyBrand(settings) {
 
   if (!logoImage) return;
 
+  logoImage.onerror = () => {
+    logoImage.removeAttribute("src");
+    logoImage.hidden = true;
+    logoInitials.hidden = false;
+  };
+
   if (settings.logoImage) {
     logoImage.src = settings.logoImage;
-    logoImage.alt = settings.logoAlt || settings.siteTitle || "Sulthaniya logo";
+    logoImage.alt = "";
     logoImage.hidden = false;
     logoInitials.hidden = true;
     return;
