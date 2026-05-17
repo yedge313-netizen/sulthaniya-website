@@ -467,7 +467,7 @@ h2 {
   display: grid;
   grid-template-columns: minmax(320px, 0.92fr) minmax(0, 1.08fr);
   background: #f1eadf;
-  scroll-margin-top: 96px;
+  scroll-margin-top: 0;
 }
 
 .masters-image {
