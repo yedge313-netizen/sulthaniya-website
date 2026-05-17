@@ -18,13 +18,46 @@ async function getJson(path, fallback) {
 
 async function applySettings() {
   const fileSettings = await getJson("data/site.json", {});
-  const localSettings = JSON.parse(localStorage.getItem(settingsKey) || "{}");
+  let localSettings = {};
+
+  try {
+    localSettings = JSON.parse(localStorage.getItem(settingsKey) || "{}");
+  } catch {
+    localSettings = {};
+  }
+
   const settings = { ...fileSettings, ...localSettings };
+
   Object.entries(settings).forEach(([key, value]) => {
     document.querySelectorAll(`[data-edit="${key}"]`).forEach((item) => {
       item.textContent = value;
     });
   });
+
+  applyBrand(settings);
+}
+
+function applyBrand(settings) {
+  const logoImage = document.querySelector("[data-logo-image]");
+  const logoInitials = document.querySelector("[data-logo-initials]");
+
+  if (logoInitials) {
+    logoInitials.textContent = settings.logoInitials || "SF";
+  }
+
+  if (!logoImage) return;
+
+  if (settings.logoImage) {
+    logoImage.src = settings.logoImage;
+    logoImage.alt = settings.logoAlt || settings.siteTitle || "Sulthaniya logo";
+    logoImage.hidden = false;
+    logoInitials.hidden = true;
+    return;
+  }
+
+  logoImage.removeAttribute("src");
+  logoImage.hidden = true;
+  logoInitials.hidden = false;
 }
 
 function createNavLink(tab) {
@@ -44,6 +77,43 @@ function createNavLink(tab) {
   return link;
 }
 
+function createDropdownItem(tab) {
+  const wrapper = document.createElement("div");
+  const button = document.createElement("button");
+  const menu = document.createElement("div");
+  const menuId = `dropdown-${tab.label.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
+
+  wrapper.className = "nav-dropdown";
+  button.className = tab.style === "button" ? "nav-cta nav-dropdown-toggle" : "nav-dropdown-toggle";
+  button.type = "button";
+  button.textContent = tab.label || "Menu";
+  button.setAttribute("aria-expanded", "false");
+  button.setAttribute("aria-controls", menuId);
+
+  menu.className = "nav-dropdown-menu";
+  menu.id = menuId;
+
+  tab.items.forEach((item) => {
+    menu.appendChild(createNavLink(item));
+  });
+
+  button.addEventListener("click", () => {
+    const isOpen = wrapper.classList.toggle("open");
+    button.setAttribute("aria-expanded", String(isOpen));
+  });
+
+  wrapper.append(button, menu);
+  return wrapper;
+}
+
+function createNavItem(tab) {
+  if (Array.isArray(tab.items) && tab.items.length) {
+    return createDropdownItem(tab);
+  }
+
+  return createNavLink(tab);
+}
+
 async function renderNavigation() {
   const data = await getJson("data/navigation.json", { tabs: [] });
   const tabs = data.tabs || [];
@@ -52,7 +122,7 @@ async function renderNavigation() {
 
   mainNav.innerHTML = "";
   tabs.forEach((tab) => {
-    mainNav.appendChild(createNavLink(tab));
+    mainNav.appendChild(createNavItem(tab));
   });
 }
 
@@ -96,7 +166,20 @@ navToggle.addEventListener("click", () => {
 mainNav.addEventListener("click", (event) => {
   if (event.target.matches("a")) {
     setMenu(false);
+    document.querySelectorAll(".nav-dropdown.open").forEach((dropdown) => {
+      dropdown.classList.remove("open");
+      dropdown.querySelector(".nav-dropdown-toggle")?.setAttribute("aria-expanded", "false");
+    });
   }
+});
+
+document.addEventListener("click", (event) => {
+  if (event.target.closest(".nav-dropdown")) return;
+
+  document.querySelectorAll(".nav-dropdown.open").forEach((dropdown) => {
+    dropdown.classList.remove("open");
+    dropdown.querySelector(".nav-dropdown-toggle")?.setAttribute("aria-expanded", "false");
+  });
 });
 
 filterButtons.forEach((button) => {
