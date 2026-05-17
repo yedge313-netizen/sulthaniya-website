@@ -171,6 +171,36 @@ a {
   white-space: nowrap;
 }
 
+.social-links {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: 4px;
+}
+
+.social-link {
+  width: 36px;
+  height: 36px;
+  display: inline-grid;
+  place-items: center;
+  color: var(--forest);
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: var(--surface);
+}
+
+.social-link:hover,
+.social-link:focus-visible {
+  color: #fff;
+  background: var(--forest);
+}
+
+.social-link svg {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+}
+
 .nav-toggle {
   display: none;
   width: 42px;
@@ -806,6 +836,11 @@ h2 {
 
   .main-nav .nav-cta {
     text-align: center;
+  }
+
+  .social-links {
+    justify-content: center;
+    margin: 4px 0;
   }
 
   .nav-dropdown {

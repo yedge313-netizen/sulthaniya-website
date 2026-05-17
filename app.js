@@ -4,7 +4,7 @@ const quickLinks = document.querySelector("#quickLinks");
 const articleGrid = document.querySelector("#articleGrid");
 const pathGrid = document.querySelector("#pathGrid");
 const mastersActions = document.querySelector("#mastersActions");
-const usthadGrid = document.querySelector("#usthadGrid");
+const topicGrid = document.querySelector("[data-topic-grid]");
 const filterButtons = document.querySelectorAll(".filter-button");
 
 const settingsKey = "sulthaniya-site-settings";
@@ -194,12 +194,64 @@ async function renderNavigation() {
   const data = await getJson("data/navigation.json", { tabs: [] });
   const tabs = data.tabs || [];
 
-  if (!tabs.length) return;
+  if (!mainNav || !tabs.length) return;
 
   mainNav.innerHTML = "";
   tabs.forEach((tab) => {
     mainNav.appendChild(createNavItem(tab));
   });
+  await renderSocialLinks();
+}
+
+function socialIcon(name) {
+  const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  svg.setAttribute("viewBox", "0 0 24 24");
+  svg.setAttribute("aria-hidden", "true");
+
+  const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+  const paths = {
+    instagram: "M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7Zm5 4a4 4 0 1 1 0 8 4 4 0 0 1 0-8Zm0 2a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm5.5-3.25a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5Z",
+    facebook: "M14 8h3V4h-3c-3 0-5 2-5 5v2H6v4h3v7h4v-7h3l1-4h-4V9c0-.6.4-1 1-1Z",
+    youtube: "M21.6 7.2a3 3 0 0 0-2.1-2.1C17.6 4.6 12 4.6 12 4.6s-5.6 0-7.5.5a3 3 0 0 0-2.1 2.1A31 31 0 0 0 2 12a31 31 0 0 0 .4 4.8 3 3 0 0 0 2.1 2.1c1.9.5 7.5.5 7.5.5s5.6 0 7.5-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 22 12a31 31 0 0 0-.4-4.8ZM10 15.5v-7l6 3.5-6 3.5Z"
+  };
+
+  path.setAttribute("d", paths[name]);
+  svg.appendChild(path);
+  return svg;
+}
+
+function createSocialLink(label, url, icon) {
+  const link = document.createElement("a");
+  link.className = "social-link";
+  link.href = url || "#home";
+  link.target = "_blank";
+  link.rel = "noreferrer";
+  link.setAttribute("aria-label", label);
+  link.appendChild(socialIcon(icon));
+  return link;
+}
+
+async function renderSocialLinks() {
+  const data = await getJson("data/social-links.json", {});
+  const group = document.createElement("div");
+
+  if (!mainNav || mainNav.querySelector(".social-links")) return;
+
+  const contact = mainNav.querySelector(".nav-cta");
+
+  group.className = "social-links";
+  group.append(
+    createSocialLink("Instagram", data.instagramUrl, "instagram"),
+    createSocialLink("Facebook", data.facebookUrl, "facebook"),
+    createSocialLink("YouTube", data.youtubeUrl, "youtube")
+  );
+
+  if (contact) {
+    mainNav.insertBefore(group, contact);
+    return;
+  }
+
+  mainNav.appendChild(group);
 }
 
 function setMenu(open) {
@@ -324,12 +376,14 @@ function createUsthadCard(post, isFeatured = false) {
   return article;
 }
 
-async function renderUsthadPosts() {
-  const data = await getJson("data/usthad-posts.json", { posts: [] });
+async function renderTopicPosts() {
+  if (!topicGrid) return;
+
+  const data = await getJson(topicGrid.dataset.postsFile || "data/usthad-posts.json", { posts: [] });
   const posts = data.posts || [];
-  const kicker = document.querySelector("[data-usthad-kicker]");
-  const title = document.querySelector("[data-usthad-title]");
-  const intro = document.querySelector("[data-usthad-intro]");
+  const kicker = document.querySelector("[data-topic-kicker]");
+  const title = document.querySelector("[data-topic-title]");
+  const intro = document.querySelector("[data-topic-intro]");
 
   if (kicker && data.pageKicker) {
     kicker.textContent = data.pageKicker;
@@ -343,11 +397,11 @@ async function renderUsthadPosts() {
     intro.textContent = data.pageIntro;
   }
 
-  if (!usthadGrid || !posts.length) return;
+  if (!posts.length) return;
 
-  usthadGrid.innerHTML = "";
+  topicGrid.innerHTML = "";
   posts.forEach((post, index) => {
-    usthadGrid.appendChild(createUsthadCard(post, index === 0));
+    topicGrid.appendChild(createUsthadCard(post, index === 0));
   });
 }
 
@@ -397,4 +451,4 @@ renderQuickLinks();
 renderPosts();
 renderLearningPaths();
 renderMastersActions();
-renderUsthadPosts();
+renderTopicPosts();
