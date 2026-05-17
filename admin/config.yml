@@ -97,6 +97,20 @@ collections:
               - { label: "Title", name: "title", widget: "string" }
               - { label: "Link", name: "url", widget: "string" }
               - { label: "Open in New Tab", name: "newTab", widget: "boolean", default: true, required: false }
+      - name: "masters_actions"
+        label: "Masters Section Buttons"
+        file: "data/masters-actions.json"
+        format: "json"
+        fields:
+          - { label: "Button 1 Text", name: "buttonOneLabel", widget: "string" }
+          - { label: "Button 1 Link", name: "buttonOneUrl", widget: "string" }
+          - { label: "Button 1 Open in New Tab", name: "buttonOneNewTab", widget: "boolean", default: false, required: false }
+          - { label: "Button 2 Text", name: "buttonTwoLabel", widget: "string" }
+          - { label: "Button 2 Link", name: "buttonTwoUrl", widget: "string" }
+          - { label: "Button 2 Open in New Tab", name: "buttonTwoNewTab", widget: "boolean", default: false, required: false }
+          - { label: "Button 3 Text", name: "buttonThreeLabel", widget: "string" }
+          - { label: "Button 3 Link", name: "buttonThreeUrl", widget: "string" }
+          - { label: "Button 3 Open in New Tab", name: "buttonThreeNewTab", widget: "boolean", default: false, required: false }
 
   - name: "content"
     label: "Content"
