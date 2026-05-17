@@ -8,17 +8,17 @@
       "newTab": false
     },
     {
-      "number": "02",
-      "title": "പഠനം",
-      "subtitle": "History, Quran, Sufism",
-      "url": "#learning",
-      "newTab": false
-    },
-    {
       "number": "03",
       "title": "ഗുരുനാഥർ",
       "subtitle": "Masters and silsila",
       "url": "#masters",
+      "newTab": false
+    },
+    {
+      "number": "02",
+      "title": "പഠനം",
+      "subtitle": "History, Quran, Sufism",
+      "url": "#learning",
       "newTab": false
     },
     {
