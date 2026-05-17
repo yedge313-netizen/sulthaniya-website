@@ -1,0 +1,11 @@
+{
+  "buttonOneLabel": "Button One",
+  "buttonOneUrl": "#learning",
+  "buttonOneNewTab": false,
+  "buttonTwoLabel": "Button Two",
+  "buttonTwoUrl": "#articles",
+  "buttonTwoNewTab": false,
+  "buttonThreeLabel": "Button Three",
+  "buttonThreeUrl": "#sulthaniya",
+  "buttonThreeNewTab": false
+}
