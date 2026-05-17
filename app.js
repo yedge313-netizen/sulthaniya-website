@@ -3,6 +3,7 @@ const mainNav = document.querySelector(".main-nav");
 const quickLinks = document.querySelector("#quickLinks");
 const articleGrid = document.querySelector("#articleGrid");
 const pathGrid = document.querySelector("#pathGrid");
+const mastersActions = document.querySelector("#mastersActions");
 const filterButtons = document.querySelectorAll(".filter-button");
 
 const settingsKey = "sulthaniya-site-settings";
@@ -248,6 +249,27 @@ async function renderLearningPaths() {
   });
 }
 
+function createMastersAction(label, url, newTab) {
+  const link = document.createElement("a");
+  link.href = url || "#home";
+  link.textContent = label || "Button";
+  applyLinkTarget(link, { newTab });
+  return link;
+}
+
+async function renderMastersActions() {
+  const data = await getJson("data/masters-actions.json", {});
+
+  if (!mastersActions) return;
+
+  mastersActions.innerHTML = "";
+  mastersActions.append(
+    createMastersAction(data.buttonOneLabel, data.buttonOneUrl, data.buttonOneNewTab),
+    createMastersAction(data.buttonTwoLabel, data.buttonTwoUrl, data.buttonTwoNewTab),
+    createMastersAction(data.buttonThreeLabel, data.buttonThreeUrl, data.buttonThreeNewTab)
+  );
+}
+
 async function renderPosts() {
   const data = await getJson("data/posts.json", { posts: [] });
   const posts = data.posts || [];
@@ -301,3 +323,4 @@ renderNavigation();
 renderQuickLinks();
 renderPosts();
 renderLearningPaths();
+renderMastersActions();
