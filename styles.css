@@ -19,6 +19,7 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 96px;
 }
 
 body {
@@ -466,6 +467,7 @@ h2 {
   display: grid;
   grid-template-columns: minmax(320px, 0.92fr) minmax(0, 1.08fr);
   background: #f1eadf;
+  scroll-margin-top: 96px;
 }
 
 .masters-image {
@@ -483,7 +485,7 @@ h2 {
   display: flex;
   justify-content: flex-end;
   gap: 14px;
-  margin: -48px 0 42px;
+  margin: 0 0 42px;
 }
 
 .masters-actions a {
