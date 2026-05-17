@@ -1,6 +1,8 @@
 const navToggle = document.querySelector(".nav-toggle");
 const mainNav = document.querySelector(".main-nav");
+const quickLinks = document.querySelector("#quickLinks");
 const articleGrid = document.querySelector("#articleGrid");
+const pathGrid = document.querySelector("#pathGrid");
 const filterButtons = document.querySelectorAll(".filter-button");
 
 const settingsKey = "sulthaniya-site-settings";
@@ -100,6 +102,45 @@ function createNavLink(tab) {
   return link;
 }
 
+function applyLinkTarget(link, item) {
+  if (item.newTab) {
+    link.target = "_blank";
+    link.rel = "noreferrer";
+  } else {
+    link.removeAttribute("target");
+    link.removeAttribute("rel");
+  }
+}
+
+function createQuickLink(item) {
+  const link = document.createElement("a");
+  const number = document.createElement("span");
+  const title = document.createElement("strong");
+  const subtitle = document.createElement("small");
+
+  link.href = item.url || "#home";
+  applyLinkTarget(link, item);
+
+  number.textContent = item.number || "";
+  title.textContent = item.title || "Link";
+  subtitle.textContent = item.subtitle || "";
+
+  link.append(number, title, subtitle);
+  return link;
+}
+
+async function renderQuickLinks() {
+  const data = await getJson("data/quick-links.json", { links: [] });
+  const links = data.links || [];
+
+  if (!quickLinks || !links.length) return;
+
+  quickLinks.innerHTML = "";
+  links.forEach((item, index) => {
+    quickLinks.appendChild(createQuickLink({ number: String(index + 1).padStart(2, "0"), ...item }));
+  });
+}
+
 function createDropdownItem(tab) {
   const wrapper = document.createElement("div");
   const button = document.createElement("button");
@@ -170,6 +211,43 @@ function createArticleCard(post, isFeatured = false) {
   return article;
 }
 
+function createPathLink(item) {
+  const link = document.createElement("a");
+  link.href = item.url || "#home";
+  link.textContent = item.title || "Path";
+  applyLinkTarget(link, item);
+  return link;
+}
+
+async function renderLearningPaths() {
+  const data = await getJson("data/learning-paths.json", { paths: [] });
+  const paths = data.paths || [];
+  const kicker = document.querySelector("[data-learning-kicker]");
+  const title = document.querySelector("[data-learning-title]");
+  const sectionLink = document.querySelector("[data-learning-link]");
+
+  if (kicker && data.sectionKicker) {
+    kicker.textContent = data.sectionKicker;
+  }
+
+  if (title && data.sectionTitle) {
+    title.textContent = data.sectionTitle;
+  }
+
+  if (sectionLink) {
+    sectionLink.textContent = data.sectionLinkLabel || "Visit current site";
+    sectionLink.href = data.sectionLinkUrl || "#home";
+    applyLinkTarget(sectionLink, { newTab: data.sectionLinkNewTab });
+  }
+
+  if (!pathGrid || !paths.length) return;
+
+  pathGrid.innerHTML = "";
+  paths.forEach((item) => {
+    pathGrid.appendChild(createPathLink(item));
+  });
+}
+
 async function renderPosts() {
   const data = await getJson("data/posts.json", { posts: [] });
   const posts = data.posts || [];
@@ -220,4 +298,6 @@ filterButtons.forEach((button) => {
 
 applySettings();
 renderNavigation();
+renderQuickLinks();
 renderPosts();
+renderLearningPaths();
