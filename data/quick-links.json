@@ -1,0 +1,32 @@
+{
+  "links": [
+    {
+      "number": "01",
+      "title": "Recent Posts",
+      "subtitle": "Updates and teachings",
+      "url": "#articles",
+      "newTab": false
+    },
+    {
+      "number": "02",
+      "title": "പഠനം",
+      "subtitle": "History, Quran, Sufism",
+      "url": "#learning",
+      "newTab": false
+    },
+    {
+      "number": "03",
+      "title": "ഗുരുനാഥർ",
+      "subtitle": "Masters and silsila",
+      "url": "#masters",
+      "newTab": false
+    },
+    {
+      "number": "04",
+      "title": "Contact",
+      "subtitle": "Reach the foundation",
+      "url": "https://api.whatsapp.com/",
+      "newTab": true
+    }
+  ]
+}
