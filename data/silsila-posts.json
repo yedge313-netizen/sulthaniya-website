@@ -1,0 +1,28 @@
+{
+  "pageKicker": "Silsila",
+  "pageTitle": "Silsila Posts",
+  "pageIntro": "Lineage, masters, and selected posts connected to Silsila.",
+  "posts": [
+    {
+      "title": "സിൽസിലയുടെ ആത്മീയ പാരമ്പര്യം",
+      "categoryLabel": "Silsila",
+      "image": "uploads/sulthaniya-hero-clean.jpg",
+      "summary": "ഗുരുനാഥന്മാരുടെ സന്ദേശവും ആത്മീയ പാരമ്പര്യവും പരിചയപ്പെടുത്തുന്ന കുറിപ്പ്.",
+      "link": ""
+    },
+    {
+      "title": "ഗുരുനാഥരുടെ സന്ദേശം",
+      "categoryLabel": "Masters",
+      "image": "uploads/sulthaniya-mobile-hero.jpeg",
+      "summary": "മഹാൻമാരുടെ ജീവിതവും സിൽസിലയുടെ വഴിയും ഓർമ്മപ്പെടുത്തുന്ന ചിന്ത.",
+      "link": ""
+    },
+    {
+      "title": "ആത്മീയ ബന്ധത്തിന്റെ വഴികൾ",
+      "categoryLabel": "പഠനം",
+      "image": "https://images.unsplash.com/photo-1490730141103-6cac27aaab94?auto=format&fit=crop&w=900&q=80",
+      "summary": "ഹൃദയ ശുദ്ധിയിലേക്കും ആത്മീയ വളർച്ചയിലേക്കും നയിക്കുന്ന സന്ദേശം.",
+      "link": ""
+    }
+  ]
+}

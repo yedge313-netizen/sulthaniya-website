@@ -3,9 +3,9 @@
   "buttonOneUrl": "usthad.html",
   "buttonOneNewTab": false,
   "buttonTwoLabel": "Mahal",
-  "buttonTwoUrl": "#masters",
+  "buttonTwoUrl": "mahal.html",
   "buttonTwoNewTab": false,
   "buttonThreeLabel": "Silsila",
-  "buttonThreeUrl": "#masters",
+  "buttonThreeUrl": "silsila.html",
   "buttonThreeNewTab": false
 }

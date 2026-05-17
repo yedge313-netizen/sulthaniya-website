@@ -1,0 +1,28 @@
+{
+  "pageKicker": "Mahal",
+  "pageTitle": "Mahal Posts",
+  "pageIntro": "Updates, notes, and selected posts connected to Mahal.",
+  "posts": [
+    {
+      "title": "മഹൽ വാർത്തകൾ",
+      "categoryLabel": "Mahal",
+      "image": "uploads/sulthaniya-mobile-hero.jpeg",
+      "summary": "മഹൽ പ്രവർത്തനങ്ങളുമായി ബന്ധപ്പെട്ട പുതിയ അറിയിപ്പുകളും കുറിപ്പുകളും.",
+      "link": ""
+    },
+    {
+      "title": "സമൂഹ സേവനത്തിന്റെ വഴി",
+      "categoryLabel": "Updates",
+      "image": "uploads/sulthaniya-hero-clean.jpg",
+      "summary": "സമൂഹത്തോടുള്ള ഉത്തരവാദിത്വവും ആത്മീയ സേവനവും ഓർമ്മപ്പെടുത്തുന്ന കുറിപ്പ്.",
+      "link": ""
+    },
+    {
+      "title": "പ്രവർത്തന കുറിപ്പ്",
+      "categoryLabel": "പഠനം",
+      "image": "https://images.unsplash.com/photo-1519817650390-64a93db51149?auto=format&fit=crop&w=900&q=80",
+      "summary": "പഠനം, സേവനം, ആത്മീയ വളർച്ച എന്നിവയിലേക്ക് നയിക്കുന്ന ചിന്ത.",
+      "link": ""
+    }
+  ]
+}
