@@ -64,6 +64,39 @@ collections:
                       - { label: "Normal Link", value: "normal" }
                       - { label: "Button Link", value: "button" }
                   - { label: "Open in New Tab", name: "newTab", widget: "boolean", default: false, required: false }
+      - name: "quick_links"
+        label: "Green Quick Tabs"
+        file: "data/quick-links.json"
+        format: "json"
+        fields:
+          - label: "Tabs"
+            name: "links"
+            widget: "list"
+            summary: "{{fields.number}} - {{fields.title}}"
+            fields:
+              - { label: "Number", name: "number", widget: "string", hint: "Example: 01, 02, 03", required: false }
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Subtitle", name: "subtitle", widget: "string", required: false }
+              - { label: "Link", name: "url", widget: "string", hint: "Use section links like #articles or full links like https://example.com" }
+              - { label: "Open in New Tab", name: "newTab", widget: "boolean", default: false, required: false }
+      - name: "learning_paths"
+        label: "Learning Categories"
+        file: "data/learning-paths.json"
+        format: "json"
+        fields:
+          - { label: "Small Heading", name: "sectionKicker", widget: "string", required: false }
+          - { label: "Section Title", name: "sectionTitle", widget: "string" }
+          - { label: "Top Link Label", name: "sectionLinkLabel", widget: "string", required: false }
+          - { label: "Top Link URL", name: "sectionLinkUrl", widget: "string", required: false }
+          - { label: "Open Top Link in New Tab", name: "sectionLinkNewTab", widget: "boolean", default: true, required: false }
+          - label: "Category Cards"
+            name: "paths"
+            widget: "list"
+            summary: "{{fields.title}}"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Link", name: "url", widget: "string" }
+              - { label: "Open in New Tab", name: "newTab", widget: "boolean", default: true, required: false }
 
   - name: "content"
     label: "Content"
