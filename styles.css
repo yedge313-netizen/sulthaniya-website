@@ -181,17 +181,19 @@ a {
 .social-link {
   width: 36px;
   height: 36px;
-  display: inline-grid;
-  place-items: center;
-  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
   border: 1px solid var(--forest);
   border-radius: 50%;
   background: var(--forest);
+  line-height: 0;
 }
 
 .social-link:hover,
 .social-link:focus-visible {
-  color: #fff;
+  color: #ffffff;
   background: var(--green);
   border-color: var(--green);
 }
@@ -199,7 +201,13 @@ a {
 .social-link svg {
   width: 18px;
   height: 18px;
+  display: block;
+  flex: 0 0 18px;
   fill: currentColor;
+}
+
+.social-link svg path {
+  fill: #ffffff;
 }
 
 .nav-toggle {
