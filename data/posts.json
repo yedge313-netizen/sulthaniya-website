@@ -1,11 +1,11 @@
 {
-  "readMoreDisabled": true,
+  "readMoreDisabled": false,
   "posts": [
     {
       "title": "മദീനയിലെ 100 ചരിത്ര ഇസ്ലാമിക കേന്ദ്രങ്ങൾ പുനഃസ്ഥാപിക്കാൻ സൗദി അറേബ്യ",
       "category": "updates",
       "categoryLabel": "Updates",
-      "image": "https://images.unsplash.com/photo-1564769662533-4f00a87b4056?auto=format&fit=crop&w=1200&q=80",
+      "image": "/uploads/FITHR.png",
       "summary": "റിയാദ്: സയ്യിദുനാ മുഹമ്മദ് നബി(സ)യുടെ ജീവിതവുമായി ബന്ധപ്പെട്ട ചരിത്ര കേന്ദ്രങ്ങളെക്കുറിച്ചുള്ള പുതിയ അപ്ഡേറ്റ്.",
       "slug": "home-madina-historic-centers",
       "readMoreEnabled": true,
