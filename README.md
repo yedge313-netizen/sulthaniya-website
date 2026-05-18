@@ -20,7 +20,7 @@ node server.mjs
 Then open:
 
 ```text
-http://127.0.0.1:5173
+http://127.0.0.1:5174
 ```
 
 ## Real admin portal
@@ -28,7 +28,7 @@ http://127.0.0.1:5173
 Open:
 
 ```text
-http://127.0.0.1:5173/admin/
+http://127.0.0.1:5174/admin/
 ```
 
 This is the Decap CMS admin portal. After the site is connected to GitHub and Netlify, from there you can:
