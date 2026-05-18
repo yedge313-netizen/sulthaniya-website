@@ -24,7 +24,23 @@ function normalizeAssetUrl(path) {
 
 function topicFromPostsFile(file) {
   const name = (file || "").split("/").pop() || "";
+  if (name === "posts.json") return "articles";
   return name.replace(/-posts\.json$/, "");
+}
+
+function topicPostsPath(topic) {
+  if (topic === "articles") return "data/posts.json";
+  return `data/${topic}-posts.json`;
+}
+
+function topicBackUrl(topic) {
+  if (topic === "articles") return "index.html#articles";
+  return `${topic}.html`;
+}
+
+function topicBackLabel(topic, topicData = {}) {
+  if (topic === "articles") return "Articles";
+  return topicData.pageKicker || topic;
 }
 
 function buildPostDetailUrl(topic, slug) {
@@ -337,15 +353,23 @@ function createArticleCard(post, isFeatured = false) {
   const article = document.createElement("article");
   article.className = isFeatured ? "article-card featured" : "article-card";
   article.dataset.category = post.category;
-  article.innerHTML = `
-    <img src="${normalizeAssetUrl(post.image) || fallbackImage}" alt="New article visual">
-    <div>
-      <span class="pill">${post.categoryLabel}</span>
-      <h3>${post.title}</h3>
-      <p>${post.summary}</p>
-      ${post.link ? `<a href="${post.link}" target="_blank" rel="noreferrer">Open original</a>` : ""}
-    </div>
-  `;
+  const image = document.createElement("img");
+  const body = document.createElement("div");
+  const pill = document.createElement("span");
+  const title = document.createElement("h3");
+  const summary = document.createElement("p");
+
+  image.src = normalizeAssetUrl(post.image) || fallbackImage;
+  image.alt = post.title || "";
+  pill.className = "pill";
+  pill.textContent = post.categoryLabel || "Post";
+  title.textContent = post.title || "Untitled";
+  summary.textContent = post.summary || "";
+
+  body.append(pill, title, summary);
+  appendReadMoreLink(body, post, "articles");
+
+  article.append(image, body);
   return article;
 }
 
@@ -488,14 +512,14 @@ async function renderTopicPosts() {
 }
 
 async function loadPostDetail(topic, slug) {
-  const topicData = await getJson(`data/${topic}-posts.json`, { posts: [] });
+  const topicData = await getJson(topicPostsPath(topic), { posts: [] });
   const post = (topicData.posts || []).find((item) => item.slug === slug);
 
   if (post?.readMore && hasReadMorePage(post)) {
     return {
       topic,
-      topicLabel: topicData.pageKicker || topic,
-      backUrl: `${topic}.html`,
+      topicLabel: topicBackLabel(topic, topicData),
+      backUrl: topicBackUrl(topic),
       title: post.readMore.heading || post.title,
       categoryLabel: post.categoryLabel,
       image: post.readMore.image || post.image,
@@ -505,7 +529,15 @@ async function loadPostDetail(topic, slug) {
     };
   }
 
-  return getJson(`data/post-details/${slug}.json`, null);
+  const legacyDetail = await getJson(`data/post-details/${slug}.json`, null);
+  if (!legacyDetail) return null;
+
+  return {
+    ...legacyDetail,
+    topic: legacyDetail.topic || topic,
+    topicLabel: legacyDetail.topicLabel || topicBackLabel(topic, topicData),
+    backUrl: legacyDetail.backUrl || topicBackUrl(topic),
+  };
 }
 
 async function renderPostDetail() {
@@ -547,8 +579,9 @@ async function renderPostDetail() {
     image.alt = detail.title || "";
   }
   if (back) {
-    back.href = detail.backUrl || `${detail.topic}.html`;
-    back.textContent = `Back to ${detail.topicLabel || detail.topic} posts`;
+    back.href = normalizeUrl(detail.backUrl || topicBackUrl(detail.topic || topic));
+    const label = detail.topicLabel || detail.topic || "posts";
+    back.textContent = detail.topic === "articles" ? `Back to ${label}` : `Back to ${label} posts`;
   }
 
   if (detail.quote && quoteBlock && quoteText) {

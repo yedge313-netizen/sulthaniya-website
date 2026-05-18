@@ -207,7 +207,7 @@ collections:
             widget: "list"
             summary: "{{fields.title}}"
             fields:
-              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Card Title", name: "title", widget: "string", hint: "Title on the homepage articles grid." }
               - label: "Category"
                 name: "category"
                 widget: "select"
@@ -222,6 +222,25 @@ collections:
                   - "Updates"
                   - "അധ്യാപനങ്ങൾ"
                   - "റമളാൻ"
-              - { label: "Featured Image", name: "image", widget: "image", required: false }
-              - { label: "Short Summary", name: "summary", widget: "text" }
-              - { label: "Original Link", name: "link", widget: "string", required: false }
+              - { label: "Card Image", name: "image", widget: "image", required: false }
+              - { label: "Card Summary", name: "summary", widget: "text", hint: "Short preview on the card." }
+              - { label: "Page URL Slug", name: "slug", widget: "string", required: false, hint: "Example: home-my-article. Required for Read More link." }
+              - label: "Read More Page (full article) — click header to expand/collapse"
+                name: "readMore"
+                widget: "object"
+                collapsed: true
+                summary: "{{fields.heading}}"
+                fields:
+                  - { label: "Enable Read More Page", name: "enabled", widget: "boolean", default: false }
+                  - { label: "Heading", name: "heading", widget: "string", hint: "Large title on the Read More page." }
+                  - { label: "Quote Under Photo", name: "quote", widget: "text", required: false }
+                  - { label: "Quote Source", name: "quoteSource", widget: "string", required: false }
+                  - label: "Content Paragraphs (below quote)"
+                    name: "body"
+                    widget: "list"
+                    summary: "{{fields.paragraph}}"
+                    required: false
+                    field:
+                      label: Paragraph
+                      name: paragraph
+                      widget: text

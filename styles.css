@@ -482,7 +482,8 @@ h2 {
 .article-card a,
 .text-link,
 .post-card a,
-.read-more-link {
+.read-more-link,
+.article-card .read-more-link {
   color: var(--green);
   font-weight: 800;
 }
