@@ -9,6 +9,7 @@
       "image": "uploads/Usthad 1.jpg",
       "summary": "റിയാദ്: സയ്യിദുനാ മുഹമ്മദ് നബി(സ)യുടെ ജീവിതവുമായി ബന്ധപ്പെട്ട ചരിത്ര കേന്ദ്രങ്ങളെക്കുറിച്ചുള്ള പുതിയ അപ്ഡേറ്റ്.",
       "slug": "madina-historic-centers",
+      "expandReadMore": true,
       "readMore": {
         "enabled": true,
         "heading": "മദീനയിലെ 100 ചരിത്ര ഇസ്ലാമിക കേന്ദ്രങ്ങൾ പുനഃസ്ഥാപിക്കാൻ സൗദി അറേബ്യ",
@@ -28,6 +29,7 @@
       "image": "uploads/sulthaniya-hero-clean.jpg",
       "summary": "സയ്യിദുനാ നൂഹ് (അ) തന്റെ സമൂഹത്തോട് അല്ലാഹുവിലേക്ക് പശ്ചാത്തപിച്ചു മടങ്ങാൻ ഉപദേശിക്കുന്ന രംഗം.",
       "slug": "",
+      "expandReadMore": false,
       "readMore": {
         "enabled": false,
         "heading": "",
@@ -42,6 +44,7 @@
       "image": "https://images.unsplash.com/photo-1490730141103-6cac27aaab94?auto=format&fit=crop&w=900&q=80",
       "summary": "ആത്മീയ പഠനത്തിന്റെ മൂന്നു തലങ്ങളിലേക്കുള്ള ചിന്ത.",
       "slug": "",
+      "expandReadMore": false,
       "readMore": {
         "enabled": false,
         "heading": "",
@@ -56,6 +59,7 @@
       "image": "https://images.unsplash.com/photo-1615734679687-8e0f2c0c824a?auto=format&fit=crop&w=900&q=80",
       "summary": "കരുണയും ആത്മീയ വളർച്ചയും ഓർമ്മപ്പെടുത്തുന്ന കുറിപ്പ്.",
       "slug": "",
+      "expandReadMore": false,
       "readMore": {
         "enabled": false,
         "heading": "",

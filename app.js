@@ -394,8 +394,23 @@ function createMastersAction(label, url, newTab) {
   return link;
 }
 
+function applyMastersSectionImage(settings) {
+  const mastersImage = document.querySelector(".masters-image");
+
+  if (!mastersImage) return;
+
+  if (settings.sectionImage) {
+    mastersImage.style.backgroundImage = cssImageUrl(settings.sectionImage);
+    return;
+  }
+
+  mastersImage.style.removeProperty("background-image");
+}
+
 async function renderMastersActions() {
   const data = await getJson("data/masters-actions.json", {});
+
+  applyMastersSectionImage(data);
 
   if (!mastersActions) return;
 
