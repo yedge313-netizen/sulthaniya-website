@@ -11,7 +11,5 @@
   "quoteSourcePx": "12",
   "mastersKickerPx": "12",
   "mastersTitlePx": "56",
-  "mastersBodyPx": "18",
-  "statNumberPx": "34",
-  "statLabelPx": "14"
+  "mastersBodyPx": "18"
 }

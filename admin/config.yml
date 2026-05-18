@@ -45,8 +45,6 @@ collections:
           - { label: "Masters Section — Small Heading (px)", name: "mastersKickerPx", widget: "string", required: false, default: "12" }
           - { label: "Masters Section — Big Title (px)", name: "mastersTitlePx", widget: "string", required: false, default: "56" }
           - { label: "Masters Section — Body (px)", name: "mastersBodyPx", widget: "string", required: false, default: "18" }
-          - { label: "Masters Stats — Number (px)", name: "statNumberPx", widget: "string", required: false, default: "34" }
-          - { label: "Masters Stats — Label (px)", name: "statLabelPx", widget: "string", required: false, default: "14" }
       - name: "about_section"
         label: "About Section (Intro + Quote)"
         file: "data/about-section.json"
@@ -139,13 +137,6 @@ collections:
           - { label: "Small Heading", name: "sectionKicker", widget: "string", required: false }
           - { label: "Section Title", name: "sectionTitle", widget: "string" }
           - { label: "Body Text", name: "sectionBody", widget: "text" }
-          - label: "Stats Row"
-            name: "stats"
-            widget: "list"
-            summary: "{{fields.label}}"
-            fields:
-              - { label: "Number", name: "number", widget: "string" }
-              - { label: "Label", name: "label", widget: "string" }
           - { label: "Button 1 Text", name: "buttonOneLabel", widget: "string" }
           - { label: "Button 1 Link", name: "buttonOneUrl", widget: "string" }
           - { label: "Button 1 Open in New Tab", name: "buttonOneNewTab", widget: "boolean", default: false, required: false }

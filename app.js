@@ -63,8 +63,6 @@ async function applyTypography() {
     ["--font-masters-kicker", "mastersKickerPx", 12],
     ["--font-masters-title", "mastersTitlePx", 56],
     ["--font-masters-body", "mastersBodyPx", 18],
-    ["--font-stat-number", "statNumberPx", 34],
-    ["--font-stat-label", "statLabelPx", 14],
   ];
 
   entries.forEach(([cssVar, key, fallback]) => {
@@ -505,24 +503,9 @@ async function renderMastersActions() {
   const kicker = document.querySelector("[data-masters-kicker]");
   const title = document.querySelector("[data-masters-title]");
   const body = document.querySelector("[data-masters-body]");
-  const stats = document.querySelector("[data-masters-stats]");
-
   if (kicker && data.sectionKicker) kicker.textContent = data.sectionKicker;
   if (title && data.sectionTitle) title.textContent = data.sectionTitle;
   if (body && data.sectionBody) body.textContent = data.sectionBody;
-
-  if (stats) {
-    stats.innerHTML = "";
-    (data.stats || []).forEach((item) => {
-      const block = document.createElement("div");
-      const number = document.createElement("strong");
-      const label = document.createElement("span");
-      number.textContent = item.number || "";
-      label.textContent = item.label || "";
-      block.append(number, label);
-      stats.appendChild(block);
-    });
-  }
 
   if (!mastersActions) return;
 
