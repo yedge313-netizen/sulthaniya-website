@@ -136,11 +136,30 @@ collections:
             widget: "list"
             summary: "{{fields.title}}"
             fields:
-              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Card Title", name: "title", widget: "string", hint: "Title on the Usthad posts grid (card preview)." }
               - { label: "Category Label", name: "categoryLabel", widget: "string", required: false }
-              - { label: "Image", name: "image", widget: "image", required: false }
-              - { label: "Short Summary", name: "summary", widget: "text" }
-              - { label: "Read More Page Slug", name: "slug", widget: "string", required: false, hint: "Example: madina-historic-centers. Must match a file in data/post-details/." }
+              - { label: "Card Image", name: "image", widget: "image", required: false }
+              - { label: "Card Summary", name: "summary", widget: "text", hint: "Short preview text on the card." }
+              - { label: "Page URL Slug", name: "slug", widget: "string", required: false, hint: "Example: madina-historic-centers. Required for Read More link." }
+              - label: "Read More Page (full article)"
+                name: "readMore"
+                widget: "object"
+                collapsed: true
+                summary: "{{fields.heading}}"
+                fields:
+                  - { label: "Enable Read More Page", name: "enabled", widget: "boolean", default: false }
+                  - { label: "Heading", name: "heading", widget: "string", hint: "Large title on the Read More page (below header)." }
+                  - { label: "Quote Under Photo", name: "quote", widget: "text", required: false }
+                  - { label: "Quote Source", name: "quoteSource", widget: "string", required: false }
+                  - label: "Content Paragraphs (below quote)"
+                    name: "body"
+                    widget: "list"
+                    summary: "{{fields.paragraph}}"
+                    required: false
+                    field:
+                      label: Paragraph
+                      name: paragraph
+                      widget: text
       - name: "mahal_posts"
         label: "Mahal Page Posts"
         file: "data/mahal-posts.json"

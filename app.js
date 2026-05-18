@@ -34,12 +34,39 @@ function buildPostDetailUrl(topic, slug) {
   return `post.html?${params.toString()}`;
 }
 
+function normalizeBody(body) {
+  if (!Array.isArray(body)) return [];
+
+  return body
+    .map((item) => {
+      if (typeof item === "string") return item;
+      return item.paragraph || item.text || "";
+    })
+    .filter(Boolean);
+}
+
+function hasReadMorePage(post) {
+  if (!post?.slug) return false;
+
+  if (post.readMore) {
+    if (post.readMore.enabled === false) return false;
+
+    return Boolean(
+      post.readMore.heading ||
+        post.readMore.quote ||
+        normalizeBody(post.readMore.body).length
+    );
+  }
+
+  return true;
+}
+
 function appendReadMoreLink(container, post, topic) {
   const link = document.createElement("a");
   link.className = "read-more-link";
   link.textContent = "Read More";
 
-  const detailUrl = buildPostDetailUrl(topic, post.slug);
+  const detailUrl = hasReadMorePage(post) ? buildPostDetailUrl(topic, post.slug) : "";
 
   if (detailUrl) {
     link.href = detailUrl;
@@ -445,19 +472,42 @@ async function renderTopicPosts() {
   });
 }
 
+async function loadPostDetail(topic, slug) {
+  const topicData = await getJson(`data/${topic}-posts.json`, { posts: [] });
+  const post = (topicData.posts || []).find((item) => item.slug === slug);
+
+  if (post?.readMore && hasReadMorePage(post)) {
+    return {
+      topic,
+      topicLabel: topicData.pageKicker || topic,
+      backUrl: `${topic}.html`,
+      title: post.readMore.heading || post.title,
+      categoryLabel: post.categoryLabel,
+      image: post.readMore.image || post.image,
+      quote: post.readMore.quote || "",
+      quoteSource: post.readMore.quoteSource || "",
+      body: normalizeBody(post.readMore.body),
+    };
+  }
+
+  return getJson(`data/post-details/${slug}.json`, null);
+}
+
 async function renderPostDetail() {
   if (document.body.dataset.page !== "post") return;
 
   const articleDetail = document.getElementById("articleDetail");
   const articleEmpty = document.getElementById("articleDetailEmpty");
-  const slug = new URLSearchParams(window.location.search).get("slug");
+  const params = new URLSearchParams(window.location.search);
+  const slug = params.get("slug");
+  const topic = params.get("topic") || "usthad";
 
   if (!slug || !articleDetail || !articleEmpty) {
     if (articleEmpty) articleEmpty.hidden = false;
     return;
   }
 
-  const detail = await getJson(`data/post-details/${slug}.json`, null);
+  const detail = await loadPostDetail(topic, slug);
 
   if (!detail) {
     articleEmpty.hidden = false;
@@ -498,7 +548,7 @@ async function renderPostDetail() {
 
   if (body) {
     body.innerHTML = "";
-    (detail.body || []).forEach((paragraph) => {
+    normalizeBody(detail.body).forEach((paragraph) => {
       const paragraphNode = document.createElement("p");
       paragraphNode.textContent = paragraph;
       body.appendChild(paragraphNode);
