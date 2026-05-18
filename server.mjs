@@ -3,7 +3,7 @@ import { readFile } from "node:fs/promises";
 import { extname, join, resolve } from "node:path";
 
 const root = resolve(".");
-const port = Number.parseInt(process.env.PORT || "5174", 10);
+const port = Number.parseInt(process.env.PORT || "5173", 10);
 const types = {
   ".html": "text/html; charset=utf-8",
   ".css": "text/css; charset=utf-8",

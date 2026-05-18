@@ -1,7 +1,7 @@
 $ErrorActionPreference = "Stop"
 
 $root = Split-Path -Parent $MyInvocation.MyCommand.Path
-$port = if ($env:PORT) { [int]$env:PORT } else { 5174 }
+$port = if ($env:PORT) { [int]$env:PORT } else { 5173 }
 $prefix = "http://127.0.0.1:$port/"
 
 $contentTypes = @{

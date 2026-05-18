@@ -14,19 +14,19 @@ This is a free static website prototype inspired by modern spiritual/wellness we
 Run this command inside this folder:
 
 ```powershell
-.\preview.ps1
+powershell -ExecutionPolicy Bypass -File .\start-preview-background.ps1
 ```
 
 Then open:
 
 ```text
-http://127.0.0.1:5174
+http://127.0.0.1:5173
 ```
 
-If PowerShell blocks the script, run:
+To stop the background preview server:
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File .\preview.ps1
+powershell -ExecutionPolicy Bypass -File .\stop-preview-background.ps1
 ```
 
 ## Real admin portal
@@ -34,7 +34,7 @@ powershell -ExecutionPolicy Bypass -File .\preview.ps1
 Open:
 
 ```text
-http://127.0.0.1:5174/admin/
+http://127.0.0.1:5173/admin/
 ```
 
 This is the Decap CMS admin portal. After the site is connected to GitHub and Netlify, from there you can:
