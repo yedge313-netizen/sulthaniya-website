@@ -132,6 +132,7 @@ collections:
           - { label: "Small Heading", name: "pageKicker", widget: "string", required: false }
           - { label: "Page Title", name: "pageTitle", widget: "string" }
           - { label: "Intro Text", name: "pageIntro", widget: "text", required: false }
+          - { label: "Disable Read More pages", name: "readMoreDisabled", widget: "boolean", default: true, hint: "When on, Read More is off for all posts in this section. Turn off, then enable each post manually inside Read More Page." }
           - label: "Posts"
             name: "posts"
             widget: "list"
@@ -169,16 +170,36 @@ collections:
           - { label: "Small Heading", name: "pageKicker", widget: "string", required: false }
           - { label: "Page Title", name: "pageTitle", widget: "string" }
           - { label: "Intro Text", name: "pageIntro", widget: "text", required: false }
+          - { label: "Disable Read More pages", name: "readMoreDisabled", widget: "boolean", default: true, hint: "When on, Read More is off for all posts in this section. Turn off, then enable each post manually inside Read More Page." }
           - label: "Posts"
             name: "posts"
             widget: "list"
             summary: "{{fields.title}}"
             fields:
-              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Card Title", name: "title", widget: "string", hint: "Title on the Mahal posts grid (card preview)." }
               - { label: "Category Label", name: "categoryLabel", widget: "string", required: false }
-              - { label: "Image", name: "image", widget: "image", required: false }
-              - { label: "Short Summary", name: "summary", widget: "text" }
-              - { label: "Read More Page Slug", name: "slug", widget: "string", required: false, hint: "Example: madina-historic-centers. Must match a file in data/post-details/." }
+              - { label: "Card Image", name: "image", widget: "image", required: false }
+              - { label: "Card Summary", name: "summary", widget: "text", hint: "Short preview text on the card." }
+              - { label: "Page URL Slug", name: "slug", widget: "string", required: false, hint: "Example: mahal-my-post. Required for Read More link." }
+              - label: "Read More Page (full article) — click header to expand/collapse"
+                name: "readMore"
+                widget: "object"
+                collapsed: true
+                summary: "{{fields.heading}}"
+                fields:
+                  - { label: "Enable Read More Page", name: "enabled", widget: "boolean", default: false }
+                  - { label: "Heading", name: "heading", widget: "string", hint: "Large title on the Read More page (below header)." }
+                  - { label: "Quote Under Photo", name: "quote", widget: "text", required: false }
+                  - { label: "Quote Source", name: "quoteSource", widget: "string", required: false }
+                  - label: "Content Paragraphs (below quote)"
+                    name: "body"
+                    widget: "list"
+                    summary: "{{fields.paragraph}}"
+                    required: false
+                    field:
+                      label: Paragraph
+                      name: paragraph
+                      widget: text
       - name: "silsila_posts"
         label: "Silsila Page Posts"
         file: "data/silsila-posts.json"
@@ -187,21 +208,42 @@ collections:
           - { label: "Small Heading", name: "pageKicker", widget: "string", required: false }
           - { label: "Page Title", name: "pageTitle", widget: "string" }
           - { label: "Intro Text", name: "pageIntro", widget: "text", required: false }
+          - { label: "Disable Read More pages", name: "readMoreDisabled", widget: "boolean", default: true, hint: "When on, Read More is off for all posts in this section. Turn off, then enable each post manually inside Read More Page." }
           - label: "Posts"
             name: "posts"
             widget: "list"
             summary: "{{fields.title}}"
             fields:
-              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Card Title", name: "title", widget: "string", hint: "Title on the Silsila posts grid (card preview)." }
               - { label: "Category Label", name: "categoryLabel", widget: "string", required: false }
-              - { label: "Image", name: "image", widget: "image", required: false }
-              - { label: "Short Summary", name: "summary", widget: "text" }
-              - { label: "Read More Page Slug", name: "slug", widget: "string", required: false, hint: "Example: madina-historic-centers. Must match a file in data/post-details/." }
+              - { label: "Card Image", name: "image", widget: "image", required: false }
+              - { label: "Card Summary", name: "summary", widget: "text", hint: "Short preview text on the card." }
+              - { label: "Page URL Slug", name: "slug", widget: "string", required: false, hint: "Example: silsila-my-post. Required for Read More link." }
+              - label: "Read More Page (full article) — click header to expand/collapse"
+                name: "readMore"
+                widget: "object"
+                collapsed: true
+                summary: "{{fields.heading}}"
+                fields:
+                  - { label: "Enable Read More Page", name: "enabled", widget: "boolean", default: false }
+                  - { label: "Heading", name: "heading", widget: "string", hint: "Large title on the Read More page (below header)." }
+                  - { label: "Quote Under Photo", name: "quote", widget: "text", required: false }
+                  - { label: "Quote Source", name: "quoteSource", widget: "string", required: false }
+                  - label: "Content Paragraphs (below quote)"
+                    name: "body"
+                    widget: "list"
+                    summary: "{{fields.paragraph}}"
+                    required: false
+                    field:
+                      label: Paragraph
+                      name: paragraph
+                      widget: text
       - name: "posts"
         label: "Posts"
         file: "data/posts.json"
         format: "json"
         fields:
+          - { label: "Disable Read More pages", name: "readMoreDisabled", widget: "boolean", default: true, hint: "When on, Read More is off for all posts in this section. Turn off, then enable each post manually inside Read More Page." }
           - label: "Posts"
             name: "posts"
             widget: "list"

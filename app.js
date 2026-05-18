@@ -61,28 +61,30 @@ function normalizeBody(body) {
     .filter(Boolean);
 }
 
-function hasReadMorePage(post) {
-  if (!post?.slug) return false;
-
-  if (post.readMore) {
-    if (post.readMore.enabled === false) return false;
-
-    return Boolean(
-      post.readMore.heading ||
-        post.readMore.quote ||
-        normalizeBody(post.readMore.body).length
-    );
-  }
-
-  return true;
+function getReadMoreSettings(data = {}) {
+  return {
+    readMoreDisabled: data.readMoreDisabled === true,
+  };
 }
 
-function appendReadMoreLink(container, post, topic) {
+function hasReadMorePage(post, settings = {}) {
+  if (settings.readMoreDisabled) return false;
+  if (!post?.slug) return false;
+  if (!post.readMore || post.readMore.enabled !== true) return false;
+
+  return Boolean(
+    post.readMore.heading ||
+      post.readMore.quote ||
+      normalizeBody(post.readMore.body).length
+  );
+}
+
+function appendReadMoreLink(container, post, topic, settings = {}) {
   const link = document.createElement("a");
   link.className = "read-more-link";
   link.textContent = "Read More";
 
-  const detailUrl = hasReadMorePage(post) ? buildPostDetailUrl(topic, post.slug) : "";
+  const detailUrl = hasReadMorePage(post, settings) ? buildPostDetailUrl(topic, post.slug) : "";
 
   if (detailUrl) {
     link.href = detailUrl;
@@ -349,7 +351,7 @@ function setMenu(open) {
   navToggle.setAttribute("aria-expanded", String(open));
 }
 
-function createArticleCard(post, isFeatured = false) {
+function createArticleCard(post, isFeatured = false, settings = {}) {
   const article = document.createElement("article");
   article.className = isFeatured ? "article-card featured" : "article-card";
   article.dataset.category = post.category;
@@ -367,7 +369,7 @@ function createArticleCard(post, isFeatured = false) {
   summary.textContent = post.summary || "";
 
   body.append(pill, title, summary);
-  appendReadMoreLink(body, post, "articles");
+  appendReadMoreLink(body, post, "articles", settings);
 
   article.append(image, body);
   return article;
@@ -449,16 +451,17 @@ async function renderMastersActions() {
 async function renderPosts() {
   const data = await getJson("data/posts.json", { posts: [] });
   const posts = data.posts || [];
+  const readMoreSettings = getReadMoreSettings(data);
 
   if (!articleGrid || !posts.length) return;
 
   articleGrid.innerHTML = "";
   posts.forEach((post, index) => {
-    articleGrid.appendChild(createArticleCard(post, index === 0));
+    articleGrid.appendChild(createArticleCard(post, index === 0, readMoreSettings));
   });
 }
 
-function createUsthadCard(post, isFeatured = false, topic = "") {
+function createUsthadCard(post, isFeatured = false, topic = "", settings = {}) {
   const article = document.createElement("article");
   const image = document.createElement("img");
   const body = document.createElement("div");
@@ -475,7 +478,7 @@ function createUsthadCard(post, isFeatured = false, topic = "") {
   summary.textContent = post.summary || "";
 
   body.append(pill, title, summary);
-  appendReadMoreLink(body, post, topic);
+  appendReadMoreLink(body, post, topic, settings);
 
   article.append(image, body);
   return article;
@@ -505,17 +508,19 @@ async function renderTopicPosts() {
   if (!posts.length) return;
 
   const topic = topicFromPostsFile(topicGrid.dataset.postsFile);
+  const readMoreSettings = getReadMoreSettings(data);
   topicGrid.innerHTML = "";
   posts.forEach((post, index) => {
-    topicGrid.appendChild(createUsthadCard(post, index === 0, topic));
+    topicGrid.appendChild(createUsthadCard(post, index === 0, topic, readMoreSettings));
   });
 }
 
 async function loadPostDetail(topic, slug) {
   const topicData = await getJson(topicPostsPath(topic), { posts: [] });
   const post = (topicData.posts || []).find((item) => item.slug === slug);
+  const readMoreSettings = getReadMoreSettings(topicData);
 
-  if (post?.readMore && hasReadMorePage(post)) {
+  if (post?.readMore && hasReadMorePage(post, readMoreSettings)) {
     return {
       topic,
       topicLabel: topicBackLabel(topic, topicData),
