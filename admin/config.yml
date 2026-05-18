@@ -140,7 +140,7 @@ collections:
               - { label: "Category Label", name: "categoryLabel", widget: "string", required: false }
               - { label: "Image", name: "image", widget: "image", required: false }
               - { label: "Short Summary", name: "summary", widget: "text" }
-              - { label: "Original Link", name: "link", widget: "string", required: false }
+              - { label: "Read More Page Slug", name: "slug", widget: "string", required: false, hint: "Example: madina-historic-centers. Must match a file in data/post-details/." }
       - name: "mahal_posts"
         label: "Mahal Page Posts"
         file: "data/mahal-posts.json"
@@ -158,7 +158,7 @@ collections:
               - { label: "Category Label", name: "categoryLabel", widget: "string", required: false }
               - { label: "Image", name: "image", widget: "image", required: false }
               - { label: "Short Summary", name: "summary", widget: "text" }
-              - { label: "Original Link", name: "link", widget: "string", required: false }
+              - { label: "Read More Page Slug", name: "slug", widget: "string", required: false, hint: "Example: madina-historic-centers. Must match a file in data/post-details/." }
       - name: "silsila_posts"
         label: "Silsila Page Posts"
         file: "data/silsila-posts.json"
@@ -176,7 +176,7 @@ collections:
               - { label: "Category Label", name: "categoryLabel", widget: "string", required: false }
               - { label: "Image", name: "image", widget: "image", required: false }
               - { label: "Short Summary", name: "summary", widget: "text" }
-              - { label: "Original Link", name: "link", widget: "string", required: false }
+              - { label: "Read More Page Slug", name: "slug", widget: "string", required: false, hint: "Example: madina-historic-centers. Must match a file in data/post-details/." }
       - name: "posts"
         label: "Posts"
         file: "data/posts.json"

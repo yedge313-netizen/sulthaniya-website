@@ -6,14 +6,14 @@
     {
       "title": "മദീനയിലെ 100 ചരിത്ര ഇസ്ലാമിക കേന്ദ്രങ്ങൾ പുനഃസ്ഥാപിക്കാൻ സൗദി അറേബ്യ",
       "categoryLabel": "Updates",
-      "image": "/uploads/Usthad 1.jpg",
+      "image": "uploads/Usthad 1.jpg",
       "summary": "റിയാദ്: സയ്യിദുനാ മുഹമ്മദ് നബി(സ)യുടെ ജീവിതവുമായി ബന്ധപ്പെട്ട ചരിത്ര കേന്ദ്രങ്ങളെക്കുറിച്ചുള്ള പുതിയ അപ്ഡേറ്റ്.",
-      "link": "https://www.sulthaniyaonline.com/"
+      "slug": "madina-historic-centers"
     },
     {
       "title": "മഗ്‌ഫിറത്തിന്റെ വഴി",
       "categoryLabel": "അധ്യാപനങ്ങൾ",
-      "image": "/uploads/Usthad 2.jpg",
+      "image": "uploads/sulthaniya-hero-clean.jpg",
       "summary": "സയ്യിദുനാ നൂഹ് (അ) തന്റെ സമൂഹത്തോട് അല്ലാഹുവിലേക്ക് പശ്ചാത്തപിച്ചു മടങ്ങാൻ ഉപദേശിക്കുന്ന രംഗം.",
       "link": ""
     },

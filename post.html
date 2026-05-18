@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Usthad | Sulthaniya Foundation</title>
-    <meta name="description" content="Usthad posts from Sulthaniya Foundation.">
+    <title>Post | Sulthaniya Foundation</title>
+    <meta name="description" content="Read full article from Sulthaniya Foundation.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -13,7 +13,7 @@
     >
     <link rel="stylesheet" href="styles.css">
   </head>
-  <body>
+  <body data-page="post">
     <header class="site-header">
       <a class="brand" href="index.html#home" aria-label="Sulthaniya Foundation home">
         <span class="brand-mark">
@@ -35,16 +35,24 @@
     </header>
 
     <main>
-      <section class="post-page">
-        <div class="post-page-heading">
-          <div>
-            <div class="section-kicker" data-topic-kicker>Usthad</div>
-            <h1 data-topic-title>Usthad Posts</h1>
-            <p data-topic-intro>Teachings, updates, and selected writings connected to Usthad.</p>
-          </div>
-        </div>
+      <article class="article-detail" id="articleDetail" hidden>
+        <a class="article-detail-back" data-article-back href="usthad.html">Back to posts</a>
+        <p class="section-kicker" data-article-kicker>Updates</p>
+        <h1 data-article-title>Article title</h1>
+        <figure class="article-detail-figure">
+          <img data-article-image src="" alt="">
+        </figure>
+        <blockquote class="article-detail-quote" data-article-quote hidden>
+          <p data-article-quote-text></p>
+          <cite data-article-quote-source hidden></cite>
+        </blockquote>
+        <div class="article-detail-body" data-article-body></div>
+      </article>
 
-        <div class="post-grid" id="usthadGrid" data-topic-grid data-posts-file="data/usthad-posts.json" aria-label="Usthad posts"></div>
+      <section class="article-detail-empty" id="articleDetailEmpty" hidden>
+        <h1>Post not found</h1>
+        <p>This article is not available yet. Please go back and try another post.</p>
+        <a class="button primary" href="index.html">Back to home</a>
       </section>
     </main>
 

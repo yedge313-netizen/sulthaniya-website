@@ -19,7 +19,42 @@ function normalizeAssetUrl(path) {
     return value;
   }
 
-  return value.replace(/^\/+/, "");
+  return encodeURI(value.replace(/^\/+/, ""));
+}
+
+function topicFromPostsFile(file) {
+  const name = (file || "").split("/").pop() || "";
+  return name.replace(/-posts\.json$/, "");
+}
+
+function buildPostDetailUrl(topic, slug) {
+  if (!topic || !slug) return "";
+
+  const params = new URLSearchParams({ topic, slug });
+  return `post.html?${params.toString()}`;
+}
+
+function appendReadMoreLink(container, post, topic) {
+  const link = document.createElement("a");
+  link.className = "read-more-link";
+  link.textContent = "Read More";
+
+  const detailUrl = buildPostDetailUrl(topic, post.slug);
+
+  if (detailUrl) {
+    link.href = detailUrl;
+    container.appendChild(link);
+    return;
+  }
+
+  link.href = "#";
+  link.classList.add("read-more-link--soon");
+  link.setAttribute("aria-disabled", "true");
+  link.addEventListener("click", (event) => {
+    event.preventDefault();
+  });
+
+  container.appendChild(link);
 }
 
 async function getJson(path, fallback) {
@@ -357,7 +392,7 @@ async function renderPosts() {
   });
 }
 
-function createUsthadCard(post, isFeatured = false) {
+function createUsthadCard(post, isFeatured = false, topic = "") {
   const article = document.createElement("article");
   const image = document.createElement("img");
   const body = document.createElement("div");
@@ -367,22 +402,14 @@ function createUsthadCard(post, isFeatured = false) {
 
   article.className = isFeatured ? "post-card featured-post" : "post-card";
   image.src = normalizeAssetUrl(post.image) || fallbackImage;
-  image.alt = "";
+  image.alt = post.title || "";
   pill.className = "pill";
   pill.textContent = post.categoryLabel || "Post";
   title.textContent = post.title || "Untitled";
   summary.textContent = post.summary || "";
 
   body.append(pill, title, summary);
-
-  if (post.link) {
-    const link = document.createElement("a");
-    link.href = post.link;
-    link.textContent = "Open original";
-    link.target = "_blank";
-    link.rel = "noreferrer";
-    body.appendChild(link);
-  }
+  appendReadMoreLink(body, post, topic);
 
   article.append(image, body);
   return article;
@@ -411,10 +438,74 @@ async function renderTopicPosts() {
 
   if (!posts.length) return;
 
+  const topic = topicFromPostsFile(topicGrid.dataset.postsFile);
   topicGrid.innerHTML = "";
   posts.forEach((post, index) => {
-    topicGrid.appendChild(createUsthadCard(post, index === 0));
+    topicGrid.appendChild(createUsthadCard(post, index === 0, topic));
   });
+}
+
+async function renderPostDetail() {
+  if (document.body.dataset.page !== "post") return;
+
+  const articleDetail = document.getElementById("articleDetail");
+  const articleEmpty = document.getElementById("articleDetailEmpty");
+  const slug = new URLSearchParams(window.location.search).get("slug");
+
+  if (!slug || !articleDetail || !articleEmpty) {
+    if (articleEmpty) articleEmpty.hidden = false;
+    return;
+  }
+
+  const detail = await getJson(`data/post-details/${slug}.json`, null);
+
+  if (!detail) {
+    articleEmpty.hidden = false;
+    return;
+  }
+
+  document.title = `${detail.title} | Sulthaniya Foundation`;
+
+  const kicker = document.querySelector("[data-article-kicker]");
+  const title = document.querySelector("[data-article-title]");
+  const image = document.querySelector("[data-article-image]");
+  const back = document.querySelector("[data-article-back]");
+  const quoteBlock = document.querySelector("[data-article-quote]");
+  const quoteText = document.querySelector("[data-article-quote-text]");
+  const quoteSource = document.querySelector("[data-article-quote-source]");
+  const body = document.querySelector("[data-article-body]");
+
+  if (kicker) kicker.textContent = detail.categoryLabel || detail.topicLabel || "";
+  if (title) title.textContent = detail.title || "";
+  if (image) {
+    image.src = normalizeAssetUrl(detail.image) || fallbackImage;
+    image.alt = detail.title || "";
+  }
+  if (back) {
+    back.href = detail.backUrl || `${detail.topic}.html`;
+    back.textContent = `Back to ${detail.topicLabel || detail.topic} posts`;
+  }
+
+  if (detail.quote && quoteBlock && quoteText) {
+    quoteText.textContent = detail.quote;
+    quoteBlock.hidden = false;
+
+    if (detail.quoteSource && quoteSource) {
+      quoteSource.textContent = detail.quoteSource;
+      quoteSource.hidden = false;
+    }
+  }
+
+  if (body) {
+    body.innerHTML = "";
+    (detail.body || []).forEach((paragraph) => {
+      const paragraphNode = document.createElement("p");
+      paragraphNode.textContent = paragraph;
+      body.appendChild(paragraphNode);
+    });
+  }
+
+  articleDetail.hidden = false;
 }
 
 if (navToggle && mainNav) {
@@ -464,3 +555,4 @@ renderPosts();
 renderLearningPaths();
 renderMastersActions();
 renderTopicPosts();
+renderPostDetail();
