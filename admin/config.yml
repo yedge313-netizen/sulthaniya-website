@@ -142,15 +142,11 @@ collections:
               - { label: "Card Image", name: "image", widget: "image", required: false }
               - { label: "Card Summary", name: "summary", widget: "text", hint: "Short preview text on the card." }
               - { label: "Page URL Slug", name: "slug", widget: "string", required: false, hint: "Example: madina-historic-centers. Required for Read More link." }
-              - { label: "Expand Read More editor", name: "expandReadMore", widget: "boolean", default: false, hint: "Turn on to show the Read More fields below. Turn off to collapse/hide them." }
-              - label: "Read More Page (full article)"
+              - label: "Read More Page (full article) — click header to expand/collapse"
                 name: "readMore"
                 widget: "object"
-                collapsed: false
+                collapsed: true
                 summary: "{{fields.heading}}"
-                condition:
-                  field: expandReadMore
-                  value: true
                 fields:
                   - { label: "Enable Read More Page", name: "enabled", widget: "boolean", default: false }
                   - { label: "Heading", name: "heading", widget: "string", hint: "Large title on the Read More page (below header)." }
