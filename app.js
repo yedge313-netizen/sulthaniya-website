@@ -298,6 +298,32 @@ function createQuickLink(item) {
   return link;
 }
 
+function createFooterLink(item) {
+  const link = document.createElement("a");
+  link.href = normalizeUrl(item.url || "#home");
+  link.textContent = item.label || "Link";
+
+  if (item.style === "button") {
+    link.className = "footer-cta";
+  }
+
+  applyLinkTarget(link, item);
+  return link;
+}
+
+async function renderFooterLinks() {
+  const data = await getJson("data/footer-links.json", { links: [] });
+  const links = data.links || [];
+  const container = document.querySelector(".footer-links");
+
+  if (!container || !links.length) return;
+
+  container.innerHTML = "";
+  links.forEach((item) => {
+    container.appendChild(createFooterLink(item));
+  });
+}
+
 async function renderQuickLinks() {
   const data = await getJson("data/quick-links.json", { links: [] });
   const links = data.links || [];
@@ -730,6 +756,7 @@ filterButtons.forEach((button) => {
 async function boot() {
   await Promise.all([applySettings(), applyTypography(), renderAboutSection()]);
   renderNavigation();
+  await renderFooterLinks();
   renderQuickLinks();
   await renderPosts();
   await renderLearningPaths();

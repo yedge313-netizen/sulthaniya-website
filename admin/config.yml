@@ -99,6 +99,26 @@ collections:
                       - { label: "Normal Link", value: "normal" }
                       - { label: "Button Link", value: "button" }
                   - { label: "Open in New Tab", name: "newTab", widget: "boolean", default: false, required: false }
+      - name: "footer_links"
+        label: "Footer Links"
+        file: "data/footer-links.json"
+        format: "json"
+        fields:
+          - label: "Links"
+            name: "links"
+            widget: "list"
+            summary: "{{fields.label}}"
+            fields:
+              - { label: "Link Text", name: "label", widget: "string" }
+              - { label: "Link URL", name: "url", widget: "string", hint: "Use #home, #sulthaniya, index.html#articles on subpages, or a full URL like https://..." }
+              - label: "Style"
+                name: "style"
+                widget: "select"
+                default: "normal"
+                options:
+                  - { label: "Normal Link", value: "normal" }
+                  - { label: "Button (bordered)", value: "button" }
+              - { label: "Open in New Tab", name: "newTab", widget: "boolean", default: false, required: false }
       - name: "quick_links"
         label: "Green Quick Tabs"
         file: "data/quick-links.json"

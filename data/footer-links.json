@@ -1,0 +1,28 @@
+{
+  "links": [
+    {
+      "label": "Home",
+      "url": "#home",
+      "style": "normal",
+      "newTab": false
+    },
+    {
+      "label": "About",
+      "url": "#sulthaniya",
+      "style": "normal",
+      "newTab": false
+    },
+    {
+      "label": "Articles",
+      "url": "#articles",
+      "style": "normal",
+      "newTab": false
+    },
+    {
+      "label": "Contact Us",
+      "url": "https://api.whatsapp.com/",
+      "style": "button",
+      "newTab": true
+    }
+  ]
+}
