@@ -14,13 +14,19 @@ This is a free static website prototype inspired by modern spiritual/wellness we
 Run this command inside this folder:
 
 ```powershell
-node server.mjs
+.\preview.ps1
 ```
 
 Then open:
 
 ```text
 http://127.0.0.1:5174
+```
+
+If PowerShell blocks the script, run:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\preview.ps1
 ```
 
 ## Real admin portal
