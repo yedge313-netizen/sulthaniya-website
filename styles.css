@@ -275,7 +275,7 @@ a {
 .hero h1 {
   margin: 0;
   font-family: "Anek Malayalam", "Inter", sans-serif;
-  font-size: clamp(32px, 4.2vw, 50px);
+  font-size: var(--font-hero-heading, clamp(32px, 4.2vw, 50px));
   line-height: 1.04;
   letter-spacing: 0;
   text-wrap: balance;
@@ -285,7 +285,7 @@ a {
   max-width: 650px;
   margin: 10px 0 0;
   color: rgba(255, 255, 255, 0.88);
-  font-size: clamp(16px, 1.7vw, 19px);
+  font-size: var(--font-hero-subtext, clamp(16px, 1.7vw, 19px));
 }
 
 .hero-actions,

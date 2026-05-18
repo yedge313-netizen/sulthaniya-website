@@ -50,6 +50,8 @@ async function applyTypography() {
   const data = await getJson("data/typography.json", {});
   const root = document.documentElement.style;
   const entries = [
+    ["--font-hero-heading", "heroMainHeadingPx", 50],
+    ["--font-hero-subtext", "heroSubTextPx", 19],
     ["--font-learning-kicker", "learningKickerPx", 12],
     ["--font-learning-title", "learningTitlePx", 50],
     ["--font-path-card", "pathCardTextPx", 18],

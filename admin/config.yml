@@ -32,6 +32,8 @@ collections:
         file: "data/typography.json"
         format: "json"
         fields:
+          - { label: "Main Heading (px)", name: "heroMainHeadingPx", widget: "string", required: false, default: "50", hint: "Large bold title on the homepage hero (mosque banner)." }
+          - { label: "Sub-text (px)", name: "heroSubTextPx", widget: "string", required: false, default: "19", hint: "Smaller line under the main heading on the hero." }
           - { label: "Learning Section — Small Heading (px)", name: "learningKickerPx", widget: "string", required: false, default: "12" }
           - { label: "Learning Section — Big Title (px)", name: "learningTitlePx", widget: "string", required: false, default: "50" }
           - { label: "Learning Category Cards — Text (px)", name: "pathCardTextPx", widget: "string", required: false, default: "18" }
