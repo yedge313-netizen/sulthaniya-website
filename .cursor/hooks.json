@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "hooks": {
+    "sessionStart": [
+      {
+        "command": "powershell -ExecutionPolicy Bypass -File .cursor/hooks/sync-from-github.ps1"
+      }
+    ],
+    "afterShellExecution": [
+      {
+        "command": "powershell -ExecutionPolicy Bypass -File .cursor/hooks/sync-from-github.ps1",
+        "matcher": "git push|git -C.*push"
+      }
+    ],
+    "stop": [
+      {
+        "command": "powershell -ExecutionPolicy Bypass -File .cursor/hooks/sync-from-github.ps1"
+      }
+    ]
+  }
+}
