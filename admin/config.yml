@@ -143,14 +143,27 @@ collections:
               - { label: "Card Image", name: "image", widget: "image", required: false }
               - { label: "Card Summary", name: "summary", widget: "text", hint: "Short preview text on the card." }
               - { label: "Page URL Slug", name: "slug", widget: "string", required: false, hint: "Example: madina-historic-centers. Required for Read More link." }
+              - label: "Enable Read More Page"
+                name: "readMoreEnabled"
+                widget: "boolean"
+                default: false
+                required: false
+                condition:
+                  field: readMoreDisabled
+                  value: false
               - label: "Read More Page (full article) — click header to expand/collapse"
                 name: "readMore"
                 widget: "object"
                 collapsed: true
                 summary: "{{fields.heading}}"
+                required: false
+                condition:
+                  - field: readMoreDisabled
+                    value: false
+                  - field: readMoreEnabled
+                    value: true
                 fields:
-                  - { label: "Enable Read More Page", name: "enabled", widget: "boolean", default: false }
-                  - { label: "Heading", name: "heading", widget: "string", hint: "Large title on the Read More page (below header)." }
+                  - { label: "Heading", name: "heading", widget: "string", required: false, hint: "Large title on the Read More page (below header)." }
                   - { label: "Quote Under Photo", name: "quote", widget: "text", required: false }
                   - { label: "Quote Source", name: "quoteSource", widget: "string", required: false }
                   - label: "Content Paragraphs (below quote)"
@@ -181,14 +194,27 @@ collections:
               - { label: "Card Image", name: "image", widget: "image", required: false }
               - { label: "Card Summary", name: "summary", widget: "text", hint: "Short preview text on the card." }
               - { label: "Page URL Slug", name: "slug", widget: "string", required: false, hint: "Example: mahal-my-post. Required for Read More link." }
+              - label: "Enable Read More Page"
+                name: "readMoreEnabled"
+                widget: "boolean"
+                default: false
+                required: false
+                condition:
+                  field: readMoreDisabled
+                  value: false
               - label: "Read More Page (full article) — click header to expand/collapse"
                 name: "readMore"
                 widget: "object"
                 collapsed: true
                 summary: "{{fields.heading}}"
+                required: false
+                condition:
+                  - field: readMoreDisabled
+                    value: false
+                  - field: readMoreEnabled
+                    value: true
                 fields:
-                  - { label: "Enable Read More Page", name: "enabled", widget: "boolean", default: false }
-                  - { label: "Heading", name: "heading", widget: "string", hint: "Large title on the Read More page (below header)." }
+                  - { label: "Heading", name: "heading", widget: "string", required: false, hint: "Large title on the Read More page (below header)." }
                   - { label: "Quote Under Photo", name: "quote", widget: "text", required: false }
                   - { label: "Quote Source", name: "quoteSource", widget: "string", required: false }
                   - label: "Content Paragraphs (below quote)"
@@ -219,14 +245,27 @@ collections:
               - { label: "Card Image", name: "image", widget: "image", required: false }
               - { label: "Card Summary", name: "summary", widget: "text", hint: "Short preview text on the card." }
               - { label: "Page URL Slug", name: "slug", widget: "string", required: false, hint: "Example: silsila-my-post. Required for Read More link." }
+              - label: "Enable Read More Page"
+                name: "readMoreEnabled"
+                widget: "boolean"
+                default: false
+                required: false
+                condition:
+                  field: readMoreDisabled
+                  value: false
               - label: "Read More Page (full article) — click header to expand/collapse"
                 name: "readMore"
                 widget: "object"
                 collapsed: true
                 summary: "{{fields.heading}}"
+                required: false
+                condition:
+                  - field: readMoreDisabled
+                    value: false
+                  - field: readMoreEnabled
+                    value: true
                 fields:
-                  - { label: "Enable Read More Page", name: "enabled", widget: "boolean", default: false }
-                  - { label: "Heading", name: "heading", widget: "string", hint: "Large title on the Read More page (below header)." }
+                  - { label: "Heading", name: "heading", widget: "string", required: false, hint: "Large title on the Read More page (below header)." }
                   - { label: "Quote Under Photo", name: "quote", widget: "text", required: false }
                   - { label: "Quote Source", name: "quoteSource", widget: "string", required: false }
                   - label: "Content Paragraphs (below quote)"
@@ -267,14 +306,27 @@ collections:
               - { label: "Card Image", name: "image", widget: "image", required: false }
               - { label: "Card Summary", name: "summary", widget: "text", hint: "Short preview on the card." }
               - { label: "Page URL Slug", name: "slug", widget: "string", required: false, hint: "Example: home-my-article. Required for Read More link." }
+              - label: "Enable Read More Page"
+                name: "readMoreEnabled"
+                widget: "boolean"
+                default: false
+                required: false
+                condition:
+                  field: readMoreDisabled
+                  value: false
               - label: "Read More Page (full article) — click header to expand/collapse"
                 name: "readMore"
                 widget: "object"
                 collapsed: true
                 summary: "{{fields.heading}}"
+                required: false
+                condition:
+                  - field: readMoreDisabled
+                    value: false
+                  - field: readMoreEnabled
+                    value: true
                 fields:
-                  - { label: "Enable Read More Page", name: "enabled", widget: "boolean", default: false }
-                  - { label: "Heading", name: "heading", widget: "string", hint: "Large title on the Read More page." }
+                  - { label: "Heading", name: "heading", widget: "string", required: false, hint: "Large title on the Read More page." }
                   - { label: "Quote Under Photo", name: "quote", widget: "text", required: false }
                   - { label: "Quote Source", name: "quoteSource", widget: "string", required: false }
                   - label: "Content Paragraphs (below quote)"

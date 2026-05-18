@@ -67,10 +67,17 @@ function getReadMoreSettings(data = {}) {
   };
 }
 
+function isReadMoreEnabled(post) {
+  if (post.readMoreEnabled === true) return true;
+  if (post.readMoreEnabled === false) return false;
+  return post.readMore?.enabled === true;
+}
+
 function hasReadMorePage(post, settings = {}) {
   if (settings.readMoreDisabled) return false;
   if (!post?.slug) return false;
-  if (!post.readMore || post.readMore.enabled !== true) return false;
+  if (!isReadMoreEnabled(post)) return false;
+  if (!post.readMore) return false;
 
   return Boolean(
     post.readMore.heading ||
@@ -520,7 +527,7 @@ async function loadPostDetail(topic, slug) {
   const post = (topicData.posts || []).find((item) => item.slug === slug);
   const readMoreSettings = getReadMoreSettings(topicData);
 
-  if (post?.readMore && hasReadMorePage(post, readMoreSettings)) {
+  if (isReadMoreEnabled(post) && post?.readMore && hasReadMorePage(post, readMoreSettings)) {
     return {
       topic,
       topicLabel: topicBackLabel(topic, topicData),
