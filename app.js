@@ -10,6 +10,18 @@ const filterButtons = document.querySelectorAll(".filter-button");
 const settingsKey = "sulthaniya-site-settings";
 const fallbackImage = "https://images.unsplash.com/photo-1528659432556-51419ce0c673?auto=format&fit=crop&w=900&q=80";
 
+function normalizeAssetUrl(path) {
+  if (!path) return "";
+
+  const value = String(path).trim();
+
+  if (/^(https?:|data:|blob:)/i.test(value)) {
+    return value;
+  }
+
+  return value.replace(/^\/+/, "");
+}
+
 async function getJson(path, fallback) {
   try {
     const response = await fetch(path);
@@ -59,7 +71,7 @@ function applyBrand(settings) {
   };
 
   if (settings.logoImage) {
-    logoImage.src = settings.logoImage;
+    logoImage.src = normalizeAssetUrl(settings.logoImage);
     logoImage.alt = "";
     logoImage.hidden = false;
     logoInitials.hidden = true;
@@ -72,7 +84,7 @@ function applyBrand(settings) {
 }
 
 function cssImageUrl(path) {
-  return `url("${String(path).replace(/"/g, "%22")}")`;
+  return `url("${normalizeAssetUrl(path).replace(/"/g, "%22")}")`;
 }
 
 function applyHeroImages(settings) {
@@ -264,7 +276,7 @@ function createArticleCard(post, isFeatured = false) {
   article.className = isFeatured ? "article-card featured" : "article-card";
   article.dataset.category = post.category;
   article.innerHTML = `
-    <img src="${post.image || fallbackImage}" alt="New article visual">
+    <img src="${normalizeAssetUrl(post.image) || fallbackImage}" alt="New article visual">
     <div>
       <span class="pill">${post.categoryLabel}</span>
       <h3>${post.title}</h3>
@@ -354,7 +366,7 @@ function createUsthadCard(post, isFeatured = false) {
   const summary = document.createElement("p");
 
   article.className = isFeatured ? "post-card featured-post" : "post-card";
-  image.src = post.image || fallbackImage;
+  image.src = normalizeAssetUrl(post.image) || fallbackImage;
   image.alt = "";
   pill.className = "pill";
   pill.textContent = post.categoryLabel || "Post";

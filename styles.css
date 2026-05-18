@@ -183,16 +183,17 @@ a {
   height: 36px;
   display: inline-grid;
   place-items: center;
-  color: var(--forest);
-  border: 1px solid var(--line);
+  color: #fff;
+  border: 1px solid var(--forest);
   border-radius: 50%;
-  background: var(--surface);
+  background: var(--forest);
 }
 
 .social-link:hover,
 .social-link:focus-visible {
   color: #fff;
-  background: var(--forest);
+  background: var(--green);
+  border-color: var(--green);
 }
 
 .social-link svg {
