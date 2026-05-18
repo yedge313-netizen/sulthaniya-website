@@ -35,7 +35,65 @@ function topicPostsPath(topic) {
 
 function topicBackUrl(topic) {
   if (topic === "articles") return "index.html#articles";
+  if (topic.startsWith("learning-")) return "index.html#learning";
   return `${topic}.html`;
+}
+
+function typographyPx(value, fallback) {
+  const raw = String(value ?? "").trim();
+  if (!raw) return `${fallback}px`;
+  if (/^\d+(\.\d+)?$/.test(raw)) return `${raw}px`;
+  return raw;
+}
+
+async function applyTypography() {
+  const data = await getJson("data/typography.json", {});
+  const root = document.documentElement.style;
+  const entries = [
+    ["--font-learning-kicker", "learningKickerPx", 12],
+    ["--font-learning-title", "learningTitlePx", 50],
+    ["--font-path-card", "pathCardTextPx", 18],
+    ["--font-intro-kicker", "introKickerPx", 12],
+    ["--font-intro-heading", "introHeadingPx", 56],
+    ["--font-intro-body", "introBodyPx", 18],
+    ["--font-quote-text", "quoteTextPx", 21],
+    ["--font-quote-source", "quoteSourcePx", 12],
+    ["--font-masters-kicker", "mastersKickerPx", 12],
+    ["--font-masters-title", "mastersTitlePx", 56],
+    ["--font-masters-body", "mastersBodyPx", 18],
+    ["--font-stat-number", "statNumberPx", 34],
+    ["--font-stat-label", "statLabelPx", 14],
+  ];
+
+  entries.forEach(([cssVar, key, fallback]) => {
+    if (data[key] != null && data[key] !== "") {
+      root.setProperty(cssVar, typographyPx(data[key], fallback));
+    }
+  });
+}
+
+async function renderAboutSection() {
+  const data = await getJson("data/about-section.json", {});
+  const kicker = document.querySelector("[data-about-kicker]");
+  const heading = document.querySelector("[data-about-heading]");
+  const paragraphs = document.querySelector("[data-about-paragraphs]");
+  const quote = document.querySelector("[data-about-quote]");
+  const quoteSource = document.querySelector("[data-about-quote-source]");
+
+  if (kicker && data.sectionKicker) kicker.textContent = data.sectionKicker;
+  if (heading && data.heading) heading.textContent = data.heading;
+
+  if (paragraphs) {
+    paragraphs.innerHTML = "";
+    (data.paragraphs || []).forEach((text) => {
+      const paragraph = document.createElement("p");
+      paragraph.textContent = text;
+      paragraphs.appendChild(paragraph);
+    });
+  }
+
+  if (quote && data.quoteText) quote.textContent = data.quoteText;
+  if (quoteSource && data.quoteSource) quoteSource.textContent = data.quoteSource;
 }
 
 function topicBackLabel(topic, topicData = {}) {
@@ -384,9 +442,13 @@ function createArticleCard(post, isFeatured = false, settings = {}) {
 
 function createPathLink(item) {
   const link = document.createElement("a");
-  link.href = normalizeUrl(item.url || "#home");
+  if (item.slug) {
+    link.href = normalizeUrl(`learning.html?topic=${encodeURIComponent(item.slug)}`);
+  } else {
+    link.href = normalizeUrl(item.url || "#learning");
+    applyLinkTarget(link, item);
+  }
   link.textContent = item.title || "Path";
-  applyLinkTarget(link, item);
   return link;
 }
 
@@ -395,7 +457,6 @@ async function renderLearningPaths() {
   const paths = data.paths || [];
   const kicker = document.querySelector("[data-learning-kicker]");
   const title = document.querySelector("[data-learning-title]");
-  const sectionLink = document.querySelector("[data-learning-link]");
 
   if (kicker && data.sectionKicker) {
     kicker.textContent = data.sectionKicker;
@@ -403,12 +464,6 @@ async function renderLearningPaths() {
 
   if (title && data.sectionTitle) {
     title.textContent = data.sectionTitle;
-  }
-
-  if (sectionLink) {
-    sectionLink.textContent = data.sectionLinkLabel || "Visit current site";
-    sectionLink.href = normalizeUrl(data.sectionLinkUrl || "#home");
-    applyLinkTarget(sectionLink, { newTab: data.sectionLinkNewTab });
   }
 
   if (!pathGrid || !paths.length) return;
@@ -444,6 +499,28 @@ async function renderMastersActions() {
   const data = await getJson("data/masters-actions.json", {});
 
   applyMastersSectionImage(data);
+
+  const kicker = document.querySelector("[data-masters-kicker]");
+  const title = document.querySelector("[data-masters-title]");
+  const body = document.querySelector("[data-masters-body]");
+  const stats = document.querySelector("[data-masters-stats]");
+
+  if (kicker && data.sectionKicker) kicker.textContent = data.sectionKicker;
+  if (title && data.sectionTitle) title.textContent = data.sectionTitle;
+  if (body && data.sectionBody) body.textContent = data.sectionBody;
+
+  if (stats) {
+    stats.innerHTML = "";
+    (data.stats || []).forEach((item) => {
+      const block = document.createElement("div");
+      const number = document.createElement("strong");
+      const label = document.createElement("span");
+      number.textContent = item.number || "";
+      label.textContent = item.label || "";
+      block.append(number, label);
+      stats.appendChild(block);
+    });
+  }
 
   if (!mastersActions) return;
 
@@ -492,6 +569,13 @@ function createUsthadCard(post, isFeatured = false, topic = "", settings = {}) {
 }
 
 async function renderTopicPosts() {
+  if (document.body.dataset.page === "learning") {
+    const slug = new URLSearchParams(window.location.search).get("topic");
+    const grid = document.querySelector("[data-topic-grid]");
+    if (!grid || !slug) return;
+    grid.dataset.postsFile = `data/learning-${slug}-posts.json`;
+  }
+
   if (!topicGrid) return;
 
   const data = await getJson(topicGrid.dataset.postsFile || "data/usthad-posts.json", { posts: [] });
@@ -658,11 +742,15 @@ filterButtons.forEach((button) => {
   });
 });
 
-applySettings();
-renderNavigation();
-renderQuickLinks();
-renderPosts();
-renderLearningPaths();
-renderMastersActions();
-renderTopicPosts();
-renderPostDetail();
+async function boot() {
+  await Promise.all([applySettings(), applyTypography(), renderAboutSection()]);
+  renderNavigation();
+  renderQuickLinks();
+  await renderPosts();
+  await renderLearningPaths();
+  await renderMastersActions();
+  await renderTopicPosts();
+  await renderPostDetail();
+}
+
+boot();

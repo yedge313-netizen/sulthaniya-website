@@ -1,0 +1,15 @@
+{
+  "learningKickerPx": "12",
+  "learningTitlePx": "50",
+  "pathCardTextPx": "18",
+  "introKickerPx": "12",
+  "introHeadingPx": "56",
+  "introBodyPx": "18",
+  "quoteTextPx": "21",
+  "quoteSourcePx": "12",
+  "mastersKickerPx": "12",
+  "mastersTitlePx": "56",
+  "mastersBodyPx": "18",
+  "statNumberPx": "34",
+  "statLabelPx": "14"
+}

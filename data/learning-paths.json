@@ -1,49 +1,38 @@
 {
   "sectionKicker": "Knowledge paths",
   "sectionTitle": "പഠനം & Categories",
-  "sectionLinkLabel": "Visit current site",
-  "sectionLinkUrl": "https://www.sulthaniyaonline.com/",
-  "sectionLinkNewTab": true,
   "paths": [
     {
       "title": "ഖുർആൻ",
-      "url": "https://sulthaniyauae1.blogspot.com/",
-      "newTab": true
+      "slug": "quran"
     },
     {
       "title": "ഹദീസ്",
-      "url": "https://sulthaniyauae1.blogspot.com/",
-      "newTab": true
+      "slug": "hadith"
     },
     {
       "title": "കലിമ ത്വയ്യിബ",
-      "url": "https://sulthaniyauae1.blogspot.com/",
-      "newTab": true
+      "slug": "kalima"
     },
     {
       "title": "തസവ്വുഫ്",
-      "url": "https://sulthaniyauae1.blogspot.com/",
-      "newTab": true
+      "slug": "tasawwuf"
     },
     {
       "title": "പഠനങ്ങൾ",
-      "url": "https://sulthaniyauae1.blogspot.com/",
-      "newTab": true
+      "slug": "padanangal"
     },
     {
       "title": "ചരിത്രം",
-      "url": "https://sulthaniyauae1.blogspot.com/",
-      "newTab": true
+      "slug": "history"
     },
     {
       "title": "സൂഫി കഥകൾ",
-      "url": "https://sulthaniyauae1.blogspot.com/",
-      "newTab": true
+      "slug": "sufi-stories"
     },
     {
       "title": "Videos",
-      "url": "https://sulthaniyauae1.blogspot.com/",
-      "newTab": true
+      "slug": "videos"
     }
   ]
 }

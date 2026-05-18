@@ -1,5 +1,22 @@
 {
   "sectionImage": "",
+  "sectionKicker": "Guidance & lineage",
+  "sectionTitle": "ഗുരുനാഥർ, മഹാൻമാർ, Silsila Masters",
+  "sectionBody": "സുൽത്വാനിയയുടെ പ്രധാന പഠന മേഖലകൾ ഗുരുനാഥരുടെ സന്ദേശം, മഹാൻമാരുടെ ജീവിതം, സിൽസിലയുടെ ആത്മീയ പാരമ്പര്യം, ചരിത്രം, സൂഫിസം, ഖുർആൻ, കലിമ ത്വയ്യിബ, Wisdom Tales, Videos എന്നിവയാണ്.",
+  "stats": [
+    {
+      "number": "42",
+      "label": "പഠനം posts"
+    },
+    {
+      "number": "22",
+      "label": "റമളാൻ posts"
+    },
+    {
+      "number": "19",
+      "label": "അധ്യാപനങ്ങൾ"
+    }
+  ],
   "buttonOneLabel": "Usthad",
   "buttonOneUrl": "usthad.html",
   "buttonOneNewTab": false,

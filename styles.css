@@ -374,7 +374,55 @@ h2 {
 .masters-content p,
 .admin-copy p {
   color: var(--muted);
-  font-size: 18px;
+  font-size: var(--font-intro-body, 18px);
+}
+
+.intro-section .section-kicker {
+  font-size: var(--font-intro-kicker, 12px);
+}
+
+.intro-section h2 {
+  font-size: var(--font-intro-heading, clamp(31px, 4vw, 56px));
+}
+
+.quote-panel p {
+  font-size: var(--font-quote-text, 21px);
+}
+
+.quote-panel span {
+  font-size: var(--font-quote-source, 12px);
+}
+
+.learning-section .section-kicker {
+  font-size: var(--font-learning-kicker, 12px);
+}
+
+.learning-section .section-heading h2 {
+  font-size: var(--font-learning-title, clamp(32px, 4.2vw, 50px));
+}
+
+.path-grid a {
+  font-size: var(--font-path-card, 18px);
+}
+
+.masters-content .section-kicker {
+  font-size: var(--font-masters-kicker, 12px);
+}
+
+.masters-content h2 {
+  font-size: var(--font-masters-title, clamp(31px, 4vw, 56px));
+}
+
+.masters-content > p {
+  font-size: var(--font-masters-body, 18px);
+}
+
+.stat-row strong {
+  font-size: var(--font-stat-number, 34px);
+}
+
+.stat-row span {
+  font-size: var(--font-stat-label, 14px);
 }
 
 .quote-panel {

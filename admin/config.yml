@@ -27,6 +27,41 @@ collections:
           - { label: "Mobile Hero Image", name: "heroMobileImage", widget: "image", required: false, hint: "Portrait or tightly cropped image for phones." }
           - { label: "Hero Headline", name: "heroTitle", widget: "text" }
           - { label: "Hero Description", name: "heroText", widget: "text" }
+      - name: "typography"
+        label: "Font Sizes"
+        file: "data/typography.json"
+        format: "json"
+        fields:
+          - { label: "Learning Section — Small Heading (px)", name: "learningKickerPx", widget: "string", required: false, default: "12" }
+          - { label: "Learning Section — Big Title (px)", name: "learningTitlePx", widget: "string", required: false, default: "50" }
+          - { label: "Learning Category Cards — Text (px)", name: "pathCardTextPx", widget: "string", required: false, default: "18" }
+          - { label: "About Section — Small Heading (px)", name: "introKickerPx", widget: "string", required: false, default: "12" }
+          - { label: "About Section — Main Heading (px)", name: "introHeadingPx", widget: "string", required: false, default: "56" }
+          - { label: "About Section — Body Text (px)", name: "introBodyPx", widget: "string", required: false, default: "18" }
+          - { label: "Quote Box — Text (px)", name: "quoteTextPx", widget: "string", required: false, default: "21" }
+          - { label: "Quote Box — Source (px)", name: "quoteSourcePx", widget: "string", required: false, default: "12" }
+          - { label: "Masters Section — Small Heading (px)", name: "mastersKickerPx", widget: "string", required: false, default: "12" }
+          - { label: "Masters Section — Big Title (px)", name: "mastersTitlePx", widget: "string", required: false, default: "56" }
+          - { label: "Masters Section — Body (px)", name: "mastersBodyPx", widget: "string", required: false, default: "18" }
+          - { label: "Masters Stats — Number (px)", name: "statNumberPx", widget: "string", required: false, default: "34" }
+          - { label: "Masters Stats — Label (px)", name: "statLabelPx", widget: "string", required: false, default: "14" }
+      - name: "about_section"
+        label: "About Section (Intro + Quote)"
+        file: "data/about-section.json"
+        format: "json"
+        fields:
+          - { label: "Small Heading", name: "sectionKicker", widget: "string", required: false }
+          - { label: "Main Heading", name: "heading", widget: "string" }
+          - label: "Paragraphs (left column)"
+            name: "paragraphs"
+            widget: "list"
+            summary: "{{fields.paragraph}}"
+            field:
+              label: Paragraph
+              name: paragraph
+              widget: text
+          - { label: "Quote Box Text", name: "quoteText", widget: "text" }
+          - { label: "Quote Source", name: "quoteSource", widget: "string", required: false }
       - name: "navigation"
         label: "Navigation Tabs"
         file: "data/navigation.json"
@@ -86,23 +121,29 @@ collections:
         fields:
           - { label: "Small Heading", name: "sectionKicker", widget: "string", required: false }
           - { label: "Section Title", name: "sectionTitle", widget: "string" }
-          - { label: "Top Link Label", name: "sectionLinkLabel", widget: "string", required: false }
-          - { label: "Top Link URL", name: "sectionLinkUrl", widget: "string", required: false }
-          - { label: "Open Top Link in New Tab", name: "sectionLinkNewTab", widget: "boolean", default: true, required: false }
           - label: "Category Cards"
             name: "paths"
             widget: "list"
             summary: "{{fields.title}}"
             fields:
               - { label: "Title", name: "title", widget: "string" }
-              - { label: "Link", name: "url", widget: "string" }
-              - { label: "Open in New Tab", name: "newTab", widget: "boolean", default: true, required: false }
+              - { label: "Topic Slug", name: "slug", widget: "string", hint: "Example: quran opens learning.html?topic=quran. Use quran, hadith, kalima, tasawwuf, padanangal, history, sufi-stories, or videos." }
       - name: "masters_actions"
-        label: "Masters Section Buttons"
+        label: "Masters Section"
         file: "data/masters-actions.json"
         format: "json"
         fields:
           - { label: "Section Photo (left side tree image)", name: "sectionImage", widget: "image", required: false, hint: "Upload the large photo shown on the left of the Masters / Gurunathar section." }
+          - { label: "Small Heading", name: "sectionKicker", widget: "string", required: false }
+          - { label: "Section Title", name: "sectionTitle", widget: "string" }
+          - { label: "Body Text", name: "sectionBody", widget: "text" }
+          - label: "Stats Row"
+            name: "stats"
+            widget: "list"
+            summary: "{{fields.label}}"
+            fields:
+              - { label: "Number", name: "number", widget: "string" }
+              - { label: "Label", name: "label", widget: "string" }
           - { label: "Button 1 Text", name: "buttonOneLabel", widget: "string" }
           - { label: "Button 1 Link", name: "buttonOneUrl", widget: "string" }
           - { label: "Button 1 Open in New Tab", name: "buttonOneNewTab", widget: "boolean", default: false, required: false }
@@ -330,6 +371,414 @@ collections:
                   - { label: "Quote Under Photo", name: "quote", widget: "text", required: false }
                   - { label: "Quote Source", name: "quoteSource", widget: "string", required: false }
                   - label: "Content Paragraphs (below quote)"
+                    name: "body"
+                    widget: "list"
+                    summary: "{{fields.paragraph}}"
+                    required: false
+                    field:
+                      label: Paragraph
+                      name: paragraph
+                      widget: text
+      - name: "learning_quran_posts"
+        label: "Learning: Quran Posts"
+        file: "data/learning-quran-posts.json"
+        format: "json"
+        fields:
+          - { label: "Small Heading", name: "pageKicker", widget: "string", required: false }
+          - { label: "Page Title", name: "pageTitle", widget: "string" }
+          - { label: "Intro Text", name: "pageIntro", widget: "text", required: false }
+          - { label: "Disable Read More pages", name: "readMoreDisabled", widget: "boolean", default: true }
+          - label: "Posts"
+            name: "posts"
+            widget: "list"
+            summary: "{{fields.title}}"
+            fields:
+              - { label: "Card Title", name: "title", widget: "string" }
+              - { label: "Category Label", name: "categoryLabel", widget: "string", required: false }
+              - { label: "Card Image", name: "image", widget: "image", required: false }
+              - { label: "Card Summary", name: "summary", widget: "text" }
+              - { label: "Page URL Slug", name: "slug", widget: "string", required: false }
+              - label: "Enable Read More Page"
+                name: "readMoreEnabled"
+                widget: "boolean"
+                default: false
+                required: false
+                condition:
+                  field: readMoreDisabled
+                  value: false
+              - label: "Read More Page"
+                name: "readMore"
+                widget: "object"
+                collapsed: true
+                summary: "{{fields.heading}}"
+                required: false
+                condition:
+                  - field: readMoreDisabled
+                    value: false
+                  - field: readMoreEnabled
+                    value: true
+                fields:
+                  - { label: "Heading", name: "heading", widget: "string", required: false }
+                  - { label: "Quote Under Photo", name: "quote", widget: "text", required: false }
+                  - { label: "Quote Source", name: "quoteSource", widget: "string", required: false }
+                  - label: "Content Paragraphs"
+                    name: "body"
+                    widget: "list"
+                    summary: "{{fields.paragraph}}"
+                    required: false
+                    field:
+                      label: Paragraph
+                      name: paragraph
+                      widget: text
+      - name: "learning_hadith_posts"
+        label: "Learning: Hadith Posts"
+        file: "data/learning-hadith-posts.json"
+        format: "json"
+        fields:
+          - { label: "Small Heading", name: "pageKicker", widget: "string", required: false }
+          - { label: "Page Title", name: "pageTitle", widget: "string" }
+          - { label: "Intro Text", name: "pageIntro", widget: "text", required: false }
+          - { label: "Disable Read More pages", name: "readMoreDisabled", widget: "boolean", default: true }
+          - label: "Posts"
+            name: "posts"
+            widget: "list"
+            summary: "{{fields.title}}"
+            fields:
+              - { label: "Card Title", name: "title", widget: "string" }
+              - { label: "Category Label", name: "categoryLabel", widget: "string", required: false }
+              - { label: "Card Image", name: "image", widget: "image", required: false }
+              - { label: "Card Summary", name: "summary", widget: "text" }
+              - { label: "Page URL Slug", name: "slug", widget: "string", required: false }
+              - label: "Enable Read More Page"
+                name: "readMoreEnabled"
+                widget: "boolean"
+                default: false
+                required: false
+                condition:
+                  field: readMoreDisabled
+                  value: false
+              - label: "Read More Page"
+                name: "readMore"
+                widget: "object"
+                collapsed: true
+                summary: "{{fields.heading}}"
+                required: false
+                condition:
+                  - field: readMoreDisabled
+                    value: false
+                  - field: readMoreEnabled
+                    value: true
+                fields:
+                  - { label: "Heading", name: "heading", widget: "string", required: false }
+                  - { label: "Quote Under Photo", name: "quote", widget: "text", required: false }
+                  - { label: "Quote Source", name: "quoteSource", widget: "string", required: false }
+                  - label: "Content Paragraphs"
+                    name: "body"
+                    widget: "list"
+                    summary: "{{fields.paragraph}}"
+                    required: false
+                    field:
+                      label: Paragraph
+                      name: paragraph
+                      widget: text
+      - name: "learning_kalima_posts"
+        label: "Learning: Kalima Thawyib Posts"
+        file: "data/learning-kalima-posts.json"
+        format: "json"
+        fields:
+          - { label: "Small Heading", name: "pageKicker", widget: "string", required: false }
+          - { label: "Page Title", name: "pageTitle", widget: "string" }
+          - { label: "Intro Text", name: "pageIntro", widget: "text", required: false }
+          - { label: "Disable Read More pages", name: "readMoreDisabled", widget: "boolean", default: true }
+          - label: "Posts"
+            name: "posts"
+            widget: "list"
+            summary: "{{fields.title}}"
+            fields:
+              - { label: "Card Title", name: "title", widget: "string" }
+              - { label: "Category Label", name: "categoryLabel", widget: "string", required: false }
+              - { label: "Card Image", name: "image", widget: "image", required: false }
+              - { label: "Card Summary", name: "summary", widget: "text" }
+              - { label: "Page URL Slug", name: "slug", widget: "string", required: false }
+              - label: "Enable Read More Page"
+                name: "readMoreEnabled"
+                widget: "boolean"
+                default: false
+                required: false
+                condition:
+                  field: readMoreDisabled
+                  value: false
+              - label: "Read More Page"
+                name: "readMore"
+                widget: "object"
+                collapsed: true
+                summary: "{{fields.heading}}"
+                required: false
+                condition:
+                  - field: readMoreDisabled
+                    value: false
+                  - field: readMoreEnabled
+                    value: true
+                fields:
+                  - { label: "Heading", name: "heading", widget: "string", required: false }
+                  - { label: "Quote Under Photo", name: "quote", widget: "text", required: false }
+                  - { label: "Quote Source", name: "quoteSource", widget: "string", required: false }
+                  - label: "Content Paragraphs"
+                    name: "body"
+                    widget: "list"
+                    summary: "{{fields.paragraph}}"
+                    required: false
+                    field:
+                      label: Paragraph
+                      name: paragraph
+                      widget: text
+      - name: "learning_tasawwuf_posts"
+        label: "Learning: Tasawwuf Posts"
+        file: "data/learning-tasawwuf-posts.json"
+        format: "json"
+        fields:
+          - { label: "Small Heading", name: "pageKicker", widget: "string", required: false }
+          - { label: "Page Title", name: "pageTitle", widget: "string" }
+          - { label: "Intro Text", name: "pageIntro", widget: "text", required: false }
+          - { label: "Disable Read More pages", name: "readMoreDisabled", widget: "boolean", default: true }
+          - label: "Posts"
+            name: "posts"
+            widget: "list"
+            summary: "{{fields.title}}"
+            fields:
+              - { label: "Card Title", name: "title", widget: "string" }
+              - { label: "Category Label", name: "categoryLabel", widget: "string", required: false }
+              - { label: "Card Image", name: "image", widget: "image", required: false }
+              - { label: "Card Summary", name: "summary", widget: "text" }
+              - { label: "Page URL Slug", name: "slug", widget: "string", required: false }
+              - label: "Enable Read More Page"
+                name: "readMoreEnabled"
+                widget: "boolean"
+                default: false
+                required: false
+                condition:
+                  field: readMoreDisabled
+                  value: false
+              - label: "Read More Page"
+                name: "readMore"
+                widget: "object"
+                collapsed: true
+                summary: "{{fields.heading}}"
+                required: false
+                condition:
+                  - field: readMoreDisabled
+                    value: false
+                  - field: readMoreEnabled
+                    value: true
+                fields:
+                  - { label: "Heading", name: "heading", widget: "string", required: false }
+                  - { label: "Quote Under Photo", name: "quote", widget: "text", required: false }
+                  - { label: "Quote Source", name: "quoteSource", widget: "string", required: false }
+                  - label: "Content Paragraphs"
+                    name: "body"
+                    widget: "list"
+                    summary: "{{fields.paragraph}}"
+                    required: false
+                    field:
+                      label: Paragraph
+                      name: paragraph
+                      widget: text
+      - name: "learning_padanangal_posts"
+        label: "Learning: Padanangal Posts"
+        file: "data/learning-padanangal-posts.json"
+        format: "json"
+        fields:
+          - { label: "Small Heading", name: "pageKicker", widget: "string", required: false }
+          - { label: "Page Title", name: "pageTitle", widget: "string" }
+          - { label: "Intro Text", name: "pageIntro", widget: "text", required: false }
+          - { label: "Disable Read More pages", name: "readMoreDisabled", widget: "boolean", default: true }
+          - label: "Posts"
+            name: "posts"
+            widget: "list"
+            summary: "{{fields.title}}"
+            fields:
+              - { label: "Card Title", name: "title", widget: "string" }
+              - { label: "Category Label", name: "categoryLabel", widget: "string", required: false }
+              - { label: "Card Image", name: "image", widget: "image", required: false }
+              - { label: "Card Summary", name: "summary", widget: "text" }
+              - { label: "Page URL Slug", name: "slug", widget: "string", required: false }
+              - label: "Enable Read More Page"
+                name: "readMoreEnabled"
+                widget: "boolean"
+                default: false
+                required: false
+                condition:
+                  field: readMoreDisabled
+                  value: false
+              - label: "Read More Page"
+                name: "readMore"
+                widget: "object"
+                collapsed: true
+                summary: "{{fields.heading}}"
+                required: false
+                condition:
+                  - field: readMoreDisabled
+                    value: false
+                  - field: readMoreEnabled
+                    value: true
+                fields:
+                  - { label: "Heading", name: "heading", widget: "string", required: false }
+                  - { label: "Quote Under Photo", name: "quote", widget: "text", required: false }
+                  - { label: "Quote Source", name: "quoteSource", widget: "string", required: false }
+                  - label: "Content Paragraphs"
+                    name: "body"
+                    widget: "list"
+                    summary: "{{fields.paragraph}}"
+                    required: false
+                    field:
+                      label: Paragraph
+                      name: paragraph
+                      widget: text
+      - name: "learning_history_posts"
+        label: "Learning: History Posts"
+        file: "data/learning-history-posts.json"
+        format: "json"
+        fields:
+          - { label: "Small Heading", name: "pageKicker", widget: "string", required: false }
+          - { label: "Page Title", name: "pageTitle", widget: "string" }
+          - { label: "Intro Text", name: "pageIntro", widget: "text", required: false }
+          - { label: "Disable Read More pages", name: "readMoreDisabled", widget: "boolean", default: true }
+          - label: "Posts"
+            name: "posts"
+            widget: "list"
+            summary: "{{fields.title}}"
+            fields:
+              - { label: "Card Title", name: "title", widget: "string" }
+              - { label: "Category Label", name: "categoryLabel", widget: "string", required: false }
+              - { label: "Card Image", name: "image", widget: "image", required: false }
+              - { label: "Card Summary", name: "summary", widget: "text" }
+              - { label: "Page URL Slug", name: "slug", widget: "string", required: false }
+              - label: "Enable Read More Page"
+                name: "readMoreEnabled"
+                widget: "boolean"
+                default: false
+                required: false
+                condition:
+                  field: readMoreDisabled
+                  value: false
+              - label: "Read More Page"
+                name: "readMore"
+                widget: "object"
+                collapsed: true
+                summary: "{{fields.heading}}"
+                required: false
+                condition:
+                  - field: readMoreDisabled
+                    value: false
+                  - field: readMoreEnabled
+                    value: true
+                fields:
+                  - { label: "Heading", name: "heading", widget: "string", required: false }
+                  - { label: "Quote Under Photo", name: "quote", widget: "text", required: false }
+                  - { label: "Quote Source", name: "quoteSource", widget: "string", required: false }
+                  - label: "Content Paragraphs"
+                    name: "body"
+                    widget: "list"
+                    summary: "{{fields.paragraph}}"
+                    required: false
+                    field:
+                      label: Paragraph
+                      name: paragraph
+                      widget: text
+      - name: "learning_sufi_stories_posts"
+        label: "Learning: Sufi Stories Posts"
+        file: "data/learning-sufi-stories-posts.json"
+        format: "json"
+        fields:
+          - { label: "Small Heading", name: "pageKicker", widget: "string", required: false }
+          - { label: "Page Title", name: "pageTitle", widget: "string" }
+          - { label: "Intro Text", name: "pageIntro", widget: "text", required: false }
+          - { label: "Disable Read More pages", name: "readMoreDisabled", widget: "boolean", default: true }
+          - label: "Posts"
+            name: "posts"
+            widget: "list"
+            summary: "{{fields.title}}"
+            fields:
+              - { label: "Card Title", name: "title", widget: "string" }
+              - { label: "Category Label", name: "categoryLabel", widget: "string", required: false }
+              - { label: "Card Image", name: "image", widget: "image", required: false }
+              - { label: "Card Summary", name: "summary", widget: "text" }
+              - { label: "Page URL Slug", name: "slug", widget: "string", required: false }
+              - label: "Enable Read More Page"
+                name: "readMoreEnabled"
+                widget: "boolean"
+                default: false
+                required: false
+                condition:
+                  field: readMoreDisabled
+                  value: false
+              - label: "Read More Page"
+                name: "readMore"
+                widget: "object"
+                collapsed: true
+                summary: "{{fields.heading}}"
+                required: false
+                condition:
+                  - field: readMoreDisabled
+                    value: false
+                  - field: readMoreEnabled
+                    value: true
+                fields:
+                  - { label: "Heading", name: "heading", widget: "string", required: false }
+                  - { label: "Quote Under Photo", name: "quote", widget: "text", required: false }
+                  - { label: "Quote Source", name: "quoteSource", widget: "string", required: false }
+                  - label: "Content Paragraphs"
+                    name: "body"
+                    widget: "list"
+                    summary: "{{fields.paragraph}}"
+                    required: false
+                    field:
+                      label: Paragraph
+                      name: paragraph
+                      widget: text
+      - name: "learning_videos_posts"
+        label: "Learning: Videos Posts"
+        file: "data/learning-videos-posts.json"
+        format: "json"
+        fields:
+          - { label: "Small Heading", name: "pageKicker", widget: "string", required: false }
+          - { label: "Page Title", name: "pageTitle", widget: "string" }
+          - { label: "Intro Text", name: "pageIntro", widget: "text", required: false }
+          - { label: "Disable Read More pages", name: "readMoreDisabled", widget: "boolean", default: true }
+          - label: "Posts"
+            name: "posts"
+            widget: "list"
+            summary: "{{fields.title}}"
+            fields:
+              - { label: "Card Title", name: "title", widget: "string" }
+              - { label: "Category Label", name: "categoryLabel", widget: "string", required: false }
+              - { label: "Card Image", name: "image", widget: "image", required: false }
+              - { label: "Card Summary", name: "summary", widget: "text" }
+              - { label: "Page URL Slug", name: "slug", widget: "string", required: false }
+              - label: "Enable Read More Page"
+                name: "readMoreEnabled"
+                widget: "boolean"
+                default: false
+                required: false
+                condition:
+                  field: readMoreDisabled
+                  value: false
+              - label: "Read More Page"
+                name: "readMore"
+                widget: "object"
+                collapsed: true
+                summary: "{{fields.heading}}"
+                required: false
+                condition:
+                  - field: readMoreDisabled
+                    value: false
+                  - field: readMoreEnabled
+                    value: true
+                fields:
+                  - { label: "Heading", name: "heading", widget: "string", required: false }
+                  - { label: "Quote Under Photo", name: "quote", widget: "text", required: false }
+                  - { label: "Quote Source", name: "quoteSource", widget: "string", required: false }
+                  - label: "Content Paragraphs"
                     name: "body"
                     widget: "list"
                     summary: "{{fields.paragraph}}"
