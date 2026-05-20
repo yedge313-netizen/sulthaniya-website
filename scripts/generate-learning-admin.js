@@ -22,7 +22,7 @@ const postFields = `          - { label: "Small Heading", name: "pageKicker", wi
               - { label: "Category Label", name: "categoryLabel", widget: "string", required: false }
               - { label: "Card Image", name: "image", widget: "image", required: false }
               - { label: "Card Summary", name: "summary", widget: "text" }
-              - { label: "Page URL Slug", name: "slug", widget: "string", required: false }
+              - { label: "Auto Page URL Slug", name: "slug", widget: "hidden", required: false }
               - label: "Enable Read More Page"
                 name: "readMoreEnabled"
                 widget: "boolean"

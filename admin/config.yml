@@ -276,7 +276,7 @@ collections:
               - { label: "Card Image", name: "image", widget: "image", required: false }
               - { label: "Card Summary", name: "summary", widget: "text", hint: "Short preview text on the card." }
               - { label: "Card Summary (English)", name: "summaryEn", widget: "text", required: false }
-              - { label: "Page URL Slug", name: "slug", widget: "string", required: false, hint: "Example: madina-historic-centers. Required for Read More link." }
+              - { label: "Auto Page URL Slug", name: "slug", widget: "hidden", required: false }
               - label: "Enable Read More Page"
                 name: "readMoreEnabled"
                 widget: "boolean"
@@ -342,7 +342,7 @@ collections:
               - { label: "Card Image", name: "image", widget: "image", required: false }
               - { label: "Card Summary", name: "summary", widget: "text", hint: "Short preview text on the card." }
               - { label: "Card Summary (English)", name: "summaryEn", widget: "text", required: false }
-              - { label: "Page URL Slug", name: "slug", widget: "string", required: false, hint: "Example: mahal-my-post. Required for Read More link." }
+              - { label: "Auto Page URL Slug", name: "slug", widget: "hidden", required: false }
               - label: "Enable Read More Page"
                 name: "readMoreEnabled"
                 widget: "boolean"
@@ -408,7 +408,7 @@ collections:
               - { label: "Card Image", name: "image", widget: "image", required: false }
               - { label: "Card Summary", name: "summary", widget: "text", hint: "Short preview text on the card." }
               - { label: "Card Summary (English)", name: "summaryEn", widget: "text", required: false }
-              - { label: "Page URL Slug", name: "slug", widget: "string", required: false, hint: "Example: silsila-my-post. Required for Read More link." }
+              - { label: "Auto Page URL Slug", name: "slug", widget: "hidden", required: false }
               - label: "Enable Read More Page"
                 name: "readMoreEnabled"
                 widget: "boolean"
@@ -484,7 +484,7 @@ collections:
               - { label: "Card Image", name: "image", widget: "image", required: false }
               - { label: "Card Summary", name: "summary", widget: "text", hint: "Short preview on the card." }
               - { label: "Card Summary (English)", name: "summaryEn", widget: "text", required: false }
-              - { label: "Page URL Slug", name: "slug", widget: "string", required: false, hint: "Example: home-my-article. Required for Read More link." }
+              - { label: "Auto Page URL Slug", name: "slug", widget: "hidden", required: false }
               - label: "Enable Read More Page"
                 name: "readMoreEnabled"
                 widget: "boolean"
@@ -553,7 +553,7 @@ collections:
               - { label: "Card Image", name: "image", widget: "image", required: false }
               - { label: "Card Summary", name: "summary", widget: "text" }
               - { label: "Card Summary (English)", name: "summaryEn", widget: "text", required: false }
-              - { label: "Page URL Slug", name: "slug", widget: "string", required: false }
+              - { label: "Auto Page URL Slug", name: "slug", widget: "hidden", required: false }
               - label: "Enable Read More Page"
                 name: "readMoreEnabled"
                 widget: "boolean"
@@ -622,7 +622,7 @@ collections:
               - { label: "Card Image", name: "image", widget: "image", required: false }
               - { label: "Card Summary", name: "summary", widget: "text" }
               - { label: "Card Summary (English)", name: "summaryEn", widget: "text", required: false }
-              - { label: "Page URL Slug", name: "slug", widget: "string", required: false }
+              - { label: "Auto Page URL Slug", name: "slug", widget: "hidden", required: false }
               - label: "Enable Read More Page"
                 name: "readMoreEnabled"
                 widget: "boolean"
@@ -691,7 +691,7 @@ collections:
               - { label: "Card Image", name: "image", widget: "image", required: false }
               - { label: "Card Summary", name: "summary", widget: "text" }
               - { label: "Card Summary (English)", name: "summaryEn", widget: "text", required: false }
-              - { label: "Page URL Slug", name: "slug", widget: "string", required: false }
+              - { label: "Auto Page URL Slug", name: "slug", widget: "hidden", required: false }
               - label: "Enable Read More Page"
                 name: "readMoreEnabled"
                 widget: "boolean"
@@ -760,7 +760,7 @@ collections:
               - { label: "Card Image", name: "image", widget: "image", required: false }
               - { label: "Card Summary", name: "summary", widget: "text" }
               - { label: "Card Summary (English)", name: "summaryEn", widget: "text", required: false }
-              - { label: "Page URL Slug", name: "slug", widget: "string", required: false }
+              - { label: "Auto Page URL Slug", name: "slug", widget: "hidden", required: false }
               - label: "Enable Read More Page"
                 name: "readMoreEnabled"
                 widget: "boolean"
@@ -829,7 +829,7 @@ collections:
               - { label: "Card Image", name: "image", widget: "image", required: false }
               - { label: "Card Summary", name: "summary", widget: "text" }
               - { label: "Card Summary (English)", name: "summaryEn", widget: "text", required: false }
-              - { label: "Page URL Slug", name: "slug", widget: "string", required: false }
+              - { label: "Auto Page URL Slug", name: "slug", widget: "hidden", required: false }
               - label: "Enable Read More Page"
                 name: "readMoreEnabled"
                 widget: "boolean"
@@ -898,7 +898,7 @@ collections:
               - { label: "Card Image", name: "image", widget: "image", required: false }
               - { label: "Card Summary", name: "summary", widget: "text" }
               - { label: "Card Summary (English)", name: "summaryEn", widget: "text", required: false }
-              - { label: "Page URL Slug", name: "slug", widget: "string", required: false }
+              - { label: "Auto Page URL Slug", name: "slug", widget: "hidden", required: false }
               - label: "Enable Read More Page"
                 name: "readMoreEnabled"
                 widget: "boolean"
@@ -967,7 +967,7 @@ collections:
               - { label: "Card Image", name: "image", widget: "image", required: false }
               - { label: "Card Summary", name: "summary", widget: "text" }
               - { label: "Card Summary (English)", name: "summaryEn", widget: "text", required: false }
-              - { label: "Page URL Slug", name: "slug", widget: "string", required: false }
+              - { label: "Auto Page URL Slug", name: "slug", widget: "hidden", required: false }
               - label: "Enable Read More Page"
                 name: "readMoreEnabled"
                 widget: "boolean"
@@ -1036,7 +1036,7 @@ collections:
               - { label: "Card Image", name: "image", widget: "image", required: false }
               - { label: "Card Summary", name: "summary", widget: "text" }
               - { label: "Card Summary (English)", name: "summaryEn", widget: "text", required: false }
-              - { label: "Page URL Slug", name: "slug", widget: "string", required: false }
+              - { label: "Auto Page URL Slug", name: "slug", widget: "hidden", required: false }
               - label: "Enable Read More Page"
                 name: "readMoreEnabled"
                 widget: "boolean"

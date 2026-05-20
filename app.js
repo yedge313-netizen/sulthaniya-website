@@ -234,6 +234,24 @@ function buildPostDetailUrl(topic, slug) {
   return `post.html?${params.toString()}`;
 }
 
+function slugifyPostText(value) {
+  return String(value || "")
+    .normalize("NFKD")
+    .trim()
+    .toLowerCase()
+    .replace(/\.html$/i, "")
+    .replace(/[^\p{Letter}\p{Number}]+/gu, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
+function getPostSlug(post, index = 0) {
+  const manualSlug = String(post?.slug || "").trim();
+  if (manualSlug) return manualSlug;
+
+  const generatedSlug = slugifyPostText(post?.title || post?.titleEn || post?.readMore?.heading);
+  return generatedSlug || `post-${index + 1}`;
+}
+
 function normalizeBody(body) {
   if (!Array.isArray(body)) return [];
 
@@ -257,9 +275,9 @@ function isReadMoreEnabled(post) {
   return post.readMore?.enabled === true;
 }
 
-function hasReadMorePage(post, settings = {}) {
+function hasReadMorePage(post, settings = {}, index = 0) {
   if (settings.readMoreDisabled) return false;
-  if (!post?.slug) return false;
+  if (!getPostSlug(post, index)) return false;
   if (!isReadMoreEnabled(post)) return false;
   if (!post.readMore) return false;
 
@@ -270,12 +288,12 @@ function hasReadMorePage(post, settings = {}) {
   );
 }
 
-function appendReadMoreLink(container, post, topic, settings = {}) {
+function appendReadMoreLink(container, post, topic, settings = {}, index = 0) {
   const link = document.createElement("a");
   link.className = "read-more-link";
   link.textContent = uiText("readMoreLabel", "Read More");
 
-  const detailUrl = hasReadMorePage(post, settings) ? buildPostDetailUrl(topic, post.slug) : "";
+  const detailUrl = hasReadMorePage(post, settings, index) ? buildPostDetailUrl(topic, getPostSlug(post, index)) : "";
 
   if (detailUrl) {
     link.href = detailUrl;
@@ -571,7 +589,7 @@ function setMenu(open) {
   navToggle.setAttribute("aria-expanded", String(open));
 }
 
-function createArticleCard(post, isFeatured = false, settings = {}) {
+function createArticleCard(post, isFeatured = false, settings = {}, index = 0) {
   const article = document.createElement("article");
   article.className = isFeatured ? "article-card featured" : "article-card";
   article.dataset.category = post.category;
@@ -590,7 +608,7 @@ function createArticleCard(post, isFeatured = false, settings = {}) {
   summary.textContent = localizedValue(post, "summary", language) || "";
 
   body.append(pill, title, summary);
-  appendReadMoreLink(body, post, "articles", settings);
+  appendReadMoreLink(body, post, "articles", settings, index);
 
   article.append(image, body);
   return article;
@@ -679,11 +697,11 @@ async function renderPosts() {
 
   articleGrid.innerHTML = "";
   posts.forEach((post, index) => {
-    articleGrid.appendChild(createArticleCard(post, index === 0, readMoreSettings));
+    articleGrid.appendChild(createArticleCard(post, index === 0, readMoreSettings, index));
   });
 }
 
-function createUsthadCard(post, isFeatured = false, topic = "", settings = {}) {
+function createUsthadCard(post, isFeatured = false, topic = "", settings = {}, index = 0) {
   const article = document.createElement("article");
   const image = document.createElement("img");
   const body = document.createElement("div");
@@ -701,7 +719,7 @@ function createUsthadCard(post, isFeatured = false, topic = "", settings = {}) {
   summary.textContent = localizedValue(post, "summary", language) || "";
 
   body.append(pill, title, summary);
-  appendReadMoreLink(body, post, topic, settings);
+  appendReadMoreLink(body, post, topic, settings, index);
 
   article.append(image, body);
   return article;
@@ -734,17 +752,19 @@ async function renderTopicPosts() {
   const readMoreSettings = getReadMoreSettings(data);
   topicGrid.innerHTML = "";
   posts.forEach((post, index) => {
-    topicGrid.appendChild(createUsthadCard(post, index === 0, topic, readMoreSettings));
+    topicGrid.appendChild(createUsthadCard(post, index === 0, topic, readMoreSettings, index));
   });
 }
 
 async function loadPostDetail(topic, slug) {
   const topicData = await getJson(topicPostsPath(topic), { posts: [] });
-  const post = (topicData.posts || []).find((item) => item.slug === slug);
+  const posts = topicData.posts || [];
+  const postIndex = posts.findIndex((item, index) => getPostSlug(item, index) === slug);
+  const post = postIndex >= 0 ? posts[postIndex] : null;
   const readMoreSettings = getReadMoreSettings(topicData);
   const language = getLanguage();
 
-  if (isReadMoreEnabled(post) && post?.readMore && hasReadMorePage(post, readMoreSettings)) {
+  if (isReadMoreEnabled(post) && post?.readMore && hasReadMorePage(post, readMoreSettings, postIndex)) {
     return {
       topic,
       topicLabel: topicBackLabel(topic, topicData),
