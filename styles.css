@@ -54,6 +54,27 @@ a {
   backdrop-filter: blur(18px);
 }
 
+.language-toggle {
+  margin-left: 14px;
+  display: flex;
+  align-items: center;
+}
+
+.language-select {
+  min-height: 38px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(16, 40, 36, 0.3);
+  background: rgba(251, 250, 246, 0.95);
+  color: #102824;
+  font-weight: 800;
+}
+
+.language-select:focus-visible {
+  outline: 2px solid rgba(16, 40, 36, 0.85);
+  outline-offset: 2px;
+}
+
 .brand {
   display: flex;
   align-items: center;

@@ -8,7 +8,64 @@ const topicGrid = document.querySelector("[data-topic-grid]");
 const filterButtons = document.querySelectorAll(".filter-button");
 
 const settingsKey = "sulthaniya-site-settings";
+const languageKey = "sulthaniya-language";
 const fallbackImage = "https://images.unsplash.com/photo-1528659432556-51419ce0c673?auto=format&fit=crop&w=900&q=80";
+
+function getLanguage() {
+  const raw = String(localStorage.getItem(languageKey) || "").toLowerCase().trim();
+  return raw === "en" ? "en" : "ml";
+}
+
+function setLanguage(language) {
+  localStorage.setItem(languageKey, language === "en" ? "en" : "ml");
+}
+
+function localizedValue(obj, key, language) {
+  if (!obj) return "";
+  if (language === "en") {
+    const candidates = [`${key}En`, `${key}_en`, `${key}EN`];
+    for (const candidate of candidates) {
+      if (obj[candidate] != null && obj[candidate] !== "") return obj[candidate];
+    }
+  }
+  return obj[key] ?? "";
+}
+
+function localizedBody(post, language) {
+  if (language === "en") {
+    const readMore = post?.readMore || {};
+    if (Array.isArray(readMore.bodyEn)) return normalizeBody(readMore.bodyEn);
+    if (Array.isArray(readMore.body_en)) return normalizeBody(readMore.body_en);
+  }
+  return normalizeBody(post?.readMore?.body);
+}
+
+function renderLanguageToggle() {
+  const header = document.querySelector(".site-header");
+  if (!header) return;
+  if (header.querySelector("[data-language-toggle]")) return;
+
+  const wrapper = document.createElement("div");
+  wrapper.className = "language-toggle";
+  wrapper.setAttribute("data-language-toggle", "true");
+
+  const select = document.createElement("select");
+  select.className = "language-select";
+  select.setAttribute("aria-label", "Select language");
+  select.innerHTML = `
+    <option value="ml">Malayalam</option>
+    <option value="en">English</option>
+  `;
+  select.value = getLanguage();
+
+  select.addEventListener("change", () => {
+    setLanguage(select.value);
+    window.location.reload();
+  });
+
+  wrapper.appendChild(select);
+  header.appendChild(wrapper);
+}
 
 function normalizeAssetUrl(path) {
   if (!path) return "";
@@ -73,7 +130,9 @@ async function applyTypography() {
 }
 
 async function renderAboutSection() {
-  const data = await getJson("data/about-section.json", {});
+  const language = getLanguage();
+  const data =
+    language === "en" ? await getJson("data/about-section-en.json", {}) : await getJson("data/about-section.json", {});
   const kicker = document.querySelector("[data-about-kicker]");
   const heading = document.querySelector("[data-about-heading]");
   const paragraphs = document.querySelector("[data-about-paragraphs]");
@@ -178,7 +237,9 @@ async function getJson(path, fallback) {
 }
 
 async function applySettings() {
+  const language = getLanguage();
   const fileSettings = await getJson("data/site.json", {});
+  const englishSettings = language === "en" ? await getJson("data/site-en.json", {}) : {};
   let localSettings = {};
 
   try {
@@ -187,7 +248,7 @@ async function applySettings() {
     localSettings = {};
   }
 
-  const settings = { ...localSettings, ...fileSettings };
+  const settings = { ...localSettings, ...fileSettings, ...englishSettings };
 
   Object.entries(settings).forEach(([key, value]) => {
     document.querySelectorAll(`[data-edit="${key}"]`).forEach((item) => {
@@ -247,7 +308,7 @@ function applyHeroImages(settings) {
 function createNavLink(tab) {
   const link = document.createElement("a");
   link.href = normalizeUrl(tab.url || "#home");
-  link.textContent = tab.label || "Tab";
+  link.textContent = localizedValue(tab, "label", getLanguage()) || "Tab";
 
   if (tab.style === "button") {
     link.className = "nav-cta";
@@ -291,8 +352,9 @@ function createQuickLink(item) {
   applyLinkTarget(link, item);
 
   number.textContent = item.number || "";
-  title.textContent = item.title || "Link";
-  subtitle.textContent = item.subtitle || "";
+  const language = getLanguage();
+  title.textContent = localizedValue(item, "title", language) || "Link";
+  subtitle.textContent = localizedValue(item, "subtitle", language) || "";
 
   link.append(number, title, subtitle);
   return link;
@@ -301,7 +363,7 @@ function createQuickLink(item) {
 function createFooterLink(item) {
   const link = document.createElement("a");
   link.href = normalizeUrl(item.url || "#home");
-  link.textContent = item.label || "Link";
+  link.textContent = localizedValue(item, "label", getLanguage()) || "Link";
 
   if (item.style === "button") {
     link.className = "footer-cta";
@@ -455,9 +517,10 @@ function createArticleCard(post, isFeatured = false, settings = {}) {
   image.src = normalizeAssetUrl(post.image) || fallbackImage;
   image.alt = post.title || "";
   pill.className = "pill";
-  pill.textContent = post.categoryLabel || "Post";
-  title.textContent = post.title || "Untitled";
-  summary.textContent = post.summary || "";
+  const language = getLanguage();
+  pill.textContent = localizedValue(post, "categoryLabel", language) || "Post";
+  title.textContent = localizedValue(post, "title", language) || "Untitled";
+  summary.textContent = localizedValue(post, "summary", language) || "";
 
   body.append(pill, title, summary);
   appendReadMoreLink(body, post, "articles", settings);
@@ -474,7 +537,7 @@ function createPathLink(item) {
     link.href = normalizeUrl(item.url || "#learning");
     applyLinkTarget(link, item);
   }
-  link.textContent = item.title || "Path";
+  link.textContent = localizedValue(item, "title", getLanguage()) || "Path";
   return link;
 }
 
@@ -483,14 +546,10 @@ async function renderLearningPaths() {
   const paths = data.paths || [];
   const kicker = document.querySelector("[data-learning-kicker]");
   const title = document.querySelector("[data-learning-title]");
+  const language = getLanguage();
 
-  if (kicker && data.sectionKicker) {
-    kicker.textContent = data.sectionKicker;
-  }
-
-  if (title && data.sectionTitle) {
-    title.textContent = data.sectionTitle;
-  }
+  if (kicker) kicker.textContent = localizedValue(data, "sectionKicker", language) || kicker.textContent;
+  if (title) title.textContent = localizedValue(data, "sectionTitle", language) || title.textContent;
 
   if (!pathGrid || !paths.length) return;
 
@@ -529,9 +588,10 @@ async function renderMastersActions() {
   const kicker = document.querySelector("[data-masters-kicker]");
   const title = document.querySelector("[data-masters-title]");
   const body = document.querySelector("[data-masters-body]");
-  if (kicker && data.sectionKicker) kicker.textContent = data.sectionKicker;
-  if (title && data.sectionTitle) title.textContent = data.sectionTitle;
-  if (body && data.sectionBody) body.textContent = data.sectionBody;
+  const language = getLanguage();
+  if (kicker) kicker.textContent = localizedValue(data, "sectionKicker", language) || kicker.textContent;
+  if (title) title.textContent = localizedValue(data, "sectionTitle", language) || title.textContent;
+  if (body) body.textContent = localizedValue(data, "sectionBody", language) || body.textContent;
 
   if (!mastersActions) return;
 
@@ -568,9 +628,10 @@ function createUsthadCard(post, isFeatured = false, topic = "", settings = {}) {
   image.src = normalizeAssetUrl(post.image) || fallbackImage;
   image.alt = post.title || "";
   pill.className = "pill";
-  pill.textContent = post.categoryLabel || "Post";
-  title.textContent = post.title || "Untitled";
-  summary.textContent = post.summary || "";
+  const language = getLanguage();
+  pill.textContent = localizedValue(post, "categoryLabel", language) || "Post";
+  title.textContent = localizedValue(post, "title", language) || "Untitled";
+  summary.textContent = localizedValue(post, "summary", language) || "";
 
   body.append(pill, title, summary);
   appendReadMoreLink(body, post, topic, settings);
@@ -594,18 +655,11 @@ async function renderTopicPosts() {
   const kicker = document.querySelector("[data-topic-kicker]");
   const title = document.querySelector("[data-topic-title]");
   const intro = document.querySelector("[data-topic-intro]");
+  const language = getLanguage();
 
-  if (kicker && data.pageKicker) {
-    kicker.textContent = data.pageKicker;
-  }
-
-  if (title && data.pageTitle) {
-    title.textContent = data.pageTitle;
-  }
-
-  if (intro && data.pageIntro) {
-    intro.textContent = data.pageIntro;
-  }
+  if (kicker) kicker.textContent = localizedValue(data, "pageKicker", language) || kicker.textContent;
+  if (title) title.textContent = localizedValue(data, "pageTitle", language) || title.textContent;
+  if (intro) intro.textContent = localizedValue(data, "pageIntro", language) || "";
 
   if (!posts.length) return;
 
@@ -621,18 +675,19 @@ async function loadPostDetail(topic, slug) {
   const topicData = await getJson(topicPostsPath(topic), { posts: [] });
   const post = (topicData.posts || []).find((item) => item.slug === slug);
   const readMoreSettings = getReadMoreSettings(topicData);
+  const language = getLanguage();
 
   if (isReadMoreEnabled(post) && post?.readMore && hasReadMorePage(post, readMoreSettings)) {
     return {
       topic,
       topicLabel: topicBackLabel(topic, topicData),
       backUrl: topicBackUrl(topic),
-      title: post.readMore.heading || post.title,
-      categoryLabel: post.categoryLabel,
+      title: localizedValue(post.readMore, "heading", language) || localizedValue(post, "title", language),
+      categoryLabel: localizedValue(post, "categoryLabel", language),
       image: post.readMore.image || post.image,
-      quote: post.readMore.quote || "",
-      quoteSource: post.readMore.quoteSource || "",
-      body: normalizeBody(post.readMore.body),
+      quote: localizedValue(post.readMore, "quote", language) || "",
+      quoteSource: localizedValue(post.readMore, "quoteSource", language) || "",
+      body: localizedBody(post, language),
     };
   }
 
@@ -754,6 +809,7 @@ filterButtons.forEach((button) => {
 });
 
 async function boot() {
+  renderLanguageToggle();
   await Promise.all([applySettings(), applyTypography(), renderAboutSection()]);
   renderNavigation();
   await renderFooterLinks();

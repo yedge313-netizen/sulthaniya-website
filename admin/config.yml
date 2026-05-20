@@ -27,6 +27,16 @@ collections:
           - { label: "Mobile Hero Image", name: "heroMobileImage", widget: "image", required: false, hint: "Portrait or tightly cropped image for phones." }
           - { label: "Hero Headline", name: "heroTitle", widget: "text" }
           - { label: "Hero Description", name: "heroText", widget: "text" }
+      - name: "site_en"
+        label: "Home Page English Editor"
+        file: "data/site-en.json"
+        format: "json"
+        fields:
+          - { label: "Website Name (English)", name: "siteTitle", widget: "string", required: false }
+          - { label: "Tagline (English)", name: "siteTagline", widget: "string", required: false }
+          - { label: "Logo Alt Text (English)", name: "logoAlt", widget: "string", required: false }
+          - { label: "Hero Headline (English)", name: "heroTitle", widget: "text", required: false }
+          - { label: "Hero Description (English)", name: "heroText", widget: "text", required: false }
       - name: "typography"
         label: "Font Sizes"
         file: "data/typography.json"
@@ -62,6 +72,23 @@ collections:
               widget: text
           - { label: "Quote Box Text", name: "quoteText", widget: "text" }
           - { label: "Quote Source", name: "quoteSource", widget: "string", required: false }
+      - name: "about_section_en"
+        label: "About Section (English)"
+        file: "data/about-section-en.json"
+        format: "json"
+        fields:
+          - { label: "Small Heading (English)", name: "sectionKicker", widget: "string", required: false }
+          - { label: "Main Heading (English)", name: "heading", widget: "string", required: false }
+          - label: "Paragraphs (English)"
+            name: "paragraphs"
+            widget: "list"
+            summary: "{{fields.paragraph}}"
+            field:
+              label: Paragraph
+              name: paragraph
+              widget: text
+          - { label: "Quote Box Text (English)", name: "quoteText", widget: "text", required: false }
+          - { label: "Quote Source (English)", name: "quoteSource", widget: "string", required: false }
       - name: "navigation"
         label: "Navigation Tabs"
         file: "data/navigation.json"
@@ -73,6 +100,7 @@ collections:
             summary: "{{fields.label}}"
             fields:
               - { label: "Tab Name", name: "label", widget: "string" }
+              - { label: "Tab Name (English)", name: "labelEn", widget: "string", required: false }
               - { label: "Link", name: "url", widget: "string", required: false, hint: "Use section links like #articles, full links like https://example.com, or leave empty for a dropdown parent." }
               - label: "Style"
                 name: "style"
@@ -90,6 +118,7 @@ collections:
                 hint: "Add links here when this tab should open as a dropdown."
                 fields:
                   - { label: "Link Name", name: "label", widget: "string" }
+                  - { label: "Link Name (English)", name: "labelEn", widget: "string", required: false }
                   - { label: "Link", name: "url", widget: "string" }
                   - label: "Style"
                     name: "style"
@@ -110,6 +139,7 @@ collections:
             summary: "{{fields.label}}"
             fields:
               - { label: "Link Text", name: "label", widget: "string" }
+              - { label: "Link Text (English)", name: "labelEn", widget: "string", required: false }
               - { label: "Link URL", name: "url", widget: "string", hint: "Use #home, #sulthaniya, index.html#articles on subpages, or a full URL like https://..." }
               - label: "Style"
                 name: "style"
@@ -131,7 +161,9 @@ collections:
             fields:
               - { label: "Number", name: "number", widget: "string", hint: "Example: 01, 02, 03", required: false }
               - { label: "Title", name: "title", widget: "string" }
+              - { label: "Title (English)", name: "titleEn", widget: "string", required: false }
               - { label: "Subtitle", name: "subtitle", widget: "string", required: false }
+              - { label: "Subtitle (English)", name: "subtitleEn", widget: "string", required: false }
               - { label: "Link", name: "url", widget: "string", hint: "Use section links like #articles or full links like https://example.com" }
               - { label: "Open in New Tab", name: "newTab", widget: "boolean", default: false, required: false }
       - name: "learning_paths"
@@ -140,13 +172,16 @@ collections:
         format: "json"
         fields:
           - { label: "Small Heading", name: "sectionKicker", widget: "string", required: false }
+          - { label: "Small Heading (English)", name: "sectionKickerEn", widget: "string", required: false }
           - { label: "Section Title", name: "sectionTitle", widget: "string" }
+          - { label: "Section Title (English)", name: "sectionTitleEn", widget: "string", required: false }
           - label: "Category Cards"
             name: "paths"
             widget: "list"
             summary: "{{fields.title}}"
             fields:
               - { label: "Title", name: "title", widget: "string" }
+              - { label: "Title (English)", name: "titleEn", widget: "string", required: false }
               - { label: "Topic Slug", name: "slug", widget: "string", hint: "Example: quran opens quran.html. Use quran, hadith, kalima, tasawwuf, padanangal, history, sufi-stories, or videos." }
       - name: "masters_actions"
         label: "Masters Section"
@@ -193,9 +228,12 @@ collections:
             summary: "{{fields.title}}"
             fields:
               - { label: "Card Title", name: "title", widget: "string", hint: "Title on the Usthad posts grid (card preview)." }
+              - { label: "Card Title (English)", name: "titleEn", widget: "string", required: false }
               - { label: "Category Label", name: "categoryLabel", widget: "string", required: false }
+              - { label: "Category Label (English)", name: "categoryLabelEn", widget: "string", required: false }
               - { label: "Card Image", name: "image", widget: "image", required: false }
               - { label: "Card Summary", name: "summary", widget: "text", hint: "Short preview text on the card." }
+              - { label: "Card Summary (English)", name: "summaryEn", widget: "text", required: false }
               - { label: "Page URL Slug", name: "slug", widget: "string", required: false, hint: "Example: madina-historic-centers. Required for Read More link." }
               - label: "Enable Read More Page"
                 name: "readMoreEnabled"
@@ -218,10 +256,22 @@ collections:
                     value: true
                 fields:
                   - { label: "Heading", name: "heading", widget: "string", required: false, hint: "Large title on the Read More page (below header)." }
+                  - { label: "Heading (English)", name: "headingEn", widget: "string", required: false }
                   - { label: "Quote Under Photo", name: "quote", widget: "text", required: false }
+                  - { label: "Quote Under Photo (English)", name: "quoteEn", widget: "text", required: false }
                   - { label: "Quote Source", name: "quoteSource", widget: "string", required: false }
+                  - { label: "Quote Source (English)", name: "quoteSourceEn", widget: "string", required: false }
                   - label: "Content Paragraphs (below quote)"
                     name: "body"
+                    widget: "list"
+                    summary: "{{fields.paragraph}}"
+                    required: false
+                    field:
+                      label: Paragraph
+                      name: paragraph
+                      widget: text
+                  - label: "Content Paragraphs (English)"
+                    name: "bodyEn"
                     widget: "list"
                     summary: "{{fields.paragraph}}"
                     required: false
@@ -244,9 +294,12 @@ collections:
             summary: "{{fields.title}}"
             fields:
               - { label: "Card Title", name: "title", widget: "string", hint: "Title on the Mahal posts grid (card preview)." }
+              - { label: "Card Title (English)", name: "titleEn", widget: "string", required: false }
               - { label: "Category Label", name: "categoryLabel", widget: "string", required: false }
+              - { label: "Category Label (English)", name: "categoryLabelEn", widget: "string", required: false }
               - { label: "Card Image", name: "image", widget: "image", required: false }
               - { label: "Card Summary", name: "summary", widget: "text", hint: "Short preview text on the card." }
+              - { label: "Card Summary (English)", name: "summaryEn", widget: "text", required: false }
               - { label: "Page URL Slug", name: "slug", widget: "string", required: false, hint: "Example: mahal-my-post. Required for Read More link." }
               - label: "Enable Read More Page"
                 name: "readMoreEnabled"
@@ -269,10 +322,22 @@ collections:
                     value: true
                 fields:
                   - { label: "Heading", name: "heading", widget: "string", required: false, hint: "Large title on the Read More page (below header)." }
+                  - { label: "Heading (English)", name: "headingEn", widget: "string", required: false }
                   - { label: "Quote Under Photo", name: "quote", widget: "text", required: false }
+                  - { label: "Quote Under Photo (English)", name: "quoteEn", widget: "text", required: false }
                   - { label: "Quote Source", name: "quoteSource", widget: "string", required: false }
+                  - { label: "Quote Source (English)", name: "quoteSourceEn", widget: "string", required: false }
                   - label: "Content Paragraphs (below quote)"
                     name: "body"
+                    widget: "list"
+                    summary: "{{fields.paragraph}}"
+                    required: false
+                    field:
+                      label: Paragraph
+                      name: paragraph
+                      widget: text
+                  - label: "Content Paragraphs (English)"
+                    name: "bodyEn"
                     widget: "list"
                     summary: "{{fields.paragraph}}"
                     required: false
@@ -295,9 +360,12 @@ collections:
             summary: "{{fields.title}}"
             fields:
               - { label: "Card Title", name: "title", widget: "string", hint: "Title on the Silsila posts grid (card preview)." }
+              - { label: "Card Title (English)", name: "titleEn", widget: "string", required: false }
               - { label: "Category Label", name: "categoryLabel", widget: "string", required: false }
+              - { label: "Category Label (English)", name: "categoryLabelEn", widget: "string", required: false }
               - { label: "Card Image", name: "image", widget: "image", required: false }
               - { label: "Card Summary", name: "summary", widget: "text", hint: "Short preview text on the card." }
+              - { label: "Card Summary (English)", name: "summaryEn", widget: "text", required: false }
               - { label: "Page URL Slug", name: "slug", widget: "string", required: false, hint: "Example: silsila-my-post. Required for Read More link." }
               - label: "Enable Read More Page"
                 name: "readMoreEnabled"
@@ -320,10 +388,22 @@ collections:
                     value: true
                 fields:
                   - { label: "Heading", name: "heading", widget: "string", required: false, hint: "Large title on the Read More page (below header)." }
+                  - { label: "Heading (English)", name: "headingEn", widget: "string", required: false }
                   - { label: "Quote Under Photo", name: "quote", widget: "text", required: false }
+                  - { label: "Quote Under Photo (English)", name: "quoteEn", widget: "text", required: false }
                   - { label: "Quote Source", name: "quoteSource", widget: "string", required: false }
+                  - { label: "Quote Source (English)", name: "quoteSourceEn", widget: "string", required: false }
                   - label: "Content Paragraphs (below quote)"
                     name: "body"
+                    widget: "list"
+                    summary: "{{fields.paragraph}}"
+                    required: false
+                    field:
+                      label: Paragraph
+                      name: paragraph
+                      widget: text
+                  - label: "Content Paragraphs (English)"
+                    name: "bodyEn"
                     widget: "list"
                     summary: "{{fields.paragraph}}"
                     required: false
@@ -343,6 +423,7 @@ collections:
             summary: "{{fields.title}}"
             fields:
               - { label: "Card Title", name: "title", widget: "string", hint: "Title on the homepage articles grid." }
+              - { label: "Card Title (English)", name: "titleEn", widget: "string", required: false }
               - label: "Category"
                 name: "category"
                 widget: "select"
@@ -357,8 +438,10 @@ collections:
                   - "Updates"
                   - "അധ്യാപനങ്ങൾ"
                   - "റമളാൻ"
+              - { label: "Category Label (English)", name: "categoryLabelEn", widget: "string", required: false, hint: "Example: Updates / Teachings / Ramadan" }
               - { label: "Card Image", name: "image", widget: "image", required: false }
               - { label: "Card Summary", name: "summary", widget: "text", hint: "Short preview on the card." }
+              - { label: "Card Summary (English)", name: "summaryEn", widget: "text", required: false }
               - { label: "Page URL Slug", name: "slug", widget: "string", required: false, hint: "Example: home-my-article. Required for Read More link." }
               - label: "Enable Read More Page"
                 name: "readMoreEnabled"
@@ -381,10 +464,22 @@ collections:
                     value: true
                 fields:
                   - { label: "Heading", name: "heading", widget: "string", required: false, hint: "Large title on the Read More page." }
+                  - { label: "Heading (English)", name: "headingEn", widget: "string", required: false }
                   - { label: "Quote Under Photo", name: "quote", widget: "text", required: false }
+                  - { label: "Quote Under Photo (English)", name: "quoteEn", widget: "text", required: false }
                   - { label: "Quote Source", name: "quoteSource", widget: "string", required: false }
+                  - { label: "Quote Source (English)", name: "quoteSourceEn", widget: "string", required: false }
                   - label: "Content Paragraphs (below quote)"
                     name: "body"
+                    widget: "list"
+                    summary: "{{fields.paragraph}}"
+                    required: false
+                    field:
+                      label: Paragraph
+                      name: paragraph
+                      widget: text
+                  - label: "Content Paragraphs (English)"
+                    name: "bodyEn"
                     widget: "list"
                     summary: "{{fields.paragraph}}"
                     required: false
@@ -398,8 +493,11 @@ collections:
         format: "json"
         fields:
           - { label: "Small Heading", name: "pageKicker", widget: "string", required: false }
+          - { label: "Small Heading (English)", name: "pageKickerEn", widget: "string", required: false }
           - { label: "Page Title", name: "pageTitle", widget: "string" }
+          - { label: "Page Title (English)", name: "pageTitleEn", widget: "string", required: false }
           - { label: "Intro Text", name: "pageIntro", widget: "text", required: false }
+          - { label: "Intro Text (English)", name: "pageIntroEn", widget: "text", required: false }
           - { label: "Disable Read More pages", name: "readMoreDisabled", widget: "boolean", default: true }
           - label: "Posts"
             name: "posts"
@@ -407,9 +505,12 @@ collections:
             summary: "{{fields.title}}"
             fields:
               - { label: "Card Title", name: "title", widget: "string" }
+              - { label: "Card Title (English)", name: "titleEn", widget: "string", required: false }
               - { label: "Category Label", name: "categoryLabel", widget: "string", required: false }
+              - { label: "Category Label (English)", name: "categoryLabelEn", widget: "string", required: false }
               - { label: "Card Image", name: "image", widget: "image", required: false }
               - { label: "Card Summary", name: "summary", widget: "text" }
+              - { label: "Card Summary (English)", name: "summaryEn", widget: "text", required: false }
               - { label: "Page URL Slug", name: "slug", widget: "string", required: false }
               - label: "Enable Read More Page"
                 name: "readMoreEnabled"
@@ -432,10 +533,22 @@ collections:
                     value: true
                 fields:
                   - { label: "Heading", name: "heading", widget: "string", required: false }
+                  - { label: "Heading (English)", name: "headingEn", widget: "string", required: false }
                   - { label: "Quote Under Photo", name: "quote", widget: "text", required: false }
+                  - { label: "Quote Under Photo (English)", name: "quoteEn", widget: "text", required: false }
                   - { label: "Quote Source", name: "quoteSource", widget: "string", required: false }
+                  - { label: "Quote Source (English)", name: "quoteSourceEn", widget: "string", required: false }
                   - label: "Content Paragraphs"
                     name: "body"
+                    widget: "list"
+                    summary: "{{fields.paragraph}}"
+                    required: false
+                    field:
+                      label: Paragraph
+                      name: paragraph
+                      widget: text
+                  - label: "Content Paragraphs (English)"
+                    name: "bodyEn"
                     widget: "list"
                     summary: "{{fields.paragraph}}"
                     required: false
