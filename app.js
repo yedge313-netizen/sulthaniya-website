@@ -11,6 +11,63 @@ const settingsKey = "sulthaniya-site-settings";
 const languageKey = "sulthaniya-language";
 const fallbackImage = "https://images.unsplash.com/photo-1528659432556-51419ce0c673?auto=format&fit=crop&w=900&q=80";
 
+async function getHomeUi(language) {
+  if (language === "en") {
+    const data = await getJson("data/home-ui-en.json", null);
+    if (data) return data;
+  }
+  return await getJson("data/home-ui.json", {});
+}
+
+async function renderHomeUi() {
+  if (!document.body || !document.getElementById("home")) return;
+
+  const language = getLanguage();
+  const ui = await getHomeUi(language);
+  window.__SULTHANIYA_UI__ = ui;
+  const eyebrow = document.querySelector("[data-home-eyebrow]");
+  const primary = document.querySelector("[data-home-primary-cta]");
+  const secondary = document.querySelector("[data-home-secondary-cta]");
+  const articlesKicker = document.querySelector("[data-home-articles-kicker]");
+  const articlesTitle = document.querySelector("[data-home-articles-title]");
+
+  if (eyebrow) eyebrow.textContent = ui.eyebrow || eyebrow.textContent;
+  if (primary) {
+    primary.textContent = ui.primaryCtaLabel || primary.textContent;
+    primary.href = normalizeUrl(ui.primaryCtaUrl || primary.getAttribute("href") || "#articles");
+  }
+  if (secondary) {
+    secondary.textContent = ui.secondaryCtaLabel || secondary.textContent;
+    secondary.href = normalizeUrl(ui.secondaryCtaUrl || secondary.getAttribute("href") || "#sulthaniya");
+  }
+  if (articlesKicker) articlesKicker.textContent = ui.articlesKicker || articlesKicker.textContent;
+  if (articlesTitle) articlesTitle.textContent = ui.articlesTitle || articlesTitle.textContent;
+
+  document.querySelectorAll("[data-home-filter]").forEach((button) => {
+    const key = button.getAttribute("data-home-filter");
+    const map = {
+      all: ui.filterAll,
+      updates: ui.filterUpdates,
+      teaching: ui.filterTeaching,
+      ramadan: ui.filterRamadan,
+    };
+    if (key && map[key]) button.textContent = map[key];
+  });
+}
+
+function uiText(key, fallback) {
+  const language = getLanguage();
+  const cache = window.__SULTHANIYA_UI__ || {};
+  const value = cache[key];
+  if (value) return value;
+  if (language === "en") {
+    const defaults = { readMoreLabel: "Read More", backToLabel: "Back to" };
+    return defaults[key] || fallback;
+  }
+  const defaults = { readMoreLabel: "Read More", backToLabel: "Back to" };
+  return defaults[key] || fallback;
+}
+
 function getLanguage() {
   const raw = String(localStorage.getItem(languageKey) || "").toLowerCase().trim();
   return raw === "en" ? "en" : "ml";
@@ -206,7 +263,7 @@ function hasReadMorePage(post, settings = {}) {
 function appendReadMoreLink(container, post, topic, settings = {}) {
   const link = document.createElement("a");
   link.className = "read-more-link";
-  link.textContent = "Read More";
+  link.textContent = uiText("readMoreLabel", "Read More");
 
   const detailUrl = hasReadMorePage(post, settings) ? buildPostDetailUrl(topic, post.slug) : "";
 
@@ -597,9 +654,9 @@ async function renderMastersActions() {
 
   mastersActions.innerHTML = "";
   mastersActions.append(
-    createMastersAction(data.buttonOneLabel, data.buttonOneUrl, data.buttonOneNewTab),
-    createMastersAction(data.buttonTwoLabel, data.buttonTwoUrl, data.buttonTwoNewTab),
-    createMastersAction(data.buttonThreeLabel, data.buttonThreeUrl, data.buttonThreeNewTab)
+    createMastersAction(localizedValue(data, "buttonOneLabel", language), data.buttonOneUrl, data.buttonOneNewTab),
+    createMastersAction(localizedValue(data, "buttonTwoLabel", language), data.buttonTwoUrl, data.buttonTwoNewTab),
+    createMastersAction(localizedValue(data, "buttonThreeLabel", language), data.buttonThreeUrl, data.buttonThreeNewTab)
   );
 }
 
@@ -743,7 +800,8 @@ async function renderPostDetail() {
   if (back) {
     back.href = normalizeUrl(detail.backUrl || topicBackUrl(detail.topic || topic));
     const label = detail.topicLabel || detail.topic || "posts";
-    back.textContent = detail.topic === "articles" ? `Back to ${label}` : `Back to ${label} posts`;
+    const backTo = uiText("backToLabel", "Back to");
+    back.textContent = detail.topic === "articles" ? `${backTo} ${label}` : `${backTo} ${label} posts`;
   }
 
   if (detail.quote && quoteBlock && quoteText) {
@@ -810,7 +868,7 @@ filterButtons.forEach((button) => {
 
 async function boot() {
   renderLanguageToggle();
-  await Promise.all([applySettings(), applyTypography(), renderAboutSection()]);
+  await Promise.all([applySettings(), applyTypography(), renderAboutSection(), renderHomeUi()]);
   renderNavigation();
   await renderFooterLinks();
   renderQuickLinks();

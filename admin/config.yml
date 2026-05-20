@@ -89,6 +89,42 @@ collections:
               widget: text
           - { label: "Quote Box Text (English)", name: "quoteText", widget: "text", required: false }
           - { label: "Quote Source (English)", name: "quoteSource", widget: "string", required: false }
+      - name: "home_ui"
+        label: "Home UI Labels (Malayalam)"
+        file: "data/home-ui.json"
+        format: "json"
+        fields:
+          - { label: "Top Eyebrow", name: "eyebrow", widget: "string", required: false }
+          - { label: "Primary Button Text", name: "primaryCtaLabel", widget: "string", required: false }
+          - { label: "Primary Button Link", name: "primaryCtaUrl", widget: "string", required: false }
+          - { label: "Secondary Button Text", name: "secondaryCtaLabel", widget: "string", required: false }
+          - { label: "Secondary Button Link", name: "secondaryCtaUrl", widget: "string", required: false }
+          - { label: "Articles Small Heading", name: "articlesKicker", widget: "string", required: false }
+          - { label: "Articles Title", name: "articlesTitle", widget: "string", required: false }
+          - { label: "Filter: All", name: "filterAll", widget: "string", required: false }
+          - { label: "Filter: Updates", name: "filterUpdates", widget: "string", required: false }
+          - { label: "Filter: Teaching", name: "filterTeaching", widget: "string", required: false }
+          - { label: "Filter: Ramadan", name: "filterRamadan", widget: "string", required: false }
+          - { label: "Read More label", name: "readMoreLabel", widget: "string", required: false }
+          - { label: "Back to label", name: "backToLabel", widget: "string", required: false }
+      - name: "home_ui_en"
+        label: "Home UI Labels (English)"
+        file: "data/home-ui-en.json"
+        format: "json"
+        fields:
+          - { label: "Top Eyebrow (English)", name: "eyebrow", widget: "string", required: false }
+          - { label: "Primary Button Text (English)", name: "primaryCtaLabel", widget: "string", required: false }
+          - { label: "Primary Button Link", name: "primaryCtaUrl", widget: "string", required: false }
+          - { label: "Secondary Button Text (English)", name: "secondaryCtaLabel", widget: "string", required: false }
+          - { label: "Secondary Button Link", name: "secondaryCtaUrl", widget: "string", required: false }
+          - { label: "Articles Small Heading (English)", name: "articlesKicker", widget: "string", required: false }
+          - { label: "Articles Title (English)", name: "articlesTitle", widget: "string", required: false }
+          - { label: "Filter: All (English)", name: "filterAll", widget: "string", required: false }
+          - { label: "Filter: Updates (English)", name: "filterUpdates", widget: "string", required: false }
+          - { label: "Filter: Teaching (English)", name: "filterTeaching", widget: "string", required: false }
+          - { label: "Filter: Ramadan (English)", name: "filterRamadan", widget: "string", required: false }
+          - { label: "Read More label (English)", name: "readMoreLabel", widget: "string", required: false }
+          - { label: "Back to label (English)", name: "backToLabel", widget: "string", required: false }
       - name: "navigation"
         label: "Navigation Tabs"
         file: "data/navigation.json"
@@ -190,15 +226,21 @@ collections:
         fields:
           - { label: "Section Photo (left side tree image)", name: "sectionImage", widget: "image", required: false, hint: "Upload the large photo shown on the left of the Masters / Gurunathar section." }
           - { label: "Small Heading", name: "sectionKicker", widget: "string", required: false }
+          - { label: "Small Heading (English)", name: "sectionKickerEn", widget: "string", required: false }
           - { label: "Section Title", name: "sectionTitle", widget: "string" }
+          - { label: "Section Title (English)", name: "sectionTitleEn", widget: "string", required: false }
           - { label: "Body Text", name: "sectionBody", widget: "text" }
+          - { label: "Body Text (English)", name: "sectionBodyEn", widget: "text", required: false }
           - { label: "Button 1 Text", name: "buttonOneLabel", widget: "string" }
+          - { label: "Button 1 Text (English)", name: "buttonOneLabelEn", widget: "string", required: false }
           - { label: "Button 1 Link", name: "buttonOneUrl", widget: "string" }
           - { label: "Button 1 Open in New Tab", name: "buttonOneNewTab", widget: "boolean", default: false, required: false }
           - { label: "Button 2 Text", name: "buttonTwoLabel", widget: "string" }
+          - { label: "Button 2 Text (English)", name: "buttonTwoLabelEn", widget: "string", required: false }
           - { label: "Button 2 Link", name: "buttonTwoUrl", widget: "string" }
           - { label: "Button 2 Open in New Tab", name: "buttonTwoNewTab", widget: "boolean", default: false, required: false }
           - { label: "Button 3 Text", name: "buttonThreeLabel", widget: "string" }
+          - { label: "Button 3 Text (English)", name: "buttonThreeLabelEn", widget: "string", required: false }
           - { label: "Button 3 Link", name: "buttonThreeUrl", widget: "string" }
           - { label: "Button 3 Open in New Tab", name: "buttonThreeNewTab", widget: "boolean", default: false, required: false }
       - name: "social_links"
@@ -562,8 +604,11 @@ collections:
         format: "json"
         fields:
           - { label: "Small Heading", name: "pageKicker", widget: "string", required: false }
+          - { label: "Small Heading (English)", name: "pageKickerEn", widget: "string", required: false }
           - { label: "Page Title", name: "pageTitle", widget: "string" }
+          - { label: "Page Title (English)", name: "pageTitleEn", widget: "string", required: false }
           - { label: "Intro Text", name: "pageIntro", widget: "text", required: false }
+          - { label: "Intro Text (English)", name: "pageIntroEn", widget: "text", required: false }
           - { label: "Disable Read More pages", name: "readMoreDisabled", widget: "boolean", default: true }
           - label: "Posts"
             name: "posts"
@@ -571,9 +616,12 @@ collections:
             summary: "{{fields.title}}"
             fields:
               - { label: "Card Title", name: "title", widget: "string" }
+              - { label: "Card Title (English)", name: "titleEn", widget: "string", required: false }
               - { label: "Category Label", name: "categoryLabel", widget: "string", required: false }
+              - { label: "Category Label (English)", name: "categoryLabelEn", widget: "string", required: false }
               - { label: "Card Image", name: "image", widget: "image", required: false }
               - { label: "Card Summary", name: "summary", widget: "text" }
+              - { label: "Card Summary (English)", name: "summaryEn", widget: "text", required: false }
               - { label: "Page URL Slug", name: "slug", widget: "string", required: false }
               - label: "Enable Read More Page"
                 name: "readMoreEnabled"
@@ -596,10 +644,22 @@ collections:
                     value: true
                 fields:
                   - { label: "Heading", name: "heading", widget: "string", required: false }
+                  - { label: "Heading (English)", name: "headingEn", widget: "string", required: false }
                   - { label: "Quote Under Photo", name: "quote", widget: "text", required: false }
+                  - { label: "Quote Under Photo (English)", name: "quoteEn", widget: "text", required: false }
                   - { label: "Quote Source", name: "quoteSource", widget: "string", required: false }
+                  - { label: "Quote Source (English)", name: "quoteSourceEn", widget: "string", required: false }
                   - label: "Content Paragraphs"
                     name: "body"
+                    widget: "list"
+                    summary: "{{fields.paragraph}}"
+                    required: false
+                    field:
+                      label: Paragraph
+                      name: paragraph
+                      widget: text
+                  - label: "Content Paragraphs (English)"
+                    name: "bodyEn"
                     widget: "list"
                     summary: "{{fields.paragraph}}"
                     required: false
@@ -613,8 +673,11 @@ collections:
         format: "json"
         fields:
           - { label: "Small Heading", name: "pageKicker", widget: "string", required: false }
+          - { label: "Small Heading (English)", name: "pageKickerEn", widget: "string", required: false }
           - { label: "Page Title", name: "pageTitle", widget: "string" }
+          - { label: "Page Title (English)", name: "pageTitleEn", widget: "string", required: false }
           - { label: "Intro Text", name: "pageIntro", widget: "text", required: false }
+          - { label: "Intro Text (English)", name: "pageIntroEn", widget: "text", required: false }
           - { label: "Disable Read More pages", name: "readMoreDisabled", widget: "boolean", default: true }
           - label: "Posts"
             name: "posts"
@@ -622,9 +685,12 @@ collections:
             summary: "{{fields.title}}"
             fields:
               - { label: "Card Title", name: "title", widget: "string" }
+              - { label: "Card Title (English)", name: "titleEn", widget: "string", required: false }
               - { label: "Category Label", name: "categoryLabel", widget: "string", required: false }
+              - { label: "Category Label (English)", name: "categoryLabelEn", widget: "string", required: false }
               - { label: "Card Image", name: "image", widget: "image", required: false }
               - { label: "Card Summary", name: "summary", widget: "text" }
+              - { label: "Card Summary (English)", name: "summaryEn", widget: "text", required: false }
               - { label: "Page URL Slug", name: "slug", widget: "string", required: false }
               - label: "Enable Read More Page"
                 name: "readMoreEnabled"
@@ -647,10 +713,22 @@ collections:
                     value: true
                 fields:
                   - { label: "Heading", name: "heading", widget: "string", required: false }
+                  - { label: "Heading (English)", name: "headingEn", widget: "string", required: false }
                   - { label: "Quote Under Photo", name: "quote", widget: "text", required: false }
+                  - { label: "Quote Under Photo (English)", name: "quoteEn", widget: "text", required: false }
                   - { label: "Quote Source", name: "quoteSource", widget: "string", required: false }
+                  - { label: "Quote Source (English)", name: "quoteSourceEn", widget: "string", required: false }
                   - label: "Content Paragraphs"
                     name: "body"
+                    widget: "list"
+                    summary: "{{fields.paragraph}}"
+                    required: false
+                    field:
+                      label: Paragraph
+                      name: paragraph
+                      widget: text
+                  - label: "Content Paragraphs (English)"
+                    name: "bodyEn"
                     widget: "list"
                     summary: "{{fields.paragraph}}"
                     required: false
@@ -664,8 +742,11 @@ collections:
         format: "json"
         fields:
           - { label: "Small Heading", name: "pageKicker", widget: "string", required: false }
+          - { label: "Small Heading (English)", name: "pageKickerEn", widget: "string", required: false }
           - { label: "Page Title", name: "pageTitle", widget: "string" }
+          - { label: "Page Title (English)", name: "pageTitleEn", widget: "string", required: false }
           - { label: "Intro Text", name: "pageIntro", widget: "text", required: false }
+          - { label: "Intro Text (English)", name: "pageIntroEn", widget: "text", required: false }
           - { label: "Disable Read More pages", name: "readMoreDisabled", widget: "boolean", default: true }
           - label: "Posts"
             name: "posts"
@@ -673,9 +754,12 @@ collections:
             summary: "{{fields.title}}"
             fields:
               - { label: "Card Title", name: "title", widget: "string" }
+              - { label: "Card Title (English)", name: "titleEn", widget: "string", required: false }
               - { label: "Category Label", name: "categoryLabel", widget: "string", required: false }
+              - { label: "Category Label (English)", name: "categoryLabelEn", widget: "string", required: false }
               - { label: "Card Image", name: "image", widget: "image", required: false }
               - { label: "Card Summary", name: "summary", widget: "text" }
+              - { label: "Card Summary (English)", name: "summaryEn", widget: "text", required: false }
               - { label: "Page URL Slug", name: "slug", widget: "string", required: false }
               - label: "Enable Read More Page"
                 name: "readMoreEnabled"
@@ -698,10 +782,22 @@ collections:
                     value: true
                 fields:
                   - { label: "Heading", name: "heading", widget: "string", required: false }
+                  - { label: "Heading (English)", name: "headingEn", widget: "string", required: false }
                   - { label: "Quote Under Photo", name: "quote", widget: "text", required: false }
+                  - { label: "Quote Under Photo (English)", name: "quoteEn", widget: "text", required: false }
                   - { label: "Quote Source", name: "quoteSource", widget: "string", required: false }
+                  - { label: "Quote Source (English)", name: "quoteSourceEn", widget: "string", required: false }
                   - label: "Content Paragraphs"
                     name: "body"
+                    widget: "list"
+                    summary: "{{fields.paragraph}}"
+                    required: false
+                    field:
+                      label: Paragraph
+                      name: paragraph
+                      widget: text
+                  - label: "Content Paragraphs (English)"
+                    name: "bodyEn"
                     widget: "list"
                     summary: "{{fields.paragraph}}"
                     required: false
@@ -715,8 +811,11 @@ collections:
         format: "json"
         fields:
           - { label: "Small Heading", name: "pageKicker", widget: "string", required: false }
+          - { label: "Small Heading (English)", name: "pageKickerEn", widget: "string", required: false }
           - { label: "Page Title", name: "pageTitle", widget: "string" }
+          - { label: "Page Title (English)", name: "pageTitleEn", widget: "string", required: false }
           - { label: "Intro Text", name: "pageIntro", widget: "text", required: false }
+          - { label: "Intro Text (English)", name: "pageIntroEn", widget: "text", required: false }
           - { label: "Disable Read More pages", name: "readMoreDisabled", widget: "boolean", default: true }
           - label: "Posts"
             name: "posts"
@@ -724,9 +823,12 @@ collections:
             summary: "{{fields.title}}"
             fields:
               - { label: "Card Title", name: "title", widget: "string" }
+              - { label: "Card Title (English)", name: "titleEn", widget: "string", required: false }
               - { label: "Category Label", name: "categoryLabel", widget: "string", required: false }
+              - { label: "Category Label (English)", name: "categoryLabelEn", widget: "string", required: false }
               - { label: "Card Image", name: "image", widget: "image", required: false }
               - { label: "Card Summary", name: "summary", widget: "text" }
+              - { label: "Card Summary (English)", name: "summaryEn", widget: "text", required: false }
               - { label: "Page URL Slug", name: "slug", widget: "string", required: false }
               - label: "Enable Read More Page"
                 name: "readMoreEnabled"
@@ -749,10 +851,22 @@ collections:
                     value: true
                 fields:
                   - { label: "Heading", name: "heading", widget: "string", required: false }
+                  - { label: "Heading (English)", name: "headingEn", widget: "string", required: false }
                   - { label: "Quote Under Photo", name: "quote", widget: "text", required: false }
+                  - { label: "Quote Under Photo (English)", name: "quoteEn", widget: "text", required: false }
                   - { label: "Quote Source", name: "quoteSource", widget: "string", required: false }
+                  - { label: "Quote Source (English)", name: "quoteSourceEn", widget: "string", required: false }
                   - label: "Content Paragraphs"
                     name: "body"
+                    widget: "list"
+                    summary: "{{fields.paragraph}}"
+                    required: false
+                    field:
+                      label: Paragraph
+                      name: paragraph
+                      widget: text
+                  - label: "Content Paragraphs (English)"
+                    name: "bodyEn"
                     widget: "list"
                     summary: "{{fields.paragraph}}"
                     required: false
@@ -766,8 +880,11 @@ collections:
         format: "json"
         fields:
           - { label: "Small Heading", name: "pageKicker", widget: "string", required: false }
+          - { label: "Small Heading (English)", name: "pageKickerEn", widget: "string", required: false }
           - { label: "Page Title", name: "pageTitle", widget: "string" }
+          - { label: "Page Title (English)", name: "pageTitleEn", widget: "string", required: false }
           - { label: "Intro Text", name: "pageIntro", widget: "text", required: false }
+          - { label: "Intro Text (English)", name: "pageIntroEn", widget: "text", required: false }
           - { label: "Disable Read More pages", name: "readMoreDisabled", widget: "boolean", default: true }
           - label: "Posts"
             name: "posts"
@@ -775,9 +892,12 @@ collections:
             summary: "{{fields.title}}"
             fields:
               - { label: "Card Title", name: "title", widget: "string" }
+              - { label: "Card Title (English)", name: "titleEn", widget: "string", required: false }
               - { label: "Category Label", name: "categoryLabel", widget: "string", required: false }
+              - { label: "Category Label (English)", name: "categoryLabelEn", widget: "string", required: false }
               - { label: "Card Image", name: "image", widget: "image", required: false }
               - { label: "Card Summary", name: "summary", widget: "text" }
+              - { label: "Card Summary (English)", name: "summaryEn", widget: "text", required: false }
               - { label: "Page URL Slug", name: "slug", widget: "string", required: false }
               - label: "Enable Read More Page"
                 name: "readMoreEnabled"
@@ -800,10 +920,22 @@ collections:
                     value: true
                 fields:
                   - { label: "Heading", name: "heading", widget: "string", required: false }
+                  - { label: "Heading (English)", name: "headingEn", widget: "string", required: false }
                   - { label: "Quote Under Photo", name: "quote", widget: "text", required: false }
+                  - { label: "Quote Under Photo (English)", name: "quoteEn", widget: "text", required: false }
                   - { label: "Quote Source", name: "quoteSource", widget: "string", required: false }
+                  - { label: "Quote Source (English)", name: "quoteSourceEn", widget: "string", required: false }
                   - label: "Content Paragraphs"
                     name: "body"
+                    widget: "list"
+                    summary: "{{fields.paragraph}}"
+                    required: false
+                    field:
+                      label: Paragraph
+                      name: paragraph
+                      widget: text
+                  - label: "Content Paragraphs (English)"
+                    name: "bodyEn"
                     widget: "list"
                     summary: "{{fields.paragraph}}"
                     required: false
@@ -817,8 +949,11 @@ collections:
         format: "json"
         fields:
           - { label: "Small Heading", name: "pageKicker", widget: "string", required: false }
+          - { label: "Small Heading (English)", name: "pageKickerEn", widget: "string", required: false }
           - { label: "Page Title", name: "pageTitle", widget: "string" }
+          - { label: "Page Title (English)", name: "pageTitleEn", widget: "string", required: false }
           - { label: "Intro Text", name: "pageIntro", widget: "text", required: false }
+          - { label: "Intro Text (English)", name: "pageIntroEn", widget: "text", required: false }
           - { label: "Disable Read More pages", name: "readMoreDisabled", widget: "boolean", default: true }
           - label: "Posts"
             name: "posts"
@@ -826,9 +961,12 @@ collections:
             summary: "{{fields.title}}"
             fields:
               - { label: "Card Title", name: "title", widget: "string" }
+              - { label: "Card Title (English)", name: "titleEn", widget: "string", required: false }
               - { label: "Category Label", name: "categoryLabel", widget: "string", required: false }
+              - { label: "Category Label (English)", name: "categoryLabelEn", widget: "string", required: false }
               - { label: "Card Image", name: "image", widget: "image", required: false }
               - { label: "Card Summary", name: "summary", widget: "text" }
+              - { label: "Card Summary (English)", name: "summaryEn", widget: "text", required: false }
               - { label: "Page URL Slug", name: "slug", widget: "string", required: false }
               - label: "Enable Read More Page"
                 name: "readMoreEnabled"
@@ -851,10 +989,22 @@ collections:
                     value: true
                 fields:
                   - { label: "Heading", name: "heading", widget: "string", required: false }
+                  - { label: "Heading (English)", name: "headingEn", widget: "string", required: false }
                   - { label: "Quote Under Photo", name: "quote", widget: "text", required: false }
+                  - { label: "Quote Under Photo (English)", name: "quoteEn", widget: "text", required: false }
                   - { label: "Quote Source", name: "quoteSource", widget: "string", required: false }
+                  - { label: "Quote Source (English)", name: "quoteSourceEn", widget: "string", required: false }
                   - label: "Content Paragraphs"
                     name: "body"
+                    widget: "list"
+                    summary: "{{fields.paragraph}}"
+                    required: false
+                    field:
+                      label: Paragraph
+                      name: paragraph
+                      widget: text
+                  - label: "Content Paragraphs (English)"
+                    name: "bodyEn"
                     widget: "list"
                     summary: "{{fields.paragraph}}"
                     required: false
@@ -868,8 +1018,11 @@ collections:
         format: "json"
         fields:
           - { label: "Small Heading", name: "pageKicker", widget: "string", required: false }
+          - { label: "Small Heading (English)", name: "pageKickerEn", widget: "string", required: false }
           - { label: "Page Title", name: "pageTitle", widget: "string" }
+          - { label: "Page Title (English)", name: "pageTitleEn", widget: "string", required: false }
           - { label: "Intro Text", name: "pageIntro", widget: "text", required: false }
+          - { label: "Intro Text (English)", name: "pageIntroEn", widget: "text", required: false }
           - { label: "Disable Read More pages", name: "readMoreDisabled", widget: "boolean", default: true }
           - label: "Posts"
             name: "posts"
@@ -877,9 +1030,12 @@ collections:
             summary: "{{fields.title}}"
             fields:
               - { label: "Card Title", name: "title", widget: "string" }
+              - { label: "Card Title (English)", name: "titleEn", widget: "string", required: false }
               - { label: "Category Label", name: "categoryLabel", widget: "string", required: false }
+              - { label: "Category Label (English)", name: "categoryLabelEn", widget: "string", required: false }
               - { label: "Card Image", name: "image", widget: "image", required: false }
               - { label: "Card Summary", name: "summary", widget: "text" }
+              - { label: "Card Summary (English)", name: "summaryEn", widget: "text", required: false }
               - { label: "Page URL Slug", name: "slug", widget: "string", required: false }
               - label: "Enable Read More Page"
                 name: "readMoreEnabled"
@@ -902,10 +1058,22 @@ collections:
                     value: true
                 fields:
                   - { label: "Heading", name: "heading", widget: "string", required: false }
+                  - { label: "Heading (English)", name: "headingEn", widget: "string", required: false }
                   - { label: "Quote Under Photo", name: "quote", widget: "text", required: false }
+                  - { label: "Quote Under Photo (English)", name: "quoteEn", widget: "text", required: false }
                   - { label: "Quote Source", name: "quoteSource", widget: "string", required: false }
+                  - { label: "Quote Source (English)", name: "quoteSourceEn", widget: "string", required: false }
                   - label: "Content Paragraphs"
                     name: "body"
+                    widget: "list"
+                    summary: "{{fields.paragraph}}"
+                    required: false
+                    field:
+                      label: Paragraph
+                      name: paragraph
+                      widget: text
+                  - label: "Content Paragraphs (English)"
+                    name: "bodyEn"
                     widget: "list"
                     summary: "{{fields.paragraph}}"
                     required: false
