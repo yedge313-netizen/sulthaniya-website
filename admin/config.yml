@@ -147,7 +147,7 @@ collections:
             summary: "{{fields.title}}"
             fields:
               - { label: "Title", name: "title", widget: "string" }
-              - { label: "Topic Slug", name: "slug", widget: "string", hint: "Example: quran opens learning.html?topic=quran. Use quran, hadith, kalima, tasawwuf, padanangal, history, sufi-stories, or videos." }
+              - { label: "Topic Slug", name: "slug", widget: "string", hint: "Example: quran opens quran.html. Use quran, hadith, kalima, tasawwuf, padanangal, history, sufi-stories, or videos." }
       - name: "masters_actions"
         label: "Masters Section"
         file: "data/masters-actions.json"

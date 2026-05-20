@@ -469,7 +469,7 @@ function createArticleCard(post, isFeatured = false, settings = {}) {
 function createPathLink(item) {
   const link = document.createElement("a");
   if (item.slug) {
-    link.href = normalizeUrl(`learning.html?topic=${encodeURIComponent(item.slug)}`);
+    link.href = normalizeUrl(`${encodeURIComponent(item.slug)}.html`);
   } else {
     link.href = normalizeUrl(item.url || "#learning");
     applyLinkTarget(link, item);
