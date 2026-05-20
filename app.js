@@ -98,30 +98,40 @@ function localizedBody(post, language) {
 }
 
 function renderLanguageToggle() {
-  const header = document.querySelector(".site-header");
-  if (!header) return;
-  if (header.querySelector("[data-language-toggle]")) return;
+  if (!mainNav) return;
+
+  mainNav.querySelector("[data-language-toggle]")?.remove();
+
+  const current = getLanguage();
+  const targetLang = current === "en" ? "ml" : "en";
 
   const wrapper = document.createElement("div");
   wrapper.className = "language-toggle";
   wrapper.setAttribute("data-language-toggle", "true");
 
-  const select = document.createElement("select");
-  select.className = "language-select";
-  select.setAttribute("aria-label", "Select language");
-  select.innerHTML = `
-    <option value="ml">Malayalam</option>
-    <option value="en">English</option>
-  `;
-  select.value = getLanguage();
+  const button = document.createElement("button");
+  button.type = "button";
+  button.className = "language-toggle-btn";
+  button.textContent = targetLang === "en" ? "English" : "Malayalam";
+  button.setAttribute(
+    "aria-label",
+    targetLang === "en" ? "Switch site to English" : "Switch site to Malayalam"
+  );
 
-  select.addEventListener("change", () => {
-    setLanguage(select.value);
+  button.addEventListener("click", () => {
+    setLanguage(targetLang);
     window.location.reload();
   });
 
-  wrapper.appendChild(select);
-  header.appendChild(wrapper);
+  wrapper.appendChild(button);
+
+  const contact = mainNav.querySelector("a.nav-cta");
+  if (contact) {
+    contact.insertAdjacentElement("afterend", wrapper);
+    return;
+  }
+
+  mainNav.appendChild(wrapper);
 }
 
 function normalizeAssetUrl(path) {
@@ -867,9 +877,9 @@ filterButtons.forEach((button) => {
 });
 
 async function boot() {
-  renderLanguageToggle();
   await Promise.all([applySettings(), applyTypography(), renderAboutSection(), renderHomeUi()]);
-  renderNavigation();
+  await renderNavigation();
+  renderLanguageToggle();
   await renderFooterLinks();
   renderQuickLinks();
   await renderPosts();
