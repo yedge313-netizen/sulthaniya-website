@@ -20,7 +20,7 @@ const postFields = `          - { label: "Small Heading", name: "pageKicker", wi
             fields:
               - { label: "Card Title", name: "title", widget: "string" }
               - { label: "Category Label", name: "categoryLabel", widget: "string", required: false }
-              - { label: "Card Image", name: "image", widget: "image", required: false }
+              - { label: "Card Image - first post 900 x 1200 px; other posts 1200 x 800 px", name: "image", widget: "image", required: false, hint: "Use this exact ratio for best fit. First/featured post: 900 x 1200 px portrait. Other posts: 1200 x 800 px landscape. Images with different ratios will be cropped to keep cards level." }
               - { label: "Card Summary", name: "summary", widget: "text" }
               - { label: "Auto Page URL Slug", name: "slug", widget: "hidden", required: false }
               - label: "Enable Read More Page"
@@ -44,6 +44,7 @@ const postFields = `          - { label: "Small Heading", name: "pageKicker", wi
                     value: true
                 fields:
                   - { label: "Heading", name: "heading", widget: "string", required: false }
+                  - { label: "Heading Font Size (px)", name: "headingPx", widget: "string", required: false, hint: "Example: 58" }
                   - { label: "Quote Under Photo", name: "quote", widget: "text", required: false }
                   - { label: "Quote Source", name: "quoteSource", widget: "string", required: false }
                   - label: "Content Paragraphs"

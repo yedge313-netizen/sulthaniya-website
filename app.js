@@ -6,6 +6,8 @@ const pathGrid = document.querySelector("#pathGrid");
 const mastersActions = document.querySelector("#mastersActions");
 const topicGrid = document.querySelector("[data-topic-grid]");
 const filterButtons = document.querySelectorAll(".filter-button");
+const articlesPageGrid = document.getElementById("articlesGrid");
+const articlesPageFilters = document.getElementById("articlesFilters");
 
 const settingsKey = "sulthaniya-site-settings";
 const languageKey = "sulthaniya-language";
@@ -688,6 +690,57 @@ async function renderMastersActions() {
   );
 }
 
+function normalizeCategory(value) {
+  return String(value || "").toLowerCase().trim();
+}
+
+function getArticleFilters(data, language) {
+  const filters = Array.isArray(data?.filters) ? data.filters : [];
+  const fromConfig = filters
+    .map((item) => ({
+      key: normalizeCategory(item?.key),
+      label: localizedValue(item, "label", language) || item?.label || "",
+    }))
+    .filter((item) => item.key && item.label);
+
+  if (fromConfig.length) return [{ key: "all", label: uiText("filterAll", "All") }, ...fromConfig];
+
+  // Fallback: derive from posts
+  const map = new Map();
+  (data?.posts || []).forEach((post) => {
+    const key = normalizeCategory(post?.category);
+    if (!key) return;
+    const label = localizedValue(post, "categoryLabel", language) || key;
+    if (!map.has(key)) map.set(key, label);
+  });
+  return [{ key: "all", label: uiText("filterAll", "All") }, ...Array.from(map, ([key, label]) => ({ key, label }))];
+}
+
+function renderFilterButtons(container, filters, activeKey, onSelect) {
+  if (!container) return;
+  container.innerHTML = "";
+
+  filters.forEach((item) => {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = item.key === activeKey ? "filter-button active" : "filter-button";
+    button.dataset.filter = item.key;
+    button.textContent = item.label;
+    button.addEventListener("click", () => onSelect(item.key));
+    container.appendChild(button);
+  });
+}
+
+function applyArticleFilterToGrid(grid, activeKey) {
+  if (!grid) return;
+  const normalized = normalizeCategory(activeKey);
+  grid.querySelectorAll(".article-card").forEach((card) => {
+    const key = normalizeCategory(card.dataset.category);
+    const show = normalized === "all" || key === normalized;
+    card.style.display = show ? "" : "none";
+  });
+}
+
 async function renderPosts() {
   const data = await getJson("data/posts.json", { posts: [] });
   const posts = data.posts || [];
@@ -699,6 +752,33 @@ async function renderPosts() {
   posts.forEach((post, index) => {
     articleGrid.appendChild(createArticleCard(post, index === 0, readMoreSettings, index));
   });
+}
+
+async function renderAllArticlesPage() {
+  if (!articlesPageGrid || document.body.dataset.page !== "articles") return;
+
+  const data = await getJson("data/posts.json", { posts: [] });
+  const posts = data.posts || [];
+  const readMoreSettings = getReadMoreSettings(data);
+  const language = getLanguage();
+  const filters = getArticleFilters(data, language);
+
+  const params = new URLSearchParams(window.location.search);
+  const initialFilter = normalizeCategory(params.get("filter")) || "all";
+  let active = filters.some((f) => f.key === initialFilter) ? initialFilter : "all";
+
+  const setActive = (key) => {
+    active = normalizeCategory(key) || "all";
+    renderFilterButtons(articlesPageFilters, filters, active, setActive);
+    applyArticleFilterToGrid(articlesPageGrid, active);
+  };
+
+  articlesPageGrid.innerHTML = "";
+  posts.forEach((post, index) => {
+    articlesPageGrid.appendChild(createArticleCard(post, index === 0, readMoreSettings, index));
+  });
+
+  setActive(active);
 }
 
 function createUsthadCard(post, isFeatured = false, topic = "", settings = {}, index = 0) {
@@ -770,6 +850,7 @@ async function loadPostDetail(topic, slug) {
       topicLabel: topicBackLabel(topic, topicData),
       backUrl: topicBackUrl(topic),
       title: localizedValue(post.readMore, "heading", language) || localizedValue(post, "title", language),
+      headingPx: localizedValue(post.readMore, "headingPx", language),
       categoryLabel: localizedValue(post, "categoryLabel", language),
       image: post.readMore.image || post.image,
       quote: localizedValue(post.readMore, "quote", language) || "",
@@ -823,6 +904,13 @@ async function renderPostDetail() {
 
   if (kicker) kicker.textContent = detail.categoryLabel || detail.topicLabel || "";
   if (title) title.textContent = detail.title || "";
+  if (title) {
+    if (detail.headingPx != null && detail.headingPx !== "") {
+      title.style.fontSize = typographyPx(detail.headingPx, 58);
+    } else {
+      title.style.removeProperty("font-size");
+    }
+  }
   if (image) {
     image.src = normalizeAssetUrl(detail.image) || fallbackImage;
     image.alt = detail.title || "";
@@ -903,6 +991,7 @@ async function boot() {
   await renderFooterLinks();
   renderQuickLinks();
   await renderPosts();
+  await renderAllArticlesPage();
   await renderLearningPaths();
   await renderMastersActions();
   await renderTopicPosts();

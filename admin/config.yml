@@ -21,10 +21,10 @@ collections:
           - { label: "Website Name", name: "siteTitle", widget: "string" }
           - { label: "Tagline", name: "siteTagline", widget: "string", required: false }
           - { label: "Logo Initials", name: "logoInitials", widget: "string", default: "SF", required: false }
-          - { label: "Logo Image", name: "logoImage", widget: "image", required: false, hint: "Upload an image here to replace the round SF mark." }
+          - { label: "Logo Image - recommended 512 x 512 px", name: "logoImage", widget: "image", required: false, hint: "Square image. PNG with transparent background works best for the round logo." }
           - { label: "Logo Alt Text", name: "logoAlt", widget: "string", required: false }
-          - { label: "Desktop Hero Image", name: "heroDesktopImage", widget: "image", required: false, hint: "Wide image for laptop and desktop screens." }
-          - { label: "Mobile Hero Image", name: "heroMobileImage", widget: "image", required: false, hint: "Portrait or tightly cropped image for phones." }
+          - { label: "Desktop Hero Image - recommended 1920 x 1080 px", name: "heroDesktopImage", widget: "image", required: false, hint: "Wide 16:9 image for laptop and desktop screens. Keep important text/people near the center." }
+          - { label: "Mobile Hero Image - recommended 1080 x 1440 px", name: "heroMobileImage", widget: "image", required: false, hint: "Portrait 3:4 image for phones. Keep the main subject centered." }
           - { label: "Hero Headline", name: "heroTitle", widget: "text" }
           - { label: "Hero Description", name: "heroText", widget: "text" }
       - name: "site_en"
@@ -224,7 +224,7 @@ collections:
         file: "data/masters-actions.json"
         format: "json"
         fields:
-          - { label: "Section Photo (left side tree image)", name: "sectionImage", widget: "image", required: false, hint: "Upload the large photo shown on the left of the Masters / Gurunathar section." }
+          - { label: "Section Photo - recommended 1000 x 1400 px", name: "sectionImage", widget: "image", required: false, hint: "Tall portrait image for the left side of the Masters / Gurunathar section." }
           - { label: "Small Heading", name: "sectionKicker", widget: "string", required: false }
           - { label: "Small Heading (English)", name: "sectionKickerEn", widget: "string", required: false }
           - { label: "Section Title", name: "sectionTitle", widget: "string" }
@@ -273,7 +273,7 @@ collections:
               - { label: "Card Title (English)", name: "titleEn", widget: "string", required: false }
               - { label: "Category Label", name: "categoryLabel", widget: "string", required: false }
               - { label: "Category Label (English)", name: "categoryLabelEn", widget: "string", required: false }
-              - { label: "Card Image", name: "image", widget: "image", required: false }
+              - { label: "Card Image - first post 900 x 1200 px; other posts 1200 x 800 px", name: "image", widget: "image", required: false, hint: "Use this exact ratio for best fit. First/featured post: 900 x 1200 px portrait. Other posts: 1200 x 800 px landscape. Images with different ratios will be cropped to keep cards level." }
               - { label: "Card Summary", name: "summary", widget: "text", hint: "Short preview text on the card." }
               - { label: "Card Summary (English)", name: "summaryEn", widget: "text", required: false }
               - { label: "Auto Page URL Slug", name: "slug", widget: "hidden", required: false }
@@ -298,7 +298,9 @@ collections:
                     value: true
                 fields:
                   - { label: "Heading", name: "heading", widget: "string", required: false, hint: "Large title on the Read More page (below header)." }
+                  - { label: "Heading Font Size (px)", name: "headingPx", widget: "string", required: false, hint: "Example: 58" }
                   - { label: "Heading (English)", name: "headingEn", widget: "string", required: false }
+                  - { label: "Heading Font Size (px) (English)", name: "headingPxEn", widget: "string", required: false, hint: "Example: 58" }
                   - { label: "Quote Under Photo", name: "quote", widget: "text", required: false }
                   - { label: "Quote Under Photo (English)", name: "quoteEn", widget: "text", required: false }
                   - { label: "Quote Source", name: "quoteSource", widget: "string", required: false }
@@ -339,7 +341,7 @@ collections:
               - { label: "Card Title (English)", name: "titleEn", widget: "string", required: false }
               - { label: "Category Label", name: "categoryLabel", widget: "string", required: false }
               - { label: "Category Label (English)", name: "categoryLabelEn", widget: "string", required: false }
-              - { label: "Card Image", name: "image", widget: "image", required: false }
+              - { label: "Card Image - first post 900 x 1200 px; other posts 1200 x 800 px", name: "image", widget: "image", required: false, hint: "Use this exact ratio for best fit. First/featured post: 900 x 1200 px portrait. Other posts: 1200 x 800 px landscape. Images with different ratios will be cropped to keep cards level." }
               - { label: "Card Summary", name: "summary", widget: "text", hint: "Short preview text on the card." }
               - { label: "Card Summary (English)", name: "summaryEn", widget: "text", required: false }
               - { label: "Auto Page URL Slug", name: "slug", widget: "hidden", required: false }
@@ -364,7 +366,9 @@ collections:
                     value: true
                 fields:
                   - { label: "Heading", name: "heading", widget: "string", required: false, hint: "Large title on the Read More page (below header)." }
+                  - { label: "Heading Font Size (px)", name: "headingPx", widget: "string", required: false, hint: "Example: 58" }
                   - { label: "Heading (English)", name: "headingEn", widget: "string", required: false }
+                  - { label: "Heading Font Size (px) (English)", name: "headingPxEn", widget: "string", required: false, hint: "Example: 58" }
                   - { label: "Quote Under Photo", name: "quote", widget: "text", required: false }
                   - { label: "Quote Under Photo (English)", name: "quoteEn", widget: "text", required: false }
                   - { label: "Quote Source", name: "quoteSource", widget: "string", required: false }
@@ -405,7 +409,7 @@ collections:
               - { label: "Card Title (English)", name: "titleEn", widget: "string", required: false }
               - { label: "Category Label", name: "categoryLabel", widget: "string", required: false }
               - { label: "Category Label (English)", name: "categoryLabelEn", widget: "string", required: false }
-              - { label: "Card Image", name: "image", widget: "image", required: false }
+              - { label: "Card Image - first post 900 x 1200 px; other posts 1200 x 800 px", name: "image", widget: "image", required: false, hint: "Use this exact ratio for best fit. First/featured post: 900 x 1200 px portrait. Other posts: 1200 x 800 px landscape. Images with different ratios will be cropped to keep cards level." }
               - { label: "Card Summary", name: "summary", widget: "text", hint: "Short preview text on the card." }
               - { label: "Card Summary (English)", name: "summaryEn", widget: "text", required: false }
               - { label: "Auto Page URL Slug", name: "slug", widget: "hidden", required: false }
@@ -430,7 +434,9 @@ collections:
                     value: true
                 fields:
                   - { label: "Heading", name: "heading", widget: "string", required: false, hint: "Large title on the Read More page (below header)." }
+                  - { label: "Heading Font Size (px)", name: "headingPx", widget: "string", required: false, hint: "Example: 58" }
                   - { label: "Heading (English)", name: "headingEn", widget: "string", required: false }
+                  - { label: "Heading Font Size (px) (English)", name: "headingPxEn", widget: "string", required: false, hint: "Example: 58" }
                   - { label: "Quote Under Photo", name: "quote", widget: "text", required: false }
                   - { label: "Quote Under Photo (English)", name: "quoteEn", widget: "text", required: false }
                   - { label: "Quote Source", name: "quoteSource", widget: "string", required: false }
@@ -454,11 +460,22 @@ collections:
                       name: paragraph
                       widget: text
       - name: "posts"
-        label: "Posts"
+        label: "Show More Post Editor"
         file: "data/posts.json"
         format: "json"
         fields:
+          - label: "Categories / Filters"
+            name: "filters"
+            widget: "list"
+            required: false
+            summary: "{{fields.label}}"
+            hint: "These become the filter buttons on the Show more page. 'All' is added automatically by the website, so you only manage the custom categories here."
+            fields:
+              - { label: "Category Key", name: "key", widget: "string", hint: "Example: updates. Use lowercase English letters, numbers, and hyphens only. No spaces." }
+              - { label: "Button Label", name: "label", widget: "string", hint: "Label shown on the filter button in Malayalam." }
+              - { label: "Button Label (English)", name: "labelEn", widget: "string", required: false, hint: "Label shown on the filter button in English mode." }
           - { label: "Disable Read More pages", name: "readMoreDisabled", widget: "boolean", default: true, hint: "When on, Read More is off for all posts in this section. Turn off, then enable each post manually inside Read More Page." }
+
           - label: "Posts"
             name: "posts"
             widget: "list"
@@ -466,22 +483,10 @@ collections:
             fields:
               - { label: "Card Title", name: "title", widget: "string", hint: "Title on the homepage articles grid." }
               - { label: "Card Title (English)", name: "titleEn", widget: "string", required: false }
-              - label: "Category"
-                name: "category"
-                widget: "select"
-                options:
-                  - { label: "Updates", value: "updates" }
-                  - { label: "അധ്യാപനങ്ങൾ", value: "teaching" }
-                  - { label: "റമളാൻ", value: "ramadan" }
-              - label: "Category Label"
-                name: "categoryLabel"
-                widget: "select"
-                options:
-                  - "Updates"
-                  - "അധ്യാപനങ്ങൾ"
-                  - "റമളാൻ"
+              - { label: "Category (filter key)", name: "category", widget: "string", hint: "Must match one Category Key from the Categories / Filters list above. Example: updates" }
+              - { label: "Category Label", name: "categoryLabel", widget: "string", required: false, hint: "Malayalam label shown on the card pill" }
               - { label: "Category Label (English)", name: "categoryLabelEn", widget: "string", required: false, hint: "Example: Updates / Teachings / Ramadan" }
-              - { label: "Card Image", name: "image", widget: "image", required: false }
+              - { label: "Card Image - first post 900 x 1200 px; other posts 1200 x 800 px", name: "image", widget: "image", required: false, hint: "Use this exact ratio for best fit. First/featured post: 900 x 1200 px portrait. Other posts: 1200 x 800 px landscape. Images with different ratios will be cropped to keep cards level." }
               - { label: "Card Summary", name: "summary", widget: "text", hint: "Short preview on the card." }
               - { label: "Card Summary (English)", name: "summaryEn", widget: "text", required: false }
               - { label: "Auto Page URL Slug", name: "slug", widget: "hidden", required: false }
@@ -506,7 +511,9 @@ collections:
                     value: true
                 fields:
                   - { label: "Heading", name: "heading", widget: "string", required: false, hint: "Large title on the Read More page." }
+                  - { label: "Heading Font Size (px)", name: "headingPx", widget: "string", required: false, hint: "Example: 58" }
                   - { label: "Heading (English)", name: "headingEn", widget: "string", required: false }
+                  - { label: "Heading Font Size (px) (English)", name: "headingPxEn", widget: "string", required: false, hint: "Example: 58" }
                   - { label: "Quote Under Photo", name: "quote", widget: "text", required: false }
                   - { label: "Quote Under Photo (English)", name: "quoteEn", widget: "text", required: false }
                   - { label: "Quote Source", name: "quoteSource", widget: "string", required: false }
@@ -550,7 +557,7 @@ collections:
               - { label: "Card Title (English)", name: "titleEn", widget: "string", required: false }
               - { label: "Category Label", name: "categoryLabel", widget: "string", required: false }
               - { label: "Category Label (English)", name: "categoryLabelEn", widget: "string", required: false }
-              - { label: "Card Image", name: "image", widget: "image", required: false }
+              - { label: "Card Image - first post 900 x 1200 px; other posts 1200 x 800 px", name: "image", widget: "image", required: false, hint: "Use this exact ratio for best fit. First/featured post: 900 x 1200 px portrait. Other posts: 1200 x 800 px landscape. Images with different ratios will be cropped to keep cards level." }
               - { label: "Card Summary", name: "summary", widget: "text" }
               - { label: "Card Summary (English)", name: "summaryEn", widget: "text", required: false }
               - { label: "Auto Page URL Slug", name: "slug", widget: "hidden", required: false }
@@ -575,7 +582,9 @@ collections:
                     value: true
                 fields:
                   - { label: "Heading", name: "heading", widget: "string", required: false }
+                  - { label: "Heading Font Size (px)", name: "headingPx", widget: "string", required: false, hint: "Example: 58" }
                   - { label: "Heading (English)", name: "headingEn", widget: "string", required: false }
+                  - { label: "Heading Font Size (px) (English)", name: "headingPxEn", widget: "string", required: false, hint: "Example: 58" }
                   - { label: "Quote Under Photo", name: "quote", widget: "text", required: false }
                   - { label: "Quote Under Photo (English)", name: "quoteEn", widget: "text", required: false }
                   - { label: "Quote Source", name: "quoteSource", widget: "string", required: false }
@@ -619,7 +628,7 @@ collections:
               - { label: "Card Title (English)", name: "titleEn", widget: "string", required: false }
               - { label: "Category Label", name: "categoryLabel", widget: "string", required: false }
               - { label: "Category Label (English)", name: "categoryLabelEn", widget: "string", required: false }
-              - { label: "Card Image", name: "image", widget: "image", required: false }
+              - { label: "Card Image - first post 900 x 1200 px; other posts 1200 x 800 px", name: "image", widget: "image", required: false, hint: "Use this exact ratio for best fit. First/featured post: 900 x 1200 px portrait. Other posts: 1200 x 800 px landscape. Images with different ratios will be cropped to keep cards level." }
               - { label: "Card Summary", name: "summary", widget: "text" }
               - { label: "Card Summary (English)", name: "summaryEn", widget: "text", required: false }
               - { label: "Auto Page URL Slug", name: "slug", widget: "hidden", required: false }
@@ -644,7 +653,9 @@ collections:
                     value: true
                 fields:
                   - { label: "Heading", name: "heading", widget: "string", required: false }
+                  - { label: "Heading Font Size (px)", name: "headingPx", widget: "string", required: false, hint: "Example: 58" }
                   - { label: "Heading (English)", name: "headingEn", widget: "string", required: false }
+                  - { label: "Heading Font Size (px) (English)", name: "headingPxEn", widget: "string", required: false, hint: "Example: 58" }
                   - { label: "Quote Under Photo", name: "quote", widget: "text", required: false }
                   - { label: "Quote Under Photo (English)", name: "quoteEn", widget: "text", required: false }
                   - { label: "Quote Source", name: "quoteSource", widget: "string", required: false }
@@ -688,7 +699,7 @@ collections:
               - { label: "Card Title (English)", name: "titleEn", widget: "string", required: false }
               - { label: "Category Label", name: "categoryLabel", widget: "string", required: false }
               - { label: "Category Label (English)", name: "categoryLabelEn", widget: "string", required: false }
-              - { label: "Card Image", name: "image", widget: "image", required: false }
+              - { label: "Card Image - first post 900 x 1200 px; other posts 1200 x 800 px", name: "image", widget: "image", required: false, hint: "Use this exact ratio for best fit. First/featured post: 900 x 1200 px portrait. Other posts: 1200 x 800 px landscape. Images with different ratios will be cropped to keep cards level." }
               - { label: "Card Summary", name: "summary", widget: "text" }
               - { label: "Card Summary (English)", name: "summaryEn", widget: "text", required: false }
               - { label: "Auto Page URL Slug", name: "slug", widget: "hidden", required: false }
@@ -713,7 +724,9 @@ collections:
                     value: true
                 fields:
                   - { label: "Heading", name: "heading", widget: "string", required: false }
+                  - { label: "Heading Font Size (px)", name: "headingPx", widget: "string", required: false, hint: "Example: 58" }
                   - { label: "Heading (English)", name: "headingEn", widget: "string", required: false }
+                  - { label: "Heading Font Size (px) (English)", name: "headingPxEn", widget: "string", required: false, hint: "Example: 58" }
                   - { label: "Quote Under Photo", name: "quote", widget: "text", required: false }
                   - { label: "Quote Under Photo (English)", name: "quoteEn", widget: "text", required: false }
                   - { label: "Quote Source", name: "quoteSource", widget: "string", required: false }
@@ -757,7 +770,7 @@ collections:
               - { label: "Card Title (English)", name: "titleEn", widget: "string", required: false }
               - { label: "Category Label", name: "categoryLabel", widget: "string", required: false }
               - { label: "Category Label (English)", name: "categoryLabelEn", widget: "string", required: false }
-              - { label: "Card Image", name: "image", widget: "image", required: false }
+              - { label: "Card Image - first post 900 x 1200 px; other posts 1200 x 800 px", name: "image", widget: "image", required: false, hint: "Use this exact ratio for best fit. First/featured post: 900 x 1200 px portrait. Other posts: 1200 x 800 px landscape. Images with different ratios will be cropped to keep cards level." }
               - { label: "Card Summary", name: "summary", widget: "text" }
               - { label: "Card Summary (English)", name: "summaryEn", widget: "text", required: false }
               - { label: "Auto Page URL Slug", name: "slug", widget: "hidden", required: false }
@@ -782,7 +795,9 @@ collections:
                     value: true
                 fields:
                   - { label: "Heading", name: "heading", widget: "string", required: false }
+                  - { label: "Heading Font Size (px)", name: "headingPx", widget: "string", required: false, hint: "Example: 58" }
                   - { label: "Heading (English)", name: "headingEn", widget: "string", required: false }
+                  - { label: "Heading Font Size (px) (English)", name: "headingPxEn", widget: "string", required: false, hint: "Example: 58" }
                   - { label: "Quote Under Photo", name: "quote", widget: "text", required: false }
                   - { label: "Quote Under Photo (English)", name: "quoteEn", widget: "text", required: false }
                   - { label: "Quote Source", name: "quoteSource", widget: "string", required: false }
@@ -826,7 +841,7 @@ collections:
               - { label: "Card Title (English)", name: "titleEn", widget: "string", required: false }
               - { label: "Category Label", name: "categoryLabel", widget: "string", required: false }
               - { label: "Category Label (English)", name: "categoryLabelEn", widget: "string", required: false }
-              - { label: "Card Image", name: "image", widget: "image", required: false }
+              - { label: "Card Image - first post 900 x 1200 px; other posts 1200 x 800 px", name: "image", widget: "image", required: false, hint: "Use this exact ratio for best fit. First/featured post: 900 x 1200 px portrait. Other posts: 1200 x 800 px landscape. Images with different ratios will be cropped to keep cards level." }
               - { label: "Card Summary", name: "summary", widget: "text" }
               - { label: "Card Summary (English)", name: "summaryEn", widget: "text", required: false }
               - { label: "Auto Page URL Slug", name: "slug", widget: "hidden", required: false }
@@ -851,7 +866,9 @@ collections:
                     value: true
                 fields:
                   - { label: "Heading", name: "heading", widget: "string", required: false }
+                  - { label: "Heading Font Size (px)", name: "headingPx", widget: "string", required: false, hint: "Example: 58" }
                   - { label: "Heading (English)", name: "headingEn", widget: "string", required: false }
+                  - { label: "Heading Font Size (px) (English)", name: "headingPxEn", widget: "string", required: false, hint: "Example: 58" }
                   - { label: "Quote Under Photo", name: "quote", widget: "text", required: false }
                   - { label: "Quote Under Photo (English)", name: "quoteEn", widget: "text", required: false }
                   - { label: "Quote Source", name: "quoteSource", widget: "string", required: false }
@@ -895,7 +912,7 @@ collections:
               - { label: "Card Title (English)", name: "titleEn", widget: "string", required: false }
               - { label: "Category Label", name: "categoryLabel", widget: "string", required: false }
               - { label: "Category Label (English)", name: "categoryLabelEn", widget: "string", required: false }
-              - { label: "Card Image", name: "image", widget: "image", required: false }
+              - { label: "Card Image - first post 900 x 1200 px; other posts 1200 x 800 px", name: "image", widget: "image", required: false, hint: "Use this exact ratio for best fit. First/featured post: 900 x 1200 px portrait. Other posts: 1200 x 800 px landscape. Images with different ratios will be cropped to keep cards level." }
               - { label: "Card Summary", name: "summary", widget: "text" }
               - { label: "Card Summary (English)", name: "summaryEn", widget: "text", required: false }
               - { label: "Auto Page URL Slug", name: "slug", widget: "hidden", required: false }
@@ -920,7 +937,9 @@ collections:
                     value: true
                 fields:
                   - { label: "Heading", name: "heading", widget: "string", required: false }
+                  - { label: "Heading Font Size (px)", name: "headingPx", widget: "string", required: false, hint: "Example: 58" }
                   - { label: "Heading (English)", name: "headingEn", widget: "string", required: false }
+                  - { label: "Heading Font Size (px) (English)", name: "headingPxEn", widget: "string", required: false, hint: "Example: 58" }
                   - { label: "Quote Under Photo", name: "quote", widget: "text", required: false }
                   - { label: "Quote Under Photo (English)", name: "quoteEn", widget: "text", required: false }
                   - { label: "Quote Source", name: "quoteSource", widget: "string", required: false }
@@ -964,7 +983,7 @@ collections:
               - { label: "Card Title (English)", name: "titleEn", widget: "string", required: false }
               - { label: "Category Label", name: "categoryLabel", widget: "string", required: false }
               - { label: "Category Label (English)", name: "categoryLabelEn", widget: "string", required: false }
-              - { label: "Card Image", name: "image", widget: "image", required: false }
+              - { label: "Card Image - first post 900 x 1200 px; other posts 1200 x 800 px", name: "image", widget: "image", required: false, hint: "Use this exact ratio for best fit. First/featured post: 900 x 1200 px portrait. Other posts: 1200 x 800 px landscape. Images with different ratios will be cropped to keep cards level." }
               - { label: "Card Summary", name: "summary", widget: "text" }
               - { label: "Card Summary (English)", name: "summaryEn", widget: "text", required: false }
               - { label: "Auto Page URL Slug", name: "slug", widget: "hidden", required: false }
@@ -989,7 +1008,9 @@ collections:
                     value: true
                 fields:
                   - { label: "Heading", name: "heading", widget: "string", required: false }
+                  - { label: "Heading Font Size (px)", name: "headingPx", widget: "string", required: false, hint: "Example: 58" }
                   - { label: "Heading (English)", name: "headingEn", widget: "string", required: false }
+                  - { label: "Heading Font Size (px) (English)", name: "headingPxEn", widget: "string", required: false, hint: "Example: 58" }
                   - { label: "Quote Under Photo", name: "quote", widget: "text", required: false }
                   - { label: "Quote Under Photo (English)", name: "quoteEn", widget: "text", required: false }
                   - { label: "Quote Source", name: "quoteSource", widget: "string", required: false }
@@ -1033,7 +1054,7 @@ collections:
               - { label: "Card Title (English)", name: "titleEn", widget: "string", required: false }
               - { label: "Category Label", name: "categoryLabel", widget: "string", required: false }
               - { label: "Category Label (English)", name: "categoryLabelEn", widget: "string", required: false }
-              - { label: "Card Image", name: "image", widget: "image", required: false }
+              - { label: "Card Image - first post 900 x 1200 px; other posts 1200 x 800 px", name: "image", widget: "image", required: false, hint: "Use this exact ratio for best fit. First/featured post: 900 x 1200 px portrait. Other posts: 1200 x 800 px landscape. Images with different ratios will be cropped to keep cards level." }
               - { label: "Card Summary", name: "summary", widget: "text" }
               - { label: "Card Summary (English)", name: "summaryEn", widget: "text", required: false }
               - { label: "Auto Page URL Slug", name: "slug", widget: "hidden", required: false }
@@ -1058,7 +1079,9 @@ collections:
                     value: true
                 fields:
                   - { label: "Heading", name: "heading", widget: "string", required: false }
+                  - { label: "Heading Font Size (px)", name: "headingPx", widget: "string", required: false, hint: "Example: 58" }
                   - { label: "Heading (English)", name: "headingEn", widget: "string", required: false }
+                  - { label: "Heading Font Size (px) (English)", name: "headingPxEn", widget: "string", required: false, hint: "Example: 58" }
                   - { label: "Quote Under Photo", name: "quote", widget: "text", required: false }
                   - { label: "Quote Under Photo (English)", name: "quoteEn", widget: "text", required: false }
                   - { label: "Quote Source", name: "quoteSource", widget: "string", required: false }

@@ -498,6 +498,26 @@ h2 {
   gap: 18px;
 }
 
+.show-more-row {
+  margin-top: 18px;
+  display: flex;
+  justify-content: center;
+}
+
+.show-more-row .button {
+  min-width: 160px;
+  color: #fff;
+  border-color: var(--green);
+  background: var(--green);
+  box-shadow: 0 14px 32px rgba(47, 111, 94, 0.24);
+}
+
+.show-more-row .button:hover,
+.show-more-row .button:focus-visible {
+  background: var(--forest);
+  border-color: var(--forest);
+}
+
 .article-card {
   overflow: hidden;
   background: var(--surface);
@@ -514,13 +534,17 @@ h2 {
 
 .article-card img {
   width: 100%;
-  height: 240px;
+  aspect-ratio: 3 / 2;
+  height: auto;
   object-fit: cover;
 }
 
 .article-card.featured img {
-  height: 100%;
+  aspect-ratio: 3 / 4;
+  height: auto;
   min-height: 330px;
+  object-fit: cover;
+  align-self: start;
 }
 
 .article-card div {
@@ -594,8 +618,9 @@ h2 {
 
 .article-detail-figure img {
   width: 100%;
-  max-height: 520px;
-  object-fit: cover;
+  height: auto;
+  max-height: none;
+  object-fit: contain;
   border-radius: 8px;
   border: 1px solid var(--line);
 }
@@ -648,7 +673,8 @@ h2 {
   margin-bottom: 12px;
 }
 
-.post-page {
+.post-page,
+.articles-page {
   padding: 70px clamp(20px, 5vw, 72px) 84px;
 }
 
@@ -660,7 +686,8 @@ h2 {
   margin-bottom: 28px;
 }
 
-.post-page h1 {
+.post-page h1,
+.articles-page h1 {
   max-width: 960px;
   margin: 0;
   font-size: clamp(38px, 6vw, 82px);
@@ -691,7 +718,8 @@ h2 {
 
 .post-card img {
   width: 100%;
-  height: 240px;
+  aspect-ratio: 3 / 2;
+  height: auto;
   object-fit: cover;
 }
 
@@ -718,8 +746,11 @@ h2 {
 }
 
 .featured-post img {
-  height: 100%;
+  aspect-ratio: 3 / 4;
+  height: auto;
   min-height: 380px;
+  object-fit: cover;
+  align-self: start;
 }
 
 .path-grid {
