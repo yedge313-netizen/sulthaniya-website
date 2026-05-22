@@ -214,9 +214,9 @@ async function renderAboutSection() {
   if (paragraphs) {
     paragraphs.innerHTML = "";
     (data.paragraphs || []).forEach((text) => {
-      const paragraph = document.createElement("p");
-      paragraph.textContent = text;
-      paragraphs.appendChild(paragraph);
+      const paragraphNode = document.createElement("div");
+      paragraphNode.innerHTML = marked.parse(text.paragraph || "");
+      paragraphs.appendChild(paragraphNode);
     });
   }
 
@@ -678,7 +678,7 @@ async function renderMastersActions() {
   const language = getLanguage();
   if (kicker) kicker.textContent = localizedValue(data, "sectionKicker", language) || kicker.textContent;
   if (title) title.textContent = localizedValue(data, "sectionTitle", language) || title.textContent;
-  if (body) body.textContent = localizedValue(data, "sectionBody", language) || body.textContent;
+  if (body) body.innerHTML = marked.parse(localizedValue(data, "sectionBody", language) || "");
 
   if (!mastersActions) return;
 
@@ -935,8 +935,8 @@ async function renderPostDetail() {
   if (body) {
     body.innerHTML = "";
     normalizeBody(detail.body).forEach((paragraph) => {
-      const paragraphNode = document.createElement("p");
-      paragraphNode.textContent = paragraph;
+      const paragraphNode = document.createElement("div"); // Changed from 'p' to 'div'
+      paragraphNode.innerHTML = marked.parse(paragraph);
       body.appendChild(paragraphNode);
     });
   }

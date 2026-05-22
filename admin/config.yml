@@ -69,7 +69,7 @@ collections:
             field:
               label: Paragraph
               name: paragraph
-              widget: text
+              widget: markdown
           - { label: "Quote Box Text", name: "quoteText", widget: "text" }
           - { label: "Quote Source", name: "quoteSource", widget: "string", required: false }
       - name: "about_section_en"
@@ -86,7 +86,7 @@ collections:
             field:
               label: Paragraph
               name: paragraph
-              widget: text
+              widget: markdown
           - { label: "Quote Box Text (English)", name: "quoteText", widget: "text", required: false }
           - { label: "Quote Source (English)", name: "quoteSource", widget: "string", required: false }
       - name: "home_ui"
@@ -229,8 +229,8 @@ collections:
           - { label: "Small Heading (English)", name: "sectionKickerEn", widget: "string", required: false }
           - { label: "Section Title", name: "sectionTitle", widget: "string" }
           - { label: "Section Title (English)", name: "sectionTitleEn", widget: "string", required: false }
-          - { label: "Body Text", name: "sectionBody", widget: "text" }
-          - { label: "Body Text (English)", name: "sectionBodyEn", widget: "text", required: false }
+          - { label: "Body Text", name: "sectionBody", widget: "markdown" }
+          - { label: "Body Text (English)", name: "sectionBodyEn", widget: "markdown", required: false }
           - { label: "Button 1 Text", name: "buttonOneLabel", widget: "string" }
           - { label: "Button 1 Text (English)", name: "buttonOneLabelEn", widget: "string", required: false }
           - { label: "Button 1 Link", name: "buttonOneUrl", widget: "string" }
@@ -313,7 +313,7 @@ collections:
                     field:
                       label: Paragraph
                       name: paragraph
-                      widget: text
+                      widget: markdown
                   - label: "Content Paragraphs (English)"
                     name: "bodyEn"
                     widget: "list"
@@ -322,7 +322,7 @@ collections:
                     field:
                       label: Paragraph
                       name: paragraph
-                      widget: text
+                      widget: markdown
       - name: "mahal_posts"
         label: "Mahal Page Posts"
         file: "data/mahal-posts.json"
@@ -381,7 +381,7 @@ collections:
                     field:
                       label: Paragraph
                       name: paragraph
-                      widget: text
+                      widget: markdown
                   - label: "Content Paragraphs (English)"
                     name: "bodyEn"
                     widget: "list"
@@ -390,7 +390,7 @@ collections:
                     field:
                       label: Paragraph
                       name: paragraph
-                      widget: text
+                      widget: markdown
       - name: "silsila_posts"
         label: "Silsila Page Posts"
         file: "data/silsila-posts.json"
@@ -449,7 +449,7 @@ collections:
                     field:
                       label: Paragraph
                       name: paragraph
-                      widget: text
+                      widget: markdown
                   - label: "Content Paragraphs (English)"
                     name: "bodyEn"
                     widget: "list"
@@ -458,7 +458,7 @@ collections:
                     field:
                       label: Paragraph
                       name: paragraph
-                      widget: text
+                      widget: markdown
       - name: "posts"
         label: "Show More Post Editor"
         file: "data/posts.json"
@@ -526,7 +526,7 @@ collections:
                     field:
                       label: Paragraph
                       name: paragraph
-                      widget: text
+                      widget: markdown
                   - label: "Content Paragraphs (English)"
                     name: "bodyEn"
                     widget: "list"
@@ -535,7 +535,7 @@ collections:
                     field:
                       label: Paragraph
                       name: paragraph
-                      widget: text
+                      widget: markdown
       - name: "learning_quran_posts"
         label: "Learning: Quran Posts"
         file: "data/learning-quran-posts.json"
@@ -597,7 +597,7 @@ collections:
                     field:
                       label: Paragraph
                       name: paragraph
-                      widget: text
+                      widget: markdown
                   - label: "Content Paragraphs (English)"
                     name: "bodyEn"
                     widget: "list"
@@ -606,7 +606,7 @@ collections:
                     field:
                       label: Paragraph
                       name: paragraph
-                      widget: text
+                      widget: markdown
       - name: "learning_hadith_posts"
         label: "Learning: Hadith Posts"
         file: "data/learning-hadith-posts.json"
@@ -668,7 +668,7 @@ collections:
                     field:
                       label: Paragraph
                       name: paragraph
-                      widget: text
+                      widget: markdown
                   - label: "Content Paragraphs (English)"
                     name: "bodyEn"
                     widget: "list"
@@ -677,7 +677,7 @@ collections:
                     field:
                       label: Paragraph
                       name: paragraph
-                      widget: text
+                      widget: markdown
       - name: "learning_kalima_posts"
         label: "Learning: Kalima Thawyib Posts"
         file: "data/learning-kalima-posts.json"
@@ -739,7 +739,7 @@ collections:
                     field:
                       label: Paragraph
                       name: paragraph
-                      widget: text
+                      widget: markdown
                   - label: "Content Paragraphs (English)"
                     name: "bodyEn"
                     widget: "list"
@@ -748,7 +748,7 @@ collections:
                     field:
                       label: Paragraph
                       name: paragraph
-                      widget: text
+                      widget: markdown
       - name: "learning_tasawwuf_posts"
         label: "Learning: Tasawwuf Posts"
         file: "data/learning-tasawwuf-posts.json"
@@ -810,7 +810,7 @@ collections:
                     field:
                       label: Paragraph
                       name: paragraph
-                      widget: text
+                      widget: markdown
                   - label: "Content Paragraphs (English)"
                     name: "bodyEn"
                     widget: "list"
@@ -819,7 +819,7 @@ collections:
                     field:
                       label: Paragraph
                       name: paragraph
-                      widget: text
+                      widget: markdown
       - name: "learning_padanangal_posts"
         label: "Learning: Padanangal Posts"
         file: "data/learning-padanangal-posts.json"
@@ -881,7 +881,7 @@ collections:
                     field:
                       label: Paragraph
                       name: paragraph
-                      widget: text
+                      widget: markdown
                   - label: "Content Paragraphs (English)"
                     name: "bodyEn"
                     widget: "list"
@@ -890,7 +890,7 @@ collections:
                     field:
                       label: Paragraph
                       name: paragraph
-                      widget: text
+                      widget: markdown
       - name: "learning_history_posts"
         label: "Learning: History Posts"
         file: "data/learning-history-posts.json"
@@ -952,7 +952,7 @@ collections:
                     field:
                       label: Paragraph
                       name: paragraph
-                      widget: text
+                      widget: markdown
                   - label: "Content Paragraphs (English)"
                     name: "bodyEn"
                     widget: "list"
@@ -961,7 +961,7 @@ collections:
                     field:
                       label: Paragraph
                       name: paragraph
-                      widget: text
+                      widget: markdown
       - name: "learning_sufi_stories_posts"
         label: "Learning: Sufi Stories Posts"
         file: "data/learning-sufi-stories-posts.json"
@@ -1023,7 +1023,7 @@ collections:
                     field:
                       label: Paragraph
                       name: paragraph
-                      widget: text
+                      widget: markdown
                   - label: "Content Paragraphs (English)"
                     name: "bodyEn"
                     widget: "list"
@@ -1032,7 +1032,7 @@ collections:
                     field:
                       label: Paragraph
                       name: paragraph
-                      widget: text
+                      widget: markdown
       - name: "learning_videos_posts"
         label: "Learning: Videos Posts"
         file: "data/learning-videos-posts.json"
@@ -1094,7 +1094,7 @@ collections:
                     field:
                       label: Paragraph
                       name: paragraph
-                      widget: text
+                      widget: markdown
                   - label: "Content Paragraphs (English)"
                     name: "bodyEn"
                     widget: "list"
@@ -1103,4 +1103,4 @@ collections:
                     field:
                       label: Paragraph
                       name: paragraph
-                      widget: text
+                      widget: markdown
