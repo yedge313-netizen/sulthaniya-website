@@ -490,6 +490,27 @@ collections:
               - { label: "Card Summary", name: "summary", widget: "text", hint: "Short preview on the card." }
               - { label: "Card Summary (English)", name: "summaryEn", widget: "text", required: false }
               - { label: "Auto Page URL Slug", name: "slug", widget: "hidden", required: false }
+              - label: "Also show on these pages"
+                name: "crossPostPages"
+                widget: "list"
+                required: false
+                collapsed: true
+                fields:
+                  - label: "Page Identifier"
+                    name: "pageId"
+                    widget: "select"
+                    options:
+                      - { label: "Usthad", value: "usthad_posts" }
+                      - { label: "Mahal", value: "mahal_posts" }
+                      - { label: "Silsila", value: "silsila_posts" }
+                      - { label: "Learning: Quran", value: "learning_quran_posts" }
+                      - { label: "Learning: Hadith", value: "learning_hadith_posts" }
+                      - { label: "Learning: Kalima", value: "learning_kalima_posts" }
+                      - { label: "Learning: Tasawwuf", value: "learning_tasawwuf_posts" }
+                      - { label: "Learning: Padanangal", value: "learning_padanangal_posts" }
+                      - { label: "Learning: History", value: "learning_history_posts" }
+                      - { label: "Learning: Sufi Stories", value: "learning_sufi_stories_posts" }
+                      - { label: "Learning: Videos", value: "learning_videos_posts" }
               - label: "Enable Read More Page"
                 name: "readMoreEnabled"
                 widget: "boolean"

@@ -805,6 +805,22 @@ function createUsthadCard(post, isFeatured = false, topic = "", settings = {}, i
   return article;
 }
 
+let _allPostsCache = null;
+async function getAllPosts() {
+  if (_allPostsCache) return _allPostsCache;
+  const data = await getJson("data/posts.json", { posts: [] });
+  _allPostsCache = data.posts || [];
+  return _allPostsCache;
+}
+
+async function getTopicPosts(topicFile) {
+  const data = await getJson(topicFile, { posts: [] });
+  return data.posts || [];
+}
+
+
+// ... (rest of the file remains the same until renderTopicPosts) ...
+
 async function renderTopicPosts() {
   if (document.body.dataset.page === "learning") {
     const slug = new URLSearchParams(window.location.search).get("topic");
@@ -816,7 +832,8 @@ async function renderTopicPosts() {
   if (!topicGrid) return;
 
   const data = await getJson(topicGrid.dataset.postsFile || "data/usthad-posts.json", { posts: [] });
-  const posts = data.posts || [];
+  let posts = data.posts || [];
+
   const kicker = document.querySelector("[data-topic-kicker]");
   const title = document.querySelector("[data-topic-title]");
   const intro = document.querySelector("[data-topic-intro]");
@@ -826,12 +843,28 @@ async function renderTopicPosts() {
   if (title) title.textContent = localizedValue(data, "pageTitle", language) || title.textContent;
   if (intro) intro.textContent = localizedValue(data, "pageIntro", language) || "";
 
-  if (!posts.length) return;
+  const currentTopicId = topicFromPostsFile(topicGrid.dataset.postsFile || "data/usthad-posts.json");
+
+  const allPosts = await getAllPosts();
+  const crossPosts = allPosts.filter(post =>
+    post.crossPostPages && post.crossPostPages.some(page => page.pageId === currentTopicId)
+  );
+
+  const combinedPosts = [...posts];
+  const existingSlugs = new Set(posts.map(p => getPostSlug(p)));
+
+  crossPosts.forEach(cp => {
+    if (!existingSlugs.has(getPostSlug(cp))) {
+      combinedPosts.push(cp);
+    }
+  });
+
+  if (!combinedPosts.length) return;
 
   const topic = topicFromPostsFile(topicGrid.dataset.postsFile);
   const readMoreSettings = getReadMoreSettings(data);
   topicGrid.innerHTML = "";
-  posts.forEach((post, index) => {
+  combinedPosts.forEach((post, index) => {
     topicGrid.appendChild(createUsthadCard(post, index === 0, topic, readMoreSettings, index));
   });
 }
